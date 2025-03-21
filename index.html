@@ -131,6 +131,7 @@
         </div>
         <ul class="menu">
             <li><a href="#book">Books</a></li>
+            <li><a href="#story">Success Stories</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#Businesses">My businesses</a></li>
         </ul>
@@ -139,6 +140,7 @@
     </div>
     <div class="mobile-menu" id="mobileMenu">
         <a href="#book" onclick="closeMenu()">Books</a>
+        <a href="#story" onclick="closeMenu()">Success Stories</a>
         <a href="#about" onclick="closeMenu()">About</a>
         <a href="#Businesses" onclick="closeMenu()">My businesses</a>
         <a href="#" class="cta-button" onclick="closeMenu()">Schedule a Call</a>
@@ -169,9 +171,27 @@
 
     <!-- Hero Section -->
     <section class="hero"><br>
+		<button class="btn">LEARN MORE</button>
         <img src="image.png" class="hero-img desktop-img" style="width:100%"/>
         <img src="small image.png" class="hero-img mobile-img" style="width:100%; display: none;"/>
-
+		<br><br>
+		  <section id="testimonial" class="clearfix">
+			 <div class="container padtop50 ">
+				<div class="row justify-content-center align-self-center padlrxs25 ">
+				   <div class="col-md-12 col-lg-10 text-center">
+					   <div class=" padtop10">
+						   <img src="quote.png" class="testimg">
+							   <div class="padtop10 font23 colorb" style="font-size: 23px;font-weight: 500; font-family: system-ui;"> Their consistent commitment to prompt deliveries, exceptional product quality, and reliable support has made them a trusted partner over the years. Always responsive and dedicated, they are truly great people to work with. </div>
+							</div><br>
+							<div class="">
+							   <p class="testfont17 padtop25 fontw400"  style="font-size: 20px;color:grey; font-family: system-ui;">Vikas Maheshwari (Sourcing, Purchase & SQA Head (Wiring devices & Switchgear division))</p>
+							</div>
+				   </div>
+				</div>
+			 </div>
+		  </section>
+		<br>
+		<img src="client.png" style="width:90%;display:block;margin:auto;"/><br><br><br><br>
         <div class="hero-text" id="about" style="color:black;text-align: -webkit-center;">
             <h1 style="background-color: #f6e7d0;width: fit-content;justify-self: center;font-weight: 900;font-size: 75px;font-family: sans-serif;">Meet Yattin Anand</h1>
             <p style="font-size: x-large;">Author I Entrepreneur I Innovator I Solo Uno Expert in short circuit proof wires</p><br><br><br>
@@ -197,29 +217,133 @@
         window.onload = updateHeroImage;
         window.onresize = updateHeroImage;
     </script>
-<section class="prebook-section" id="book">
-    <div class="container">
-        <div class="chat-box">Unlock the Secrets of Fan Regulators – Pre-book the First-Ever Guide!</div>
-        <h2>World's First Book on <span class="highlight">FAN REGULATOR</span></h2><br>
-        <div class="content">
-            <div class="book-image">
-                <img src="book.png" alt="7 Secrets to 120 Years Body">
-            </div>
-            <div class="book-details">
-                <ul>
-                    <li><span class="tick">✔</span> Discover the world of fan regulators with India's first-ever dedicated book on the subject.</li>
-                    <li><span class="tick">✔</span> From design to functionality, this guide offers an in-depth look at all aspects of fan regulator technology.</li>
-                    <li><span class="tick">✔</span> Ideal for manufacturers, engineers, and enthusiasts alike, it's the ultimate resource.</li>
-                    <li><span class="tick">✔</span> Pre-book your copy now to stay ahead in the industry!</li>
-                </ul>
-                <div class="buttons">
-                    <button class="prebook-btn">Pre-Book Now</button>
-                    <button class="fitness-btn"  id="Businesses" >Get Contact</button>
-                </div>
-            </div>
+	
+    <!-- Hero Section -->
+    <section class="hero"><br>
+        <div class="hero-text" id="story" style="color:black;text-align: -webkit-center;">
+            <h1 style="background-color: #f6e7d0;width: fit-content;justify-self: center;font-weight: 900;font-size: 75px;font-family: sans-serif;">Success Stories</h1>
+            <p style="font-size: large;">Author I Entrepreneur I Innovator I Solo Uno Expert in short circuit proof wires</p><br><br><br>
+<style>
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.row {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.shadow-box {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.shadow-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.shadow-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.18);
+}
+
+/* Alternating box sizes */
+.big-box {
+    width: 65%;
+    height: 300px;
+}
+
+.small-box {
+    width: 35%;
+    height: 200px;
+}
+
+/* Responsive for Small Screens */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .big-box, .small-box {
+        width: 100%;
+        height: auto;
+    }
+}
+
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="shadow-box big-box">
+            <img src="media22.png" alt="Fan Regulator">
+        </div>
+        <div class="shadow-box small-box">
+            <img src="inter3.jpg" alt="Fan Regulator Book">
         </div>
     </div>
-</section>
+
+    <div class="row">
+        <div class="shadow-box small-box">
+            <img src="inter1.jpg" alt="Fan Regulator Book">
+        </div>
+        <div class="shadow-box big-box">
+            <img src="inter2.jpg" alt="Fan Regulator Book">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="shadow-box big-box">
+            <img src="image1.jpg" alt="Fan Regulator">
+        </div>
+        <div class="shadow-box small-box">
+            <img src="media11.png" alt="Fan Regulator Book">
+        </div>
+    </div>
+</div>
+
+
+
+		</div>
+    </section>
+    <!-- Book Section -->	
+	<section class="prebook-section" id="book">
+		<div class="container">
+			<div class="chat-box">Unlock the Secrets of Fan Regulators – Pre-book the First-Ever Guide!</div>
+			<h2>World's First Book on <span class="highlight">FAN REGULATOR</span></h2><br>
+			<div class="content">
+				<div class="book-image">
+					<img src="book.png" alt="7 Secrets to 120 Years Body">
+				</div>
+				<div class="book-details">
+					<ul>
+						<li><span class="tick">✔</span> Discover the world of fan regulators with India's first-ever dedicated book on the subject.</li>
+						<li><span class="tick">✔</span> From design to functionality, this guide offers an in-depth look at all aspects of fan regulator technology.</li>
+						<li><span class="tick">✔</span> Ideal for manufacturers, engineers, and enthusiasts alike, it's the ultimate resource.</li>
+						<li><span class="tick">✔</span> Pre-book your copy now to stay ahead in the industry!</li>
+					</ul>
+					<div class="buttons">
+						<button class="fitness-btn"  id="Businesses" >Get Contact</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
 <style>
 .prebook-section {
@@ -437,7 +561,7 @@ li {
 		<div style="display:flex;" id="dp">
 		  <a href="www.fclwireandcable.com">
             <h3  class="pr">Visit Dora luxury Gifting</h3>
-            <i class="fa fa-arrow-right" id="icon"></i>
+            <i class="fa fa-external-link" id="icon"></i>
 		  </a>
 		</div>
 			<img src="Dora-Logo.png" style="width:60%"/><br>
@@ -447,7 +571,7 @@ li {
 		<div style="display:flex;" id="dp">
 		  <a href="www.fclwireandcable.com">
             <h3  class="pr">Connect on Linkedin</h3>
-            <i class="fa fa-arrow-right" id="icon"></i>
+            <i class="fa fa-external-link" id="icon"></i>
 		  </a>
 		</div>
             <img src="link.png" style="width:30%"/><br>
@@ -491,7 +615,7 @@ li {
 				 <img src="name.png" alt="Logo" style="width:40%"> 
 			</div>
 			<div class="col-md-3"  style="display:flex;justify-content: center;align-items: baseline;    padding: 0px;    padding: 0px;:    padding: 0px;">
-				<i class="fa fa-book" aria-hidden="true"></i><p class=" pp">Read a Book</p>
+				<i class="fa fa-book" aria-hidden="true"  style="color:black;"></i><p class=" pp" style="color:black;">Book</p>
 			</div>
 			<div class="col-md-3"  style="display:flex;justify-content: center;align-items: baseline;    padding: 0px;:    padding: 0px;">
 				<i class="fa fa-user" aria-hidden="true"></i><p class=" pp">About Me</p>
