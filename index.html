@@ -120,6 +120,38 @@
             display: block;
         }
     }
+	
+	
+	
+        .image-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .btn-overlay {
+            position: absolute;
+            bottom: 200px;
+            left: 70px;
+            background-color: #FFC107;
+            color: black;
+            padding: 12px 20px;
+            border: none;
+            font-size: 16px;
+            font-weight: 800;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-overlay:hover {
+            background-color: #FFA000;
+        }
 </style>
 
 <header>
@@ -171,9 +203,11 @@
 
     <!-- Hero Section -->
     <section class="hero"><br>
-		<button class="btn">LEARN MORE</button>
-        <img src="imagees.png" class="hero-img desktop-img" style="width:100%"/>
-        <img src="small imagee.png" class="hero-img mobile-img" style="width:100%; display: none;"/>
+	<div class="image-container">
+        <img src="imagee.png" class="hero-img desktop-img" style="width:100%"/>
+        <img src="small image.png" class="hero-img mobile-img" style="width:100%; display: none;"/>
+		<button class="btn-overlay">LEARN MORE <i class="fa fa-arrow-right" aria-hidden="true"  style="color:black;"></i></button>
+	</div>
 		<br><br>
 		  <section id="testimonial" class="clearfix">
 			 <div class="container padtop50 ">
