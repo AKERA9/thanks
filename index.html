@@ -330,22 +330,26 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
     </style>
 
     <script>
-        function updateHeroImage() {
-            var desktopImg = document.querySelector(".desktop-img");
-            var mobileImg = document.querySelector(".mobile-img");
-
-            if (window.innerWidth <= 650) {
-                desktopImg.style.display = "none";
-                mobileImg.style.display = "block";
-            } else {
-                desktopImg.style.display = "block";
-                mobileImg.style.display = "none";
-            }
-        }
-
-        // Run function on load & window resize
-        window.onload = updateHeroImage;
-        window.onresize = updateHeroImage;
+	function updateHeroImage() {
+	    var desktopImg = document.querySelector(".desktop-img");
+	    var mobileImg = document.querySelector(".mobile-img");
+	
+	    console.log("Window width:", window.innerWidth); // Debugging
+	
+	    if (window.innerWidth <= 650) {
+	        desktopImg.style.display = "none";
+	        mobileImg.style.display = "block";
+	        console.log("Mobile image displayed"); // Debugging
+	    } else {
+	        desktopImg.style.display = "block";
+	        mobileImg.style.display = "none";
+	        console.log("Desktop image displayed"); // Debugging
+	    }
+	}
+	
+	// Run function on load & window resize
+	window.onload = updateHeroImage;
+	window.onresize = updateHeroImage;
     </script>
 
     <!-- Success Stories Section -->
