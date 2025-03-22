@@ -912,46 +912,7 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
         }
 
     </style>
-    <div class="background">
-        <p>Build with wires engineered to protect generations.
-Let the expert behind   </p>
-        <p>patented short-circuit proof technology solve your biggest wiring challenges.</p>
-    </div>
-    <div class="container-wrapper">
-        <div class="containers">
-            <div class="image-content"></div>
-            <div class="text-content">
-                <h2 style="font-size: xx-large;">Book One-on-One Call</h2>
-                <p>During this 20-minute discovery call, Yatin would…</p>
-                <br>
-				<ul>
-                    <li style="font-size: revert;" class="wid">Understand your current challenges in wire selection, safety compliance, or pricing pressures</li>
-                    <li style="font-size: revert;" class="wid">Share how short-circuit proof wires can help you reduce risk and increase long-term profits</li>
-                    <li style="font-size: revert;" class="wid">Explore how to maximize margins while offering unmatched quality to your customers</li>
-				    <br><p style="">Due to a packed schedule, Yatin is only available for <br>a few discovery calls per week. Reserve your slot now!</p>
-                </ul><br>
-<!-- Slot Booking Button -->
-<a href="javascript:void(0);" class="book-btn" onclick="openForm()">YES, PLEASE BOOK MY SLOT</a>
-
-<!-- Slot Booking Popup Form -->
-<div id="popupForm" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeForm()">&times;</span>
-        <h2>Book Your Slot</h2>
-        <form onsubmit="submitForm(); return false;">
-            <label for="email">Your Email:</label>
-            <input type="email" id="email" placeholder="Enter your email" required>
-
-            <label for="meetingTime">Select Date & Time:</label>
-            <input type="datetime-local" id="meetingTime" required>
-
-            <button type="submit">Confirm Booking</button>
-            <p id="confirmation" style="color: green; font-weight: bold;"></p>
-        </form>
-    </div>
-</div>
-
-<style>
+	<style>
 /* Modal Styling */
 .modal {
     display: none;
@@ -1058,10 +1019,59 @@ button:hover {
     max-width: 500px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     animation: slideIn 0.3s ease-in-out;
-    margin-top: 120px;
+    margin-top: 100px;
 }
 }
 </style>
+    <div class="background">
+        <p>Build with wires engineered to protect generations.
+Let the expert behind   </p>
+        <p>patented short-circuit proof technology solve your biggest wiring challenges.</p>
+    </div>
+    <div class="container-wrapper">
+        <div class="containers">
+            <div class="image-content"></div>
+            <div class="text-content">
+                <h2 style="font-size: xx-large;">Book One-on-One Call</h2>
+                <p>During this 20-minute discovery call, Yatin would…</p>
+                <br>
+				<ul>
+                    <li style="font-size: revert;" class="wid">Understand your current challenges in wire selection, safety compliance, or pricing pressures</li>
+                    <li style="font-size: revert;" class="wid">Share how short-circuit proof wires can help you reduce risk and increase long-term profits</li>
+                    <li style="font-size: revert;" class="wid">Explore how to maximize margins while offering unmatched quality to your customers</li>
+				    <br><p style="">Due to a packed schedule, Yatin is only available for <br>a few discovery calls per week. Reserve your slot now!</p>
+                </ul><br>
+<!-- Slot Booking Button -->
+<a href="javascript:void(0);" class="book-btn" onclick="openForm()">YES, PLEASE BOOK MY SLOT</a>
+
+<!-- Slot Booking Popup Form -->
+<div id="popupForm" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeForm()">&times;</span>
+        <h2>Book Your Slot</h2>
+<form onsubmit="submitForm(); return false;">
+    <!-- Name Field -->
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+    <!-- Email Field -->
+    <label for="email">Your Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+    <!-- Phone Number Field -->
+    <label for="phone">Your Phone Number:</label>
+    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+    <!-- Date & Time Field -->
+    <label for="meetingTime">Select Date & Time:</label>
+    <input type="datetime-local" id="meetingTime" name="meetingTime" required>
+
+    <!-- Submit Button -->
+    <button type="submit">Confirm Booking</button>
+    <p id="confirmation" style="color: green; font-weight: bold;"></p>
+</form>
+    </div>
+</div>
 
 <script>
 // ✅ Form open karne ka function
@@ -1076,21 +1086,32 @@ function closeForm() {
 
 // ✅ Form submit karne ka function
 function submitForm() {
+    let name = document.getElementById("name").value;
     let email = document.getElementById("email").value;
+    let phone = document.getElementById("phone").value;
     let meetingTime = document.getElementById("meetingTime").value;
-    let scriptURL = "https://script.google.com/macros/s/AKfycbyxSDn_b23ZHBsC2UJVeTEL2MSGAHlESLK1mT6MDl3ZGU9HF1HcWjyo3Hb_JiY9-ko_/exec";
+    let scriptURL = "https://script.google.com/macros/s/AKfycbzj31wpeSlRGeZmYBd5kpIlCbpQpP-beI4Hf2DgS59jANkjHyWeUpSFvClY-X84YnFI/exec";
 
-    if (!email || !meetingTime) {
-        alert("Please enter email and select a date/time!");
+    // Validate all fields
+    if (!name || !email || !phone || !meetingTime) {
+        alert("Please fill all the fields!");
         return;
     }
 
-	fetch(scriptURL, {
-		method: "POST",
-		mode: 'no-cors', // Add this line
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({ email: email, meetingTime: meetingTime })
-	})
+    // Create JSON data
+    let formData = {
+        name: name,
+        email: email,
+        phone: phone,
+        meetingTime: meetingTime
+    };
+
+    fetch(scriptURL, {
+        method: "POST",
+        mode: 'no-cors', // Add this line
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData) // Send JSON data
+    })
     .then(response => response.text())
     .then(data => {
         alert("Success: " + data); // Check response
