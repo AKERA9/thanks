@@ -3,126 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <title>Yattin Anand</title>
-<style>
-    /* General Styling */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-    }
+</head>
+<body>
 
-    body {
-        background: #f4f4f4;
-    }
+    <!-- Header Section -->
+    <header>
+        <div class="nav">
+            <div class="logo" style="display: flex;color: #b6b2b2;align-items: center;">
+                <img src="yt.png" alt="Logo"> 
+                <p>#1 expert in short circuit proof wires <br> 
+                <span style="font-weight:bold;color:white">Author</span> World’s first book on fan regulator</p>
+            </div>
+            <ul class="menu">
+                <li><a href="#book">Books</a></li>
+                <li><a href="#story">Success Stories</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#Businesses">My Ventures</a></li>
+            </ul>
+            <a href="#" class="cta-button">Schedule a Call</a>
+            <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#book" onclick="closeMenu()">Books</a>
+            <a href="#story" onclick="closeMenu()">Success Stories</a>
+            <a href="#about" onclick="closeMenu()">About</a>
+            <a href="#Businesses" onclick="closeMenu()">My Ventures</a>
+            <a href="#" class="cta-button" onclick="closeMenu()">Schedule a Call</a>
+        </div>
+    </header>
 
-    /* Header (Fixed) */
-    header {
-        background: black;
-        color: white;
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 1000;
-    }
+    <style>
+        /* General Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-    .nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1200px;
-        margin: auto;
-    }
+        body {
+            background: #f4f4f4;
+        }
 
-    .logo img {
-        width: 106px;
-    }
+        /* Header (Fixed) */
+        header {
+            background: black;
+            color: white;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
 
-    .menu {
-        list-style: none;
-        display: flex;
-        gap: 20px;
-    }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+        }
 
-    .menu li {
-        display: inline;
-    }
+        .logo img {
+            width: 106px;
+        }
 
-    .menu a {
-        color: white;
-        text-decoration: none;
-        font-size: 18px;
-        transition: color 0.3s;
-    }
-
-    .menu a:hover {
-        color: #f4a261;
-    }
-
-    .cta-button {
-        background: #f1b817;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 5px;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: bold;
-    }
-
-    /* Mobile Menu Icon */
-    .menu-icon {
-        display: none;
-        font-size: 30px;
-        cursor: pointer;
-    }
-
-    /* Mobile Menu */
-    .mobile-menu {
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 100%;
-        text-align: center;
-        background: #0a0a23;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s ease-in-out;
-    }
-
-    .mobile-menu.open {
-        max-height: 500px;
-		    margin-top: 30px;
-    }
-
-    .mobile-menu a {
-        padding: 15px;
-        color: white;
-        text-decoration: none;
-        display: block;
-        border-bottom: 1px solid #333;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
         .menu {
-            display: none;
+            list-style: none;
+            display: flex;
+            gap: 20px;
         }
-		.cta-button{
-			display: none;
-		}
+
+        .menu li {
+            display: inline;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .menu a:hover {
+            color: #f4a261;
+        }
+
+        .cta-button {
+            background: #f1b817;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Mobile Menu Icon */
         .menu-icon {
-            display: block;
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
         }
-    }
-	
-	
-	
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: absolute;
+            top: 60px;
+            right: 0;
+            width: 100%;
+            text-align: center;
+            background: #0a0a23;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+
+        .mobile-menu.open {
+            max-height: 500px;
+            margin-top: 30px;
+        }
+
+        .mobile-menu a {
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid #333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+            }
+            .cta-button {
+                display: none;
+            }
+            .menu-icon {
+                display: block;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .logo img {
+                width: 80px;
+            }
+            .menu-icon {
+                font-size: 24px;
+            }
+        }
+    </style>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="image-container">
+            <img src="imagees.png" class="hero-img desktop-img" style="width:100%"/>
+            <img src="small images.png" class="hero-img mobile-img" style="width:100%; display: none;"/>
+            <button class="btn-overlay">LEARN MORE <i class="fa fa-arrow-right" aria-hidden="true"  style="color:black;"></i></button>
+        </div>
+        <br><br><br>
+        <section id="testimonial" class="clearfix">
+            <div class="container padtop50 ">
+                <div class="row justify-content-center align-self-center padlrxs25 ">
+                    <div class="col-md-12 col-lg-10 text-center">
+                        <div class=" padtop10">
+                            <img src="quote.png" class="testimg">
+                            <div class="padtop10 font23 colorb" style="font-size: 23px;font-weight: 500; font-family: system-ui;"> Their consistent commitment to prompt deliveries, exceptional product quality, and reliable support has made them a trusted partner over the years. Always responsive and dedicated, they are truly great people to work with. </div>
+                        </div><br>
+                        <div class="">
+                            <p class="testfont17 padtop25 fontw400"  style="font-size: 20px;color:grey; font-family: system-ui;">Vikas Maheshwari (Sourcing, Purchase & SQA Head (Wiring devices & Switchgear division))</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br>
+        <img src="client.png" style="width:90%;display:block;margin:auto;"/><br><br><br><br>
+        <div class="hero-text" id="about" style="color:black;text-align: -webkit-center;">
+            <h1 style="background-color: #f6e7d0;width: fit-content;justify-self: center;font-weight: 900;font-size: 75px;font-family: sans-serif;">Meet Yattin Anand</h1>
+            <p style="font-size: x-large;">Author I Entrepreneur I Innovator I Solo Uno Expert in short circuit proof wires</p><br><br><br>
+            <img src="111A2320.jpg" style="width:60%"/>
+            <br><br>
+            <h3 style="color: goldenrod;width: 50%;">From Ideas to Impact.</h3>
+            <p style="font-family: system-ui;width: 50%;text-align: left;">Yattin epitomizes the new-age entrepreneur: energetic, solutions-driven, and forward-thinking, with a unique ability to identify industry gaps and convert them into powerful products, he is committed to delivering utmost safety in every wire his company produces.
+Beyond business, Yattin is a dance enthusiast and a strong believer in living life with energy and creativity—values that reflect in his work and leadership.</p>
+            <br>
+            <h3 style="color: goldenrod;width: 50%;">Hustle All Day, Everyday.</h3>
+            <p style="font-family: system-ui;width: 50%;text-align: left;">
+At just 29, Yattin Anand has carved a unique place as a dynamic millennial entrepreneur, known for his relentless drive, innovative thinking, and belief in turning challenges into opportunities. A graduate in commerce from Delhi University, Yatin authored the world’s first book on fan regulators, earning early recognition as a thought leader in the electrical industry.
+</p>
+            <p style="font-family: system-ui;width: 50%;text-align: left;">With an eye on global standards, Yatin founded FCL Wire & Cable, introducing India’s first short-circuit proof wire capable of withstanding temperatures up to 300°C — a product that is also patent-protected, highlighting his commitment to original, problem-solving innovation.</p>
+        </div>
+    </section>
+
+    <style>
+
         .image-container {
             position: relative;
             display: inline-block;
@@ -152,97 +233,101 @@
         .btn-overlay:hover {
             background-color: #FFA000;
         }
-</style>
-
-<header>
-    <div class="nav">
-        <div class="logo" style="display: flex;color: #b6b2b2;align-items: center;">
-            <img src="yt.png" alt="Logo"> 
-            <p>#1 expert in short circuit proof wires <br> 
-            <span style="font-weight:bold;color:white">Author</span> World’s first book on fan regulator</p>
-        </div>
-        <ul class="menu">
-            <li><a href="#book">Books</a></li>
-            <li><a href="#story">Success Stories</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#Businesses">My Ventures</a></li>
-        </ul>
-        <a href="#" class="cta-button">Schedule a Call</a>
-        <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
-    </div>
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#book" onclick="closeMenu()">Books</a>
-        <a href="#story" onclick="closeMenu()">Success Stories</a>
-        <a href="#about" onclick="closeMenu()">About</a>
-        <a href="#Businesses" onclick="closeMenu()">My Ventures</a>
-        <a href="#" class="cta-button" onclick="closeMenu()">Schedule a Call</a>
-    </div>
-</header>
-
-<script>
-    function toggleMenu() {
-        var menu = document.getElementById("mobileMenu");
-        menu.classList.toggle("open");
-    }
-
-    function closeMenu() {
-        var menu = document.getElementById("mobileMenu");
-        menu.classList.remove("open");
-    }
-
-    // Close menu if clicked outside
-    document.addEventListener("click", function (event) {
-        var menu = document.getElementById("mobileMenu");
-        var menuIcon = document.querySelector(".menu-icon");
-
-        if (!menu.contains(event.target) && !menuIcon.contains(event.target)) {
-            menu.classList.remove("open");
+        @media (max-width: 1250px) {
+            .btn-overlay {
+                bottom: 160px;
+                left:65px;
+                font-size: 14px;
+                padding: 10px 15px;
+            }
         }
-    });
-</script>
-
-    <!-- Hero Section -->
-    <section class="hero"><br>
-	<div class="image-container">
-        <img src="imagees.png" class="hero-img desktop-img" style="width:100%"/>
-        <img src="small images.png" class="hero-img mobile-img" style="width:100%; display: none;"/>
-		<button class="btn-overlay">LEARN MORE <i class="fa fa-arrow-right" aria-hidden="true"  style="color:black;"></i></button>
-	</div>
-		<br><br><br>
-		  <section id="testimonial" class="clearfix">
-			 <div class="container padtop50 ">
-				<div class="row justify-content-center align-self-center padlrxs25 ">
-				   <div class="col-md-12 col-lg-10 text-center">
-					   <div class=" padtop10">
-						   <img src="quote.png" class="testimg">
-							   <div class="padtop10 font23 colorb" style="font-size: 23px;font-weight: 500; font-family: system-ui;"> Their consistent commitment to prompt deliveries, exceptional product quality, and reliable support has made them a trusted partner over the years. Always responsive and dedicated, they are truly great people to work with. </div>
-							</div><br>
-							<div class="">
-							   <p class="testfont17 padtop25 fontw400"  style="font-size: 20px;color:grey; font-family: system-ui;">Vikas Maheshwari (Sourcing, Purchase & SQA Head (Wiring devices & Switchgear division))</p>
-							</div>
-				   </div>
-				</div>
-			 </div>
-		  </section>
-		<br>
-		<img src="client.png" style="width:90%;display:block;margin:auto;"/><br><br><br><br>
-        <div class="hero-text" id="about" style="color:black;text-align: -webkit-center;">
-            <h1 style="background-color: #f6e7d0;width: fit-content;justify-self: center;font-weight: 900;font-size: 75px;font-family: sans-serif;">Meet Yattin Anand</h1>
-            <p style="font-size: x-large;">Author I Entrepreneur I Innovator I Solo Uno Expert in short circuit proof wires</p><br><br><br>
-            <img src="111A2320.jpg" style="width:60%"/>
-			<br><br>
-			<h3 style="color: goldenrod;width: 50%;">From Ideas to Impact.</h3>
-			<p style="font-family: system-ui;width: 50%;text-align: left;">Yattin epitomizes the new-age entrepreneur: energetic, solutions-driven, and forward-thinking, with a unique ability to identify industry gaps and convert them into powerful products, he is committed to delivering utmost safety in every wire his company produces.
-Beyond business, Yattin is a dance enthusiast and a strong believer in living life with energy and creativity—values that reflect in his work and leadership.</p>
-<br>
-			<h3 style="color: goldenrod;width: 50%;">Hustle All Day, Everyday.</h3>
-			<p style="font-family: system-ui;width: 50%;text-align: left;">
-At just 29, Yattin Anand has carved a unique place as a dynamic millennial entrepreneur, known for his relentless drive, innovative thinking, and belief in turning challenges into opportunities. A graduate in commerce from Delhi University, Yatin authored the world’s first book on fan regulators, earning early recognition as a thought leader in the electrical industry.
-</p>
-<p style="font-family: system-ui;width: 50%;text-align: left;">With an eye on global standards, Yatin founded FCL Wire & Cable, introducing India’s first short-circuit proof wire capable of withstanding temperatures up to 300°C — a product that is also patent-protected, highlighting his commitment to original, problem-solving innovation.</p>
-		</div>
-		
-    </section>
+        @media (max-width: 1200px) {
+            .btn-overlay {
+                bottom: 160px;
+                left:65px;
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+        }
+        @media (max-width: 1050px) {
+            .btn-overlay {
+                bottom: 130px;
+                left:65px;
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+		.hero-img{
+			margin-top:20px;
+			}
+        }
+        @media (max-width: 950px) {
+            .btn-overlay {
+                bottom: 130px;
+                left:65px;
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+		.hero-img{
+			margin-top:30px;
+			}
+        }
+        @media (max-width: 890px) {
+            .btn-overlay {
+                bottom: 100px;
+                left: 50px;
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+        }
+        @media (max-width: 820px) {
+            .btn-overlay {
+                bottom: 80px;
+                left: 50px;
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+        }
+        @media (max-width: 650px) {
+            .btn-overlay {
+                bottom:50px;
+                left: 50px;
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+        }
+        @media (max-width: 550px) {
+            .btn-overlay {
+                bottom:40px;
+                left: 40px;
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+        }
+        @media (max-width: 500px) {
+            .btn-overlay {
+                bottom:40px;
+                left: 40px;
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+        }
+        @media (max-width: 440px) {
+            .btn-overlay {
+                bottom:30px;
+                left: 30px;
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+        }	
+        @media (max-width: 400px) {
+            .btn-overlay {
+                bottom:20px;
+                left: 20px;
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+        }	
+    </style>
 
     <script>
         function updateHeroImage() {
@@ -262,286 +347,334 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
         window.onload = updateHeroImage;
         window.onresize = updateHeroImage;
     </script>
-	<br><br><br>
-    <!-- Hero Section -->
+
+    <!-- Success Stories Section -->
     <section class="hero hiro">
         <div class="hero-text" id="story" style="color:black;text-align: -webkit-center;">
             <h1 style="width: fit-content;justify-self: center;font-weight: 900;font-size: 75px;font-family: sans-serif;">Success Stories</h1>
             <br><br><br>
-		<style>
-		.container {
-			width: 90%;
-			max-width: 1200px;
-			margin: auto;
-			display: flex;
-			flex-direction: column;
-			gap: 15px;
-		}
-    .hiro {
-        position: relative;
-        width: 100%;
-		background-size: cover;
-        min-height: 300px; /* Adjust height as needed */
-        background-image: url('back.png'); /* Background image */;
-        background-repeat: no-repeat;
-        padding: 50px 0; /* Adjust padding for better spacing */
-    }
-		.row {
-			display: flex;
-			gap: 15px;
-			justify-content: center;
-			align-items: center;
-		}
+            <div class="container">
+                <div class="row">
+                    <div class="shadow-box big-box">
+                        <img src="media22.png" alt="Fan Regulator">
+                    </div>
+                    <div class="shadow-box small-box">
+                        <img src="inter3.jpg" alt="Fan Regulator Book">
+                    </div>
+                </div>
 
-		.shadow-box {
-			background: white;
-			border-radius: 12px;
-			box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.12);
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			transition: transform 0.3s ease-in-out;
-			overflow: hidden;
-		}
+                <div class="row">
+                    <div class="shadow-box small-box">
+                        <img src="inter1.jpg" alt="Fan Regulator Book">
+                    </div>
+                    <div class="shadow-box big-box">
+                        <img src="inter2.jpg" alt="Fan Regulator Book">
+                    </div>
+                </div>
 
-		.shadow-box img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			border-radius: 12px;
-		}
-
-		.shadow-box:hover {
-			transform: translateY(-5px);
-			box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.18);
-		}
-
-		/* Alternating box sizes */
-		.big-box {
-			height: 256px;
-		}
-
-		.small-box {
-			width: 40%;
-		}
-
-		/* Responsive for Small Screens */
-		@media (max-width: 768px) {
-			.row {
-				flex-direction: column;
-			}
-
-			.big-box, .small-box {
-				width: 100%;
-				height: auto;
-			}
-		}
-
-		</style>
-
-			<div class="container">
-				<div class="row">
-					<div class="shadow-box big-box">
-						<img src="media22.png" alt="Fan Regulator">
-					</div>
-					<div class="shadow-box small-box">
-						<img src="inter3.jpg" alt="Fan Regulator Book">
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="shadow-box small-box">
-						<img src="inter1.jpg" alt="Fan Regulator Book">
-					</div>
-					<div class="shadow-box big-box">
-						<img src="inter2.jpg" alt="Fan Regulator Book">
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="shadow-box big-box">
-						<img src="image1.jpg" alt="Fan Regulator">
-					</div>
-					<div class="shadow-box small-box">
-						<img src="media11.png" alt="Fan Regulator Book">
-					</div>
-				</div>
-			</div>
-		</div><br><br><br><br><br><br><br><br><br>
+                <div class="row">
+                    <div class="shadow-box big-box">
+                        <img src="image1.jpg" alt="Fan Regulator">
+                    </div>
+                    <div class="shadow-box small-box">
+                        <img src="media11.png" alt="Fan Regulator Book">
+                    </div>
+                </div>
+            </div>
+        </div><br><br><br><br><br><br><br><br><br>
     </section>
-	<style>
-	.comment__text {
-    position: relative;
-    top: -25px;
-    left: 0;
-    border-radius: 8px;
-    background: #232323;
-    right: 0;
-	width:50%;
-    margin: auto;}
-	
-	.comment__text p {
-	font-size: x-large;
-	color:#daa520;
-    padding: 12px 20px;
-    margin-bottom: -20px;}
-	
-	.comment__text .comment__icon {
-    position: relative;
-	color:golden;
-    bottom: -20px;
-    left: -20rem;
-}
-	</style>
-    <!-- Book Section -->	
-	<section class="prebook-section" id="book">
-		<div class="container">
-		<div class="comment__text">
-			<p class="para_16">world’s First Book <span style="color:white">on Fan Regulator</span></p>
-			<img src="comment-icon.png" class="comment__icon">
-		</div>
-			<h1>Industry Transforming Book</span></h1>
-			<p>In this book, Yatin distills years of entrepreneurial experience into practical insights that drive real impact in the electrical industry</p><br>
-			<div class="content">
-				<div class="book-image">
-					<img src="book.png" alt="7 Secrets to 120 Years Body">
-				</div>
-				<div class="book-details">
-					<ul>
-						<li><span class="tick">✔</span> Costly Mistakes made by most fan regulator manufacturers – and how to avoid them.</li>
-						<li><span class="tick">✔</span> The Right Way to Select Raw Materials – capacitors, resistors, PCBs, and switches for top performance.</li>
-						<li><span class="tick">✔</span> Step-by-Step Insights into Circuit Design & Connections that enhance durability and efficiency.</li>
-						<li><span class="tick">✔</span> Soldering Secrets – master the most underrated yet crucial job in fan regulator manufacturing.</li>
-						<li><span class="tick">✔</span> The Real Cost of Outsourcing – does working with professional vendors save or cost you more?</li><br>
-						<p><span style="font-weight:bold;">Costly Mistakes </span>made by most fan regulator manufacturers – and how to avoid them.</p>
-						<p><span style="font-weight:bold;">The Right Way to Select Raw Materials –</span> capacitors, resistors, PCBs, and switches for top performance.</p>
-						<p><span style="font-weight:bold;">Step-by-Step Insights into Circuit Design </span>& Connections that enhance durability and efficiency.</p>
-						<p><span style="font-weight:bold;">Soldering Secrets –</span> master the most underrated yet crucial job in fan regulator manufacturing.</p>
-						<p><span style="font-weight:bold;">The Real Cost of Outsourcing</span> – does working with professional vendors save or cost you more?</p>
-					</ul>
-					<div class="buttons">
-						<button class="fitness-btn"  id="Businesses" >Get Your Complimentary Hard Copy</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-<br><br>
-		  <section id="testimonial" class="clearfix">
-			 <div class="container padtop50 ">
-				<div class="row justify-content-center align-self-center padlrxs25 ">
-				   <div class="col-md-12 col-lg-10 text-center">
-					   <div class=" padtop10">
-						   <img src="quote.png" class="testimg"><br><br>
-							   <div class="padtop10 font23 colorb" style="font-size: large; font-family: system-ui;"> This book will not only help manufacturers enhance the quality of the final product but will also benefit suppliers of raw materials used in regulator production—offering valuable insights for improving components such as circuits, capacitors, and more.</div>
-							</div><br>
-							<div class="">
-							   <p class="testfont17 padtop25 fontw400"  style="font-size: 20px;color:grey; font-family: system-ui;">Kishan Jain  Director, <img src="gold.png" style="width:90px;"/> Pvt. Ltd.</p>
-							</div>
-				   </div>
-				</div>
-			 </div>
-		  </section><br><br>
-<style>
-.prebook-section {
-    background: #f9f9f9;
-    padding: 40px 0;
-    text-align: center;
-}
-.container {
-    width: 85%;
-    margin: auto;
-}
-.chat-box {
-    background: black;
-    color: white;
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-h2 {
-    font-size: 28px;
-    font-weight: bold;
-}
-h1 {
-    font-size: 33px;
-    font-weight: bold;
-}
-.highlight {
-    color: goldenrod;
-}
-.amazon-badge {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 20px;
-}
-.content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-}
-.book-image {
-    max-width: 50%;
-}
-.book-image img {
-    max-width: 50%;
-    height: auto;
-}
-.book-details {
-    max-width: 70%;
-    text-align: left;
-}
-ul {
-    list-style: none;
-    padding: 0;
-}
-li {
-    font-size: 16px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-}
-.tick {
-    color: goldenrod;
-    font-size: 18px;
-    margin-right: 10px;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-.buttons {
-    margin-top: 20px;
-}
-.prebook-btn, .fitness-btn {
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-    margin: 5px;
-    background: goldenrod;
-    color: white;
-}
 
-@media (max-width: 508px) {
-.content{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-    flex-direction: column;
-}
+    <style>
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .hiro {
+            position: relative;
+            width: 100%;
+            background-size: cover;
+            min-height: 300px; /* Adjust height as needed */
+            background-image: url('back.png'); /* Background image */;
+            background-repeat: no-repeat;
+            padding: 50px 0; /* Adjust padding for better spacing */
+        }
+        .row {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+        }
 
-.book-details {
-    max-width: 90%;
-}
-    }
-	
+        .shadow-box {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.12);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: transform 0.3s ease-in-out;
+            overflow: hidden;
+        }
+
+        .shadow-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .shadow-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.18);
+        }
+
+        /* Alternating box sizes */
+        .big-box {
+            height: 256px;
+        }
+
+        .small-box {
+            width: 40%;
+        }
+
+        /* Responsive for Small Screens */
+        @media (max-width: 768px) {
+            .row {
+                flex-direction: column;
+            }
+
+            .big-box, .small-box {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .shadow-box {
+                height: 150px;
+            }
+        }
+    </style>
+
+    <!-- Book Section -->
+    <section class="prebook-section" id="book">
+        <div class="container">
+            <div class="comment__text">
+                <p class="para_16">world’s First Book <span style="color:white">on Fan Regulator</span></p>
+                <img src="comment-icon.png" class="comment__icon">
+            </div>
+            <h1>Industry Transforming Book</span></h1>
+            <p>In this book, Yatin distills years of entrepreneurial experience into practical insights that drive real impact in the electrical industry</p><br>
+            <div class="content">
+                <div class="book-image">
+                    <img src="book.png" alt="7 Secrets to 120 Years Body">
+                </div>
+                <div class="book-details">
+                    <ul>
+                        <li><span class="tick">✔</span> Costly Mistakes made by most fan regulator manufacturers – and how to avoid them.</li>
+                        <li><span class="tick">✔</span> The Right Way to Select Raw Materials – capacitors, resistors, PCBs, and switches for top performance.</li>
+                        <li><span class="tick">✔</span> Step-by-Step Insights into Circuit Design & Connections that enhance durability and efficiency.</li>
+                        <li><span class="tick">✔</span> Soldering Secrets – master the most underrated yet crucial job in fan regulator manufacturing.</li>
+                        <li><span class="tick">✔</span> The Real Cost of Outsourcing – does working with professional vendors save or cost you more?</li><br>
+                        <p><span style="font-weight:bold;">Costly Mistakes </span>made by most fan regulator manufacturers – and how to avoid them.</p>
+                        <p><span style="font-weight:bold;">The Right Way to Select Raw Materials –</span> capacitors, resistors, PCBs, and switches for top performance.</p>
+                        <p><span style="font-weight:bold;">Step-by-Step Insights into Circuit Design </span>& Connections that enhance durability and efficiency.</p>
+                        <p><span style="font-weight:bold;">Soldering Secrets –</span> master the most underrated yet crucial job in fan regulator manufacturing.</p>
+                        <p><span style="font-weight:bold;">The Real Cost of Outsourcing</span> – does working with professional vendors save or cost you more?</p>
+                    </ul>
+                    <div class="buttons">
+                        <button class="fitness-btn"  id="Businesses" >Get Your Complimentary Hard Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .prebook-section {
+            background: #f9f9f9;
+            padding: 40px 0;
+            text-align: center;
+        }
+        .container {
+            width: 85%;
+            margin: auto;
+        }
+		.comment__text {
+			position: relative;
+			top: -25px;
+			left: 0;
+			border-radius: 8px;
+			background: #232323;
+			right: 0;
+			width:50%;
+			margin: auto;
+		}
+			
+		.comment__text p {
+			font-size: x-large;
+			color:#daa520;
+			padding: 12px 20px;
+			margin-bottom: -20px;
+		}
+			
+		.comment__text .comment__icon {
+			position: relative;
+			color:golden;
+			bottom: -20px;
+			left: -20rem;
+		}
+        .chat-box {
+            background: black;
+            color: white;
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        h1 {
+            font-size: 33px;
+            font-weight: bold;
+        }
+        .highlight {
+            color: goldenrod;
+        }
+        .amazon-badge {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+        }
+        .book-image {
+            max-width: 50%;
+        }
+        .book-image img {
+            max-width: 50%;
+            height: auto;
+        }
+        .book-details {
+            max-width: 70%;
+            text-align: left;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .tick {
+            color: goldenrod;
+            font-size: 18px;
+            margin-right: 10px;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .prebook-btn, .fitness-btn {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            margin: 5px;
+            background: goldenrod;
+            color: white;
+        }
+
+        @media (max-width: 508px) {
+            .content {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: nowrap;
+                flex-direction: column;
+            }
+
+            .book-details {
+                max-width: 90%;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .book-image img {
+                max-width: 100%;
+            }
+            .book-details ul li {
+                font-size: 14px;
+            }
+        }
+    </style>
+
+    <!-- Profiles Section -->
+    <h2 class="business-heading">Ventures I’ve Built <i class="fa fa-line-chart" aria-hidden="true"></i></h2>
+    <div class="profiles">
+        <div class="profile-card">
+            <div id="dp">
+                <a href="www.fclwireandcable.com">
+                    <h3 class="pr">Visit FCL Wire&Cable </h3>
+                    <i class="fa fa-external-link" aria-hidden="true" id="icon"></i>
+                </a>
+            </div>
+            <img src="FCL-logo.png" style="width:60%;    margin-top: 30px;"/><br>
+            <p style=" text-align: left;font-family: system-ui;font-size: larger;">FCL (Faridabad Cable Connection) is a housing wire manufacturing company for best every house and wherehouse</p>
+        </div>
+        <div class="profile-card">
+            <div style="display:flex;" id="dp">
+                <a href="www.fclwireandcable.com">
+                    <h3  class="pr">Visit Faridabad Capacitors</h3>
+                    <i class="fa fa-external-link" aria-hidden="true" id="icon"></i>
+                </a>
+            </div>
+            <img src="Faridabad Capacitors Logo.png" style="width:40%"/><br>
+            <p style=" text-align: left;font-family: system-ui;font-size: larger;">As one of India’s leading fan regulator manufacturers, Faridabad capacitors</p>
+        </div>
+        <div class="profile-card">
+            <div style="display:flex;" id="dp">
+                <a href="www.fclwireandcable.com">
+                    <h3  class="pr">Visit Dora luxury Gifting</h3>
+                    <i class="fa fa-external-link" id="icon"></i>
+                </a>
+            </div>
+            <img src="Dora-Logo.png" style="width:60%;    margin-top: 30px;"/><br>
+            <p style=" text-align: left;font-family: system-ui;font-size: larger;">DORA is a premium gifting company that specializes in luxury corporate gifts. </p>
+        </div>
+        <div class="profile-card">
+            <div style="display:flex;" id="dp">
+                <a href="www.fclwireandcable.com">
+                    <h3  class="pr">Connect on Linkedin</h3>
+                    <i class="fa fa-external-link" id="icon"></i>
+                </a>
+            </div>
+            <img src="link.png" style="width:30%;    margin-top: 36px;"/><br>
+            <p style=" text-align: left;font-family: system-ui;font-size: larger;margin:auto">For more connections, you can connect with us on LinkedIn.</p>
+        </div>
+        <img src="png.png" style="position: absolute;width: 100px;    margin-top: 60px;margin-left: -50px;">
+    </div>
+
+    <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
         body { display: flex; flex-direction: column; align-items: center; }
         .profiles { 
@@ -553,38 +686,56 @@ li {
             background: white;
         }
         .profile-card {
-			background: white;
-			padding: 18px;
-			text-align: center;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			position: relative;
-			flex-wrap: wrap;
-			align-content: center;
-			justify-content: space-between;
-		}
+            background: white;
+            padding: 18px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            flex-wrap: wrap;
+            align-content: center;
+            justify-content: space-between;
+        }
         .profile-card:not(:last-child) {
             border-right: 1px solid grey;
         }
-		h3{
-		text-align: left;
-		font-size: large;
-		font-weight: bold;
-		}
-@media (max-width: 768px) {
-    .profiles {
-        grid-template-columns: 1fr; /* Ek column me ek hi profile dikhega */
-    }
-    .profile-card {
-        border-right: none; /* Chhoti screen pr right border hata diya */
-        border-bottom: 1px solid grey; /* Ek doosre se separate dikhane ke liye bottom border */
-        padding-bottom: 15px;
-    }
-    .profile-card:last-child {
-        border-bottom: none; /* Last profile card ke neeche border nahi hoga */
-    }
-}
+        h3 {
+            text-align: left;
+            font-size: large;
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+            .profiles {
+                grid-template-columns: 1fr; /* Ek column me ek hi profile dikhega */
+            }
+            .profile-card {
+                border-right: none; /* Chhoti screen pr right border hata diya */
+                border-bottom: 1px solid grey; /* Ek doosre se separate dikhane ke liye bottom border */
+                padding-bottom: 15px;
+            }
+            .profile-card:last-child {
+                border-bottom: none; /* Last profile card ke neeche border nahi hoga */
+            }
+        }
+
+        @media (max-width: 500px) {
+            .profiles {
+                grid-template-columns: 1fr;
+            }
+            .profile-card {
+                padding: 10px;
+            }
+            .profile-card img {
+                width: 80%;
+            }
+            .profile-card h3 {
+                font-size: medium;
+            }
+            .profile-card p {
+                font-size: small;
+            }
+        }
 
         footer {
             background: #030404; 
@@ -612,282 +763,78 @@ li {
             color: white; 
             text-decoration: none; 
         }
-		.pr{
-		 text-align: left;font-size: large;font-weight: bold;color:black;
-		}
-		#icon{
-		margin-left:20px;
-		}
-		a{
-		    text-decoration: none !important;display: flex;align-items: baseline;justify-content: space-between;color:black;
-		}
-		.pr:hover{
-		color:red;
-		}
-		#icon:hover{
-		color:red;
-		}
-		#dp{
-		color:black;
-		}
-		#dp:hover{
-		color:red;
-		}
-</style>
+        .pr {
+            text-align: left;font-size: large;font-weight: bold;color:black;
+        }
+        #icon {
+            margin-left:20px;
+        }
+        a {
+            text-decoration: none !important;display: flex;align-items: baseline;justify-content: space-between;color:black;
+        }
+        .pr:hover {
+            color:#ccb01d;
+        }
+        #icon:hover {
+            color:#ccb01d;
+        }
+        #dp {
+            color:black;
+        }
+        #dp:hover {
+            color:#ccb01d;
+        }
 
+        .pp {
+            margin-left: 6px;
+            color:white;
+        }
 
-	<!----shedule call on ---->
-<style>
-        .background {
-            background-color: gold;
-            text-align: center;
-            padding: 30px 20px;
-			width: -webkit-fill-available;
-            font-size: 18px;
-			height:550px;
-        }
-        .container-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            margin-top: -418px;
-        }
-        .containers {
-            background: white;
-            padding: 45px;
-            max-width: 700px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .image-content {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 60%;
-            height: 100%;
-            background: url('new.png') no-repeat center/cover;
-            border-radius: 0 10px 10px 0;
-        }
-        .text-content {
-            flex: 1;
-            padding-right: 20px;
-            z-index: 1;
-        }
-        .text-content h2 {
-            color: #000;
-        }
-        .text-content ul {
-            list-style: none;
-            padding: 0;
-        }
-        .text-content ul li {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-        .text-content ul li::before {
-            content: '\2713';
-            color: green;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        .book-btn {
-            display: inline-block;
-            background: red;
-            color: white;
-            padding: 10px 15px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-        }
-		.book-btn:hover {
-            display: inline-block;
-            background: darkred;
-            color: white;
-            padding: 10px 15px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-        }
-        @media (max-width: 500px) {
-            .container {
-                flex-direction: column;
-                text-align: center;
-            }
-            .image-content {
-                width: 100%;
-                height: 50%;
-                position: relative;
-                border-radius: 10px 10px 0 0;
-                background: url('profile-small.jpg') no-repeat center/cover;
-            }
-            .text-content {
-                padding: 20px;
-            }
+        .pp:hover {
+            color:#ccb01d;
         }
     </style>
-    <div class="background">
-        <p>Build with wires engineered to protect generations.
-Let the expert behind   </p>
-        <p>patented short-circuit proof technology solve your biggest wiring challenges.</p>
-    </div>
-    <div class="container-wrapper">
-        <div class="containers">
-            <div class="image-content"></div>
-            <div class="text-content">
-                <h2 style="font-size: xx-large;">Book One-on-One Call</h2>
-                <p>During this 20-minute discovery call, Yatin would…</p>
-                <br>
-				<ul>
-                    <li style="font-size: revert;    width: 85%;">Understand your current challenges in wire selection, safety compliance, or pricing pressures</li>
-                    <li style="font-size: revert;    width: 85%;">Share how short-circuit proof wires can help you reduce risk and increase long-term profits</li>
-                    <li style="font-size: revert;    width: 85%;">Explore how to maximize margins while offering unmatched quality to your customers</li>
-				    <br><p style="">Due to a packed schedule, Yatin is only available for <br>a few discovery calls per week. Reserve your slot now!</p>
-                </ul><br>
-                <a href="#" class="book-btn">YES, PLEASE BOOK MY SLOT</a>
-            </div>
-        </div>
-    </div>
-<br><br>
-		  <section id="testimonial" class="clearfix">
-			 <div class="container padtop50 ">
-				<div class="row justify-content-center align-self-center padlrxs25 ">
-				   <div class="col-md-12 col-lg-10 text-center">
-					   <div class=" padtop10">
-						   <img src="quote.png" class="testimg"><br><br>
-							   <div class="padtop10 font23 colorb" style="font-size: large; font-family: system-ui;"> One discovery call with Yattin helped us prevent potential short-circuit risks and optimize our wiring costs significantly. His deep understanding of wire safety and performance is unmatched — truly the go-to expert in the cable industry</div>
-							</div><br>
-							<div class="">
-							   <p class="testfont17 padtop25 fontw400"  style="font-size: 20px;color:grey; font-family: system-ui;">Ar. Nisarg trehan</p>
-							</div>
-				   </div>
-				</div>
-			 </div>
-		  </section>
-<br><br>
 
-    <!-- Profiles Section -->
-	<h2 class="business-heading">Ventures I’ve Built <i class="fa fa-line-chart" aria-hidden="true"></i></h2>
-    <div class="profiles">
-        <div class="profile-card">
-		<div id="dp">
-		  <a href="www.fclwireandcable.com">
-            <h3 class="pr">Visit FCL Wire & Cable </h3>
-            <i class="fa fa-external-link" aria-hidden="true" id="icon"></i>
-		  </a>
-		</div>
-            <img src="FCL-logo.png" style="width:60%;    margin-top: 30px;"/><br>
-            <p style=" text-align: left;font-family: system-ui;font-size: larger;">FCL (Faridabad Cable Connection Pvt. Ltd.) is a housing wire manufacturing company for best every house and wherehouse</p>
-        </div>
-		 <div class="profile-card">
-		<div style="display:flex;" id="dp">
-		  <a href="www.fclwireandcable.com">
-            <h3  class="pr">Visit Faridabad Capacitors</h3>
-            <i class="fa fa-external-link" aria-hidden="true" id="icon"></i>
-		  </a>
-		</div>
-			<img src="Faridabad Capacitors Logo.png" style="width:40%"/><br>
-            <p style=" text-align: left;font-family: system-ui;font-size: larger;">As one of India’s leading fan regulator manufacturers, Faridabad capacitors</p>
-        </div>
-        <div class="profile-card">
-		<div style="display:flex;" id="dp">
-		  <a href="www.fclwireandcable.com">
-            <h3  class="pr">Visit Dora luxury Gifting</h3>
-            <i class="fa fa-external-link" id="icon"></i>
-		  </a>
-		</div>
-			<img src="Dora-Logo.png" style="width:60%;    margin-top: 30px;"/><br>
-            <p style=" text-align: left;font-family: system-ui;font-size: larger;">DORA is a premium gifting company that specializes in luxury corporate gifts. </p>
-        </div>
-        <div class="profile-card">
-		<div style="display:flex;" id="dp">
-		  <a href="www.fclwireandcable.com">
-            <h3  class="pr">Connect on Linkedin</h3>
-            <i class="fa fa-external-link" id="icon"></i>
-		  </a>
-		</div>
-            <img src="link.png" style="width:30%;    margin-top: 36px;"/><br>
-            <p style=" text-align: left;font-family: system-ui;font-size: larger;margin:auto">For more connections, you can connect with us on LinkedIn.</p>
-        </div>
-		<img src="png.png" style="position: absolute;width: 100px;    margin-top: 60px;margin-left: -50px;">
-    </div>
-	<style>
-		.pr{
-		 text-align: left;font-size: large;font-weight: bold;color:black;
-		}
-		#icon{
-		margin-left:20px;
-		}
-		a{
-		    text-decoration: none !important;display: flex;align-items: baseline;justify-content: space-between;color:black;
-		}
-		.pr:hover{
-		color:#ccb01d;
-		}
-		#icon:hover{
-		color:#ccb01d;
-		}
-		#dp{
-		color:black;
-		}
-		#dp:hover{
-		color:#ccb01d;
-		}
-		
-		.pp{margin-left: 6px;
-		color:white;
-		}
-		
-		.pp:hover{
-		color:#ccb01d;
-		}
-    </style>
     <!-- Footer Section -->
-	
     <footer>
         <div class="logo" style="display: flex;color: #b6b2b2;align-items: center;flex-wrap: nowrap;justify-content: center;">
-                <img src="yt.png" alt="Logo"> <p> #1 expert in short circuit proof wires <br> <span style="font-weight:bold;color:white">Author </span>World’s first book on fan regulator</p>
+            <img src="yt.png" alt="Logo"> <p> #1 expert in short circuit proof wires <br> <span style="font-weight:bold;color:white">Author </span>World’s first book on fan regulator</p>
         </div><hr style="    margin-top: 0px;margin-bottom: 0px;border: 0;border-top: 1px solid #565454;"><br>
-		<div class="row" style="font-size: medium;text-transform: uppercase;font-weight: bold;">
-			<div class="footer-section col-md-4" style="display:flex;justify-content: center;align-items: baseline;    padding: 0px;    padding: 0px;    padding: 0px;:    padding: 0px;">
-				 <img src="name.png" alt="Logo" style="width:40%"> 
-			</div>
-			<div class="col-md-3"  style="display:flex;justify-content: end;align-items: baseline;    padding: 0px;    padding: 0px;:    padding: 0px;">
-				<i class="fa fa-book" aria-hidden="true"></i><p class=" pp"><a href="#Businesses" class="pp">Get Your Complimentary Hard Copy</a></p>
-			</div>
-			<div class="col-md-2"  style="display:flex;justify-content: center;align-items: baseline;    padding: 0px;:    padding: 0px;">
-				<i class="fa fa-user" aria-hidden="true"></i><p class=" pp"><a href="#" class=" pp">About Yattin</a></p>
-			</div>
-			<div class="col-md-3"  style="display:flex;justify-content: start;align-items: baseline;color:white:    padding: 0px;">
-				<i class="fa fa-calendar-check-o" aria-hidden="true"></i><p class=" pp"><a href="#" class=" pp"> Book One-2-One Call</a></p>
-			</div>
-		</div>
-		<div class="row" style="font-size:medium;">
-		 	<div class="col-md-4">
-			</div>
-		 	<div class="col-md-7">
-				<div class="logo" style="display: flex;color:lightgrey;align-items: center;flex-wrap: nowrap;justify-content: center;">
-					<p style="display:flex;"> For more info, <a href="tel:9711220917" class="phone" style="margin-left: 5px;">call +91 9711220917</a> or send email to  <a href="mailto:director@fclwireandcable.com" class="phone" style="margin-left: 5px;"> director@fclwireandcable.com</a></p> 
-				</div>
-			</div>
-		 	<div class="col-md-1">
-			</div>
-		</div>
+        <div class="row" style="font-size: medium;text-transform: uppercase;font-weight: bold;">
+            <div class="footer-section col-md-4" style="display:flex;justify-content: center;align-items: baseline;    padding: 0px;    padding: 0px;    padding: 0px;:    padding: 0px;">
+                <img src="name.png" alt="Logo" style="width:40%"> 
+            </div>
+            <div class="col-md-3"  style="display:flex;justify-content: end;align-items: baseline;    padding: 0px;    padding: 0px;:    padding: 0px;">
+                <i class="fa fa-book" aria-hidden="true"></i><p class=" pp"><a href="#" class="pp"> Get Your Complimentary Hard Copy</a></p>
+            </div>
+            <div class="col-md-2"  style="display:flex;justify-content: center;align-items: baseline;    padding: 0px;:    padding: 0px;">
+                <i class="fa fa-user" aria-hidden="true"></i><p class=" pp"><a href="#" class=" pp">About Yattin</a></p>
+            </div>
+            <div class="col-md-3"  style="display:flex;justify-content: start;align-items: baseline;color:white:    padding: 0px;">
+                <i class="fa fa-calendar-check-o" aria-hidden="true"></i><p class=" pp"><a href="#" class=" pp"> Book One-2-One Call</a></p>
+            </div>
+        </div>
+        <div class="row" style="font-size:medium;">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-7">
+                <div class="logo" style="display: flex;color:lightgrey;align-items: center;flex-wrap: nowrap;justify-content: center;">
+                    <p style="display:flex;"> For more info, <a href="tel:9711220917" class="phone" style="margin-left: 5px;">call +91 9711220917</a> or send email to  <a href="mailto:director@fclwireandcable.com" class="phone" style="margin-left: 5px;"> director@fclwireandcable.com</a></p> 
+                </div>
+            </div>
+            <div class="col-md-1">
+            </div>
+        </div>
     </footer>
-	<style>
-	.phone{
-	color:lightgrey;
-	}
-	.phone:hover{
-	color:white;
-	}
-	
-	</style>
 
+    <style>
+        .phone {
+            color:lightgrey;
+        }
+        .phone:hover {
+            color:white;
+        }
+    </style>
 
 </body>
 </html>
