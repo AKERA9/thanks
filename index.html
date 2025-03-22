@@ -264,6 +264,7 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
             left: 70px;
             background-color: #FFC107;
             color: black;
+				width:fit-content;
             padding: 12px 20px;
             border: none;
             font-size: 16px;
@@ -280,6 +281,7 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
             .btn-overlay {
                 bottom: 160px;
                 left:65px;
+				width:fit-content;
                 font-size: 14px;
                 padding: 10px 15px;
             }
@@ -288,6 +290,7 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
             .btn-overlay {
                 bottom: 160px;
                 left:65px;
+				width:fit-content;
                 font-size: 14px;
                 padding: 10px 15px;
             }
@@ -296,6 +299,7 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
             .btn-overlay {
                 bottom: 130px;
                 left:65px;
+				width:fit-content;
                 font-size: 14px;
                 padding: 10px 15px;
             }
@@ -306,6 +310,7 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
         @media (max-width: 950px) {
             .btn-overlay {
                 bottom: 130px;
+				width:fit-content;
                 left:65px;
                 font-size: 14px;
                 padding: 10px 15px;
@@ -318,6 +323,7 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
             .btn-overlay {
                 bottom: 100px;
                 left: 50px;
+				width:fit-content;
                 font-size: 14px;
                 padding: 10px 15px;
             }
@@ -326,6 +332,7 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
             .btn-overlay {
                 bottom: 80px;
                 left: 50px;
+				width:fit-content;
                 font-size: 14px;
                 padding: 10px 15px;
             }
@@ -333,6 +340,7 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
         @media (max-width: 650px) {
             .btn-overlay {
                 bottom:50px;
+				width:fit-content;
                 left: 50px;
                 font-size: 14px;
                 padding: 10px 15px;
@@ -342,6 +350,7 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
             .btn-overlay {
                 bottom:40px;
                 left: 40px;
+				width:fit-content;
                 font-size: 14px;
                 padding: 10px 15px;
             }
@@ -361,6 +370,7 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
         @media (max-width: 500px) {
             .btn-overlay {
                 bottom:40px;
+				width:fit-content;
                 left: 40px;
                 font-size: 14px;
                 padding: 10px 15px;
@@ -369,6 +379,7 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
         @media (max-width: 440px) {
             .btn-overlay {
                 bottom:30px;
+				width:fit-content;
                 left: 30px;
                 font-size: 14px;
                 padding: 10px 15px;
@@ -378,6 +389,7 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
             .btn-overlay {
                 bottom:20px;
                 left: 20px;
+				width:fit-content;
                 font-size: 14px;
                 padding: 10px 15px;
             }
@@ -898,7 +910,7 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
 		 .wid{width: 100%;
 		
         }
-		
+
     </style>
     <div class="background">
         <p>Build with wires engineered to protect generations.
@@ -918,7 +930,180 @@ Let the expert behind   </p>
                     <li style="font-size: revert;" class="wid">Explore how to maximize margins while offering unmatched quality to your customers</li>
 				    <br><p style="">Due to a packed schedule, Yatin is only available for <br>a few discovery calls per week. Reserve your slot now!</p>
                 </ul><br>
-                <a href="#" class="book-btn">YES, PLEASE BOOK MY SLOT</a>
+<!-- Slot Booking Button -->
+<a href="javascript:void(0);" class="book-btn" onclick="openForm()">YES, PLEASE BOOK MY SLOT</a>
+
+<!-- Slot Booking Popup Form -->
+<div id="popupForm" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeForm()">&times;</span>
+        <h2>Book Your Slot</h2>
+        <form onsubmit="submitForm(); return false;">
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+
+            <label for="meetingTime">Select Date & Time:</label>
+            <input type="datetime-local" id="meetingTime" required>
+
+            <button type="submit">Confirm Booking</button>
+            <p id="confirmation" style="color: green; font-weight: bold;"></p>
+        </form>
+    </div>
+</div>
+
+<style>
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px); /* Adds a blur effect to the background */
+    animation: fadeIn 0.3s ease-in-out; /* Fade-in animation */
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 40%;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.3s ease-in-out; /* Slide-in animation */
+}
+
+/* Close Button */
+.close {
+    color: #ff4444;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.close:hover {
+    color: #cc0000;
+}
+
+/* Form Elements */
+h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333333;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555555;
+    text-align: left;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.2s ease-in-out;
+}
+
+input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color:goldenrod;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 500px) {
+.modal-content {
+    background-color: #ffffff;
+    margin: 10% auto;
+    padding: 24px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.3s ease-in-out;
+    margin-top: 120px;
+}
+}
+</style>
+
+<script>
+// ✅ Form open karne ka function
+function openForm() {
+    document.getElementById("popupForm").style.display = "block";
+}
+
+// ✅ Form close karne ka function
+function closeForm() {
+    document.getElementById("popupForm").style.display = "none";
+}
+
+// ✅ Form submit karne ka function
+function submitForm() {
+    let email = document.getElementById("email").value;
+    let meetingTime = document.getElementById("meetingTime").value;
+    let scriptURL = "https://script.google.com/macros/s/AKfycbyxSDn_b23ZHBsC2UJVeTEL2MSGAHlESLK1mT6MDl3ZGU9HF1HcWjyo3Hb_JiY9-ko_/exec";
+
+    if (!email || !meetingTime) {
+        alert("Please enter email and select a date/time!");
+        return;
+    }
+
+	fetch(scriptURL, {
+		method: "POST",
+		mode: 'no-cors', // Add this line
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({ email: email, meetingTime: meetingTime })
+	})
+    .then(response => response.text())
+    .then(data => {
+        alert("Success: " + data); // Check response
+        document.getElementById("confirmation").innerText = "Meeting Scheduled!";
+        setTimeout(closeForm, 2000);
+    })
+    .catch(error => {
+        alert("Error: " + error);
+        console.error("Error:", error);
+    });
+}
+</script>
+
             </div>
         </div>
     </div>
@@ -946,11 +1131,11 @@ Let the expert behind   </p>
         <div class="profile-card">
             <div id="dp">
                 <a href="www.fclwireandcable.com" target="blank">
-                    <h3 class="pr">Visit FCL Wire & Cable </h3>
+                    <h3 class="pr">Visit FCL Wire&Cable </h3>
                     <i class="fa fa-external-link" aria-hidden="true" id="icon"></i>
                 </a>
             </div>
-            <img src="FCL-logo.png" style="width:60%;    margin-top: 30px;"/><br>
+            <img src="FCL-logo.png" style="width:60%;    margin-top: 30px;"/><br> 
             <p style=" text-align: left;font-family: system-ui;font-size: larger;">FCL (Faridabad Cable Connection Pvt. Ltd.) is a housing wire manufacturing company for best every house and wherehouse</p>
         </div>
         <div class="profile-card">
