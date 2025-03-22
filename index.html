@@ -13,152 +13,185 @@
 <body>
 
     <!-- Header Section -->
-    <header>
-        <div class="nav">
-            <div class="logo" style="display: flex;color: #b6b2b2;align-items: center;">
-                <img src="yt.png" alt="Logo"> 
-                <p>#1 expert in short circuit proof wires <br> 
-                <span style="font-weight:bold;color:white">Author</span> World’s first book on fan regulator</p>
-            </div>
-            <ul class="menu">
-                <li><a href="#book">Books</a></li>
-                <li><a href="#story">Success Stories</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#Businesses">My Ventures</a></li>
-            </ul>
-            <a href="#" class="cta-button">Schedule a Call</a>
-            <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+<header>
+    <div class="nav">
+        <div class="logo" style="display: flex;color: #b6b2b2;align-items: center;">
+            <img src="yt.png" alt="Logo"> 
+            <p>#1 expert in short circuit proof wires <br> 
+            <span style="font-weight:bold;color:white">Author</span> World’s first book on fan regulator</p>
         </div>
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="#book" onclick="closeMenu()">Books</a>
-            <a href="#story" onclick="closeMenu()">Success Stories</a>
-            <a href="#about" onclick="closeMenu()">About</a>
-            <a href="#Businesses" onclick="closeMenu()">My Ventures</a>
-            <a href="#" class="cta-button" onclick="closeMenu()">Schedule a Call</a>
-        </div>
-    </header>
+        <ul class="menu">
+            <li><a href="#book">Books</a></li>
+            <li><a href="#story">Success Stories</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#Businesses">My Ventures</a></li>
+        </ul>
+        <a href="#" class="cta-button">Schedule a Call</a>
+        <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#book" onclick="closeMenu()">Books</a>
+        <a href="#story" onclick="closeMenu()">Success Stories</a>
+        <a href="#about" onclick="closeMenu()">About</a>
+        <a href="#Businesses" onclick="closeMenu()">My Ventures</a>
+        <a href="#" class="cta-button" onclick="closeMenu()">Schedule a Call</a>
+    </div>
+</header>
 
-    <style>
-        /* General Styling */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+<style>
+    /* General Styling */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
 
-        body {
-            background: #f4f4f4;
-        }
+    body {
+        background: #f4f4f4;
+    }
 
-        /* Header (Fixed) */
-        header {
-            background: black;
-            color: white;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
+    /* Header (Fixed) */
+    header {
+        background: black;
+        color: white;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+    }
 
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: auto;
-        }
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: fit-content;
+        margin: auto;
+    }
 
-        .logo img {
-            width: 106px;
-        }
+    .logo img {
+        width: 106px;
+    }
 
+    .menu {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+    }
+
+    .menu li {
+        display: inline;
+    }
+
+    .menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        transition: color 0.3s;
+    }
+
+    .menu a:hover {
+        color: #f4a261;
+    }
+
+    .cta-button {
+        background: #f1b817;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    /* Mobile Menu Icon */
+    .menu-icon {
+        display: none;
+        font-size: 30px;
+        cursor: pointer;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        text-align: center;
+        background: #0a0a23;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-in-out;
+        z-index: 1001; /* Ensure it's above other elements */
+    }
+
+    .mobile-menu.open {
+        max-height: 500px;
+        margin-top: 9px;
+    }
+
+    .mobile-menu a {
+        padding: 15px;
+        color: white;
+        text-decoration: none;
+        display: block;
+        border-bottom: 1px solid #333;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
         .menu {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        .menu li {
-            display: inline;
-        }
-
-        .menu a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            transition: color 0.3s;
-        }
-
-        .menu a:hover {
-            color: #f4a261;
-        }
-
-        .cta-button {
-            background: #f1b817;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        /* Mobile Menu Icon */
-        .menu-icon {
             display: none;
-            font-size: 30px;
-            cursor: pointer;
         }
-
-        /* Mobile Menu */
-        .mobile-menu {
-            position: absolute;
-            top: 60px;
-            right: 0;
-            width: 100%;
-            text-align: center;
-            background: #0a0a23;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out;
+        .cta-button {
+            display: none;
         }
-
-        .mobile-menu.open {
-            max-height: 500px;
-            margin-top: 30px;
-        }
-
-        .mobile-menu a {
-            padding: 15px;
-            color: white;
-            text-decoration: none;
+        .menu-icon {
             display: block;
-            border-bottom: 1px solid #333;
         }
+    }
+    
+    @media (max-width: 600px) {
+		.nav{display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin: auto;
+		}
+	}
+    @media (max-width: 500px) {
+        .logo img {
+            width: 80px;
+        }
+        .menu-icon {
+            font-size: 24px;
+        }
+    }
+</style>
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .menu {
-                display: none;
-            }
-            .cta-button {
-                display: none;
-            }
-            .menu-icon {
-                display: block;
-            }
-        }
+<script>
+    function toggleMenu() {
+        var menu = document.getElementById("mobileMenu");
+        console.log("Menu toggled"); // Debugging
+        menu.classList.toggle("open");
+    }
 
-        @media (max-width: 500px) {
-            .logo img {
-                width: 80px;
-            }
-            .menu-icon {
-                font-size: 24px;
-            }
+    function closeMenu() {
+        var menu = document.getElementById("mobileMenu");
+        console.log("Menu closed"); // Debugging
+        menu.classList.remove("open");
+    }
+
+    // Close menu if clicked outside
+    document.addEventListener("click", function (event) {
+        var menu = document.getElementById("mobileMenu");
+        var menuIcon = document.querySelector(".menu-icon");
+
+        if (!menu.contains(event.target) && !menuIcon.contains(event.target)) {
+            menu.classList.remove("open");
+            console.log("Clicked outside, menu closed"); // Debugging
         }
-    </style>
+    });
+</script>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -186,29 +219,39 @@
         <br>
         <img src="client.png" style="width:90%;display:block;margin:auto;"/><br><br><br><br>
         <div class="hero-text" id="about" style="color:black;text-align: -webkit-center;">
-            <h1 style="background-color: #f6e7d0;width: fit-content;justify-self: center;font-weight: 900;font-size: 75px;font-family: sans-serif;">Meet Yattin Anand</h1>
-            <p style="font-size: x-large;">Author I Entrepreneur I Innovator I Solo Uno Expert in short circuit proof wires</p><br><br><br>
-            <img src="111A2320.jpg" style="width:60%"/>
+            <h1 class="meet">Meet Yattin Anand</h1>
+            <p class="tag">Author I Entrepreneur I Innovator I Solo Uno Expert in short circuit proof wires</p><br><br><br>
+            <img src="111A2320.jpg" class="bitimg"/>
             <br><br>
-            <h3 style="color: goldenrod;width: 50%;">From Ideas to Impact.</h3>
-            <p style="font-family: system-ui;width: 50%;text-align: left;">Yattin epitomizes the new-age entrepreneur: energetic, solutions-driven, and forward-thinking, with a unique ability to identify industry gaps and convert them into powerful products, he is committed to delivering utmost safety in every wire his company produces.
+            <h3 style="color: goldenrod;" class="tex">From Ideas to Impact.</h3>
+            <p style="font-family: system-ui;text-align: left;" class="tex">Yattin epitomizes the new-age entrepreneur: energetic, solutions-driven, and forward-thinking, with a unique ability to identify industry gaps and convert them into powerful products, he is committed to delivering utmost safety in every wire his company produces.
 Beyond business, Yattin is a dance enthusiast and a strong believer in living life with energy and creativity—values that reflect in his work and leadership.</p>
             <br>
-            <h3 style="color: goldenrod;width: 50%;">Hustle All Day, Everyday.</h3>
-            <p style="font-family: system-ui;width: 50%;text-align: left;">
+            <h3 style="color: goldenrod;" class="tex">Hustle All Day, Everyday.</h3>
+            <p style="font-family: system-ui;text-align: left;" class="tex">
 At just 29, Yattin Anand has carved a unique place as a dynamic millennial entrepreneur, known for his relentless drive, innovative thinking, and belief in turning challenges into opportunities. A graduate in commerce from Delhi University, Yatin authored the world’s first book on fan regulators, earning early recognition as a thought leader in the electrical industry.
 </p>
-            <p style="font-family: system-ui;width: 50%;text-align: left;">With an eye on global standards, Yatin founded FCL Wire & Cable, introducing India’s first short-circuit proof wire capable of withstanding temperatures up to 300°C — a product that is also patent-protected, highlighting his commitment to original, problem-solving innovation.</p>
+            <p style="font-family: system-ui;text-align: left;"  class="tex">With an eye on global standards, Yatin founded FCL Wire & Cable, introducing India’s first short-circuit proof wire capable of withstanding temperatures up to 300°C — a product that is also patent-protected, highlighting his commitment to original, problem-solving innovation.</p>
         </div>
     </section>
 
     <style>
-
+		.meet{
+			background-color: #f6e7d0;width: fit-content;justify-self: center;font-weight: 900;font-size: 75px;font-family: sans-serif;
+		}
+		.tag{
+			font-size: x-large;
+		}
+		.bitimg{
+			width:60%
+		}
         .image-container {
             position: relative;
             display: inline-block;
         }
-
+		.tex{
+			width:50%;
+		}
         .image-container img {
             width: 100%;
             height: auto;
@@ -302,6 +345,18 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
                 font-size: 14px;
                 padding: 10px 15px;
             }
+		.meet{
+				background-color: #f6e7d0;width: fit-content;justify-self: center;font-weight: 900;font-size: 54px;font-family: sans-serif;
+			}
+		.tag{
+				font-size: large;
+			}
+		.bitimg{
+				width:74%
+			}
+		.tex{
+				width:70%
+			}
         }
         @media (max-width: 500px) {
             .btn-overlay {
@@ -330,26 +385,22 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
     </style>
 
     <script>
-	function updateHeroImage() {
-	    var desktopImg = document.querySelector(".desktop-img");
-	    var mobileImg = document.querySelector(".mobile-img");
-	
-	    console.log("Window width:", window.innerWidth); // Debugging
-	
-	    if (window.innerWidth <= 650) {
-	        desktopImg.style.display = "none";
-	        mobileImg.style.display = "block";
-	        console.log("Mobile image displayed"); // Debugging
-	    } else {
-	        desktopImg.style.display = "block";
-	        mobileImg.style.display = "none";
-	        console.log("Desktop image displayed"); // Debugging
-	    }
-	}
-	
-	// Run function on load & window resize
-	window.onload = updateHeroImage;
-	window.onresize = updateHeroImage;
+        function updateHeroImage() {
+            var desktopImg = document.querySelector(".desktop-img");
+            var mobileImg = document.querySelector(".mobile-img");
+
+            if (window.innerWidth <= 650) {
+                desktopImg.style.display = "none";
+                mobileImg.style.display = "block";
+            } else {
+                desktopImg.style.display = "block";
+                mobileImg.style.display = "none";
+            }
+        }
+
+        // Run function on load & window resize
+        window.onload = updateHeroImage;
+        window.onresize = updateHeroImage;
     </script>
 
     <!-- Success Stories Section -->
@@ -457,10 +508,6 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
             }
         }
 
-        @media (max-width: 500px) {
-            .shadow-box {
-                height: 150px;
-            }
         }
     </style>
 
@@ -471,7 +518,7 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
                 <p class="para_16">world’s First Book <span style="color:white">on Fan Regulator</span></p>
                 <img src="comment-icon.png" class="comment__icon">
             </div>
-            <h1>Industry Transforming Book</span></h1>
+            <h1 class="hea">Industry Transforming Book</span></h1>
             <p>In this book, Yatin distills years of entrepreneurial experience into practical insights that drive real impact in the electrical industry</p><br>
             <div class="content">
                 <div class="book-image">
@@ -513,7 +560,7 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
 			top: -25px;
 			left: 0;
 			border-radius: 8px;
-			background: #232323;
+			background:black;
 			right: 0;
 			width:50%;
 			margin: auto;
@@ -607,7 +654,38 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
             background: goldenrod;
             color: white;
         }
-
+        @media (max-width: 650px) {
+            .content {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: nowrap;
+                flex-direction: column;
+            }
+		.comment__text .comment__icon {
+			position: relative;
+			color:golden;
+			bottom: -20px;
+			left: -10rem;
+		}
+		.comment__text {
+			position: relative;
+			top: -25px;
+			left: 0;
+			border-radius: 8px;
+			background: black;
+			right: 0;
+			width:100%;
+			margin: auto;
+		}
+			
+		.comment__text p {
+			font-size: 15px;
+			color:#daa520;
+			padding: 6px 20px;
+			margin-bottom: -20px;
+		}
+		}
         @media (max-width: 508px) {
             .content {
                 display: flex;
@@ -616,6 +694,29 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
                 flex-wrap: nowrap;
                 flex-direction: column;
             }
+		.comment__text .comment__icon {
+			position: relative;
+			color:golden;
+			bottom: -20px;
+			left: -10rem;
+		}
+		.comment__text {
+			position: relative;
+			top: -25px;
+			left: 0;
+			border-radius: 8px;
+			background: black;
+			right: 0;
+			width:100%;
+			margin: auto;
+		}
+			
+		.comment__text p {
+			font-size: 15px;
+			color:#daa520;
+			padding: 6px 20px;
+			margin-bottom: -20px;
+		}
 
             .book-details {
                 max-width: 90%;
@@ -629,7 +730,46 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
             .book-details ul li {
                 font-size: 14px;
             }
+			.hea{
+				font-size:29px;
+			}
+			.book-image{
+			    max-width: 55%;
+				padding-bottom: 20px;
+			}
         }
+        @media (max-width: 360px) {
+            .content {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: nowrap;
+                flex-direction: column;
+            }
+		.comment__text .comment__icon {
+			position: relative;
+			color:golden;
+			bottom: -20px;
+			left: -10rem;
+		}
+		.comment__text {
+			position: relative;
+			top: -25px;
+			left: 0;
+			border-radius: 8px;
+			background: black;
+			right: 0;
+			width:100%;
+			margin: auto;
+		}
+			
+		.comment__text p {
+			font-size: 12px;
+			color:#daa520;
+			padding: 6px 20px;
+			margin-bottom: -20px;
+		}
+		}
     </style>
 
     <!-- Profiles Section -->
@@ -675,10 +815,13 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
             <img src="link.png" style="width:30%;    margin-top: 36px;"/><br>
             <p style=" text-align: left;font-family: system-ui;font-size: larger;margin:auto">For more connections, you can connect with us on LinkedIn.</p>
         </div>
-        <img src="png.png" style="position: absolute;width: 100px;    margin-top: 60px;margin-left: -50px;">
+        <img src="png.png"class="pn">
     </div>
 
     <style>
+		.pn{
+		   position: absolute;width: 100px;margin-top: 60px;margin-left: -50px;
+		}
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
         body { display: flex; flex-direction: column; align-items: center; }
         .profiles { 
@@ -724,6 +867,11 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
         }
 
         @media (max-width: 500px) {
+			.pn{
+				width: 74px;
+				margin-top: -21px;
+				margin-left: -14px;
+			}
             .profiles {
                 grid-template-columns: 1fr;
             }
@@ -823,7 +971,7 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
             </div>
             <div class="col-md-7">
                 <div class="logo" style="display: flex;color:lightgrey;align-items: center;flex-wrap: nowrap;justify-content: center;">
-                    <p style="display:flex;"> For more info, <a href="tel:9711220917" class="phone" style="margin-left: 5px;">call +91 9711220917</a> or send email to  <a href="mailto:director@fclwireandcable.com" class="phone" style="margin-left: 5px;"> director@fclwireandcable.com</a></p> 
+                    <p class="line"> For more info, <a href="tel:9711220917" class="phone" style="margin-left: 5px;">call +91 9711220917</a> or send email to  <a href="mailto:director@fclwireandcable.com" class="phone" style="margin-left: 5px;"> director@fclwireandcable.com</a></p> 
                 </div>
             </div>
             <div class="col-md-1">
@@ -832,6 +980,15 @@ At just 29, Yattin Anand has carved a unique place as a dynamic millennial entre
     </footer>
 
     <style>
+		.line{
+			display:flex;
+		}
+        @media (max-width: 500px) {
+		.line{
+				justify-items:center;
+				display:block;
+			}
+        }		
         .phone {
             color:lightgrey;
         }
