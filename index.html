@@ -1066,6 +1066,52 @@ button:hover {
         margin-top: 100px;
     }
 }
+
+    /* ✅ Popup Styling */
+    .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.8);
+        background: white;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        z-index: 1000;
+        width: 300px;
+        opacity: 0;
+        transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+    .popup.show {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    .popup-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .checkmark {
+        font-size: 50px;
+        color: green;
+        font-weight: bold;
+        animation: bounce 0.8s ease;
+    }
+    .popup h2 {
+        margin: 10px 0;
+    }
+    .popup p {
+        font-size: 14px;
+    }
+
+    /* ✅ Bounce Animation */
+    @keyframes bounce {
+        0% { transform: scale(0.5); opacity: 0; }
+        50% { transform: scale(1.1); opacity: 0.7; }
+        100% { transform: scale(1); opacity: 1; }
+    }
 </style>
 
 <!-- Slot Booking Button -->
@@ -1076,101 +1122,64 @@ button:hover {
     <div class="modal-content">
         <span class="close" onclick="closeForm()">&times;</span>
         <h2>Book Your Slot</h2>
-        <form onsubmit="submitForm(); return false;">
-            <!-- Name Field -->
-            <input type="text" id="name" name="name" placeholder="Full Name" required>
+			<form id="meetingForm" action="https://docs.google.com/forms/d/e/1FAIpQLSd40-HCiTwa7BnB21wxGiMTQnIV2R7E-pop0vqaBHkb9VFk8w/formResponse" method="POST" target="hidden_iframe">
+				
+				<input type="text" name="entry.139816090" required placeholder="Full Name"><br>
 
-            <!-- Email Field -->
-            <input type="email" id="email" name="email" placeholder="E-mail" required>
+				<input type="email" name="entry.246603671" required placeholder="Email"><br>
 
-            <!-- Phone Number Field -->
-            <input type="tel" id="phone" name="phone" placeholder="Contact Number" required>
+				<input type="tel" name="entry.1922070850" required placeholder="Phone "><br>
 
-            <!-- Date & Time Field -->
-            <input type="datetime-local" id="meetingTime" name="meetingTime" required>
+				<input type="date" id="dateField" required placeholder="Full Name" placeholder="Full Name"><br>
 
-            <!-- Submit Button -->
-            <button type="submit">Confirm Booking</button>
+				<input type="time" id="timeField" required placeholder="Full Name"><br>
 
-            <!-- Loading Spinner -->
-            <div class="loader" id="loader"></div>
+				<!-- Hidden Fields for Google Form -->
+				<input type="hidden" name="entry.939582572" id="formatted_date">
+				<input type="hidden" name="entry.24078318" id="formatted_time">
 
-            <!-- Loading Message -->
-            <p class="loading-message" id="loadingMessage">Please wait, scheduling your meet...</p>
+				<button type="submit">Submit</button>
+			</form>
 
-            <!-- Confirmation Message -->
-            <p id="confirmation" style="color: green; font-weight: bold;"></p>
-        </form>
-    </div>
-</div>
+			<iframe name="hidden_iframe" style="display: none;"></iframe>
 
-<script>
-// ✅ Form open karne ka function
-function openForm() {
-    document.getElementById("popupForm").style.display = "block";
-}
+			<!-- ✅ Animated Thank You Popup -->
+			<div id="popup" class="popup">
+				<div class="popup-content">
+					<span class="checkmark">✔</span>
+					<h2>Thank You!</h2>
+					<p>Your meeting has been scheduled successfully. <br> You will receive details via email soon.</p>
+				</div>
+			</div>
+			<script>
+				document.getElementById("meetingForm").addEventListener("submit", function(event) {
+					let dateValue = document.getElementById("dateField").value;
+					let timeValue = document.getElementById("timeField").value;
 
-// ✅ Form close karne ka function
-function closeForm() {
-    document.getElementById("popupForm").style.display = "none";
-}
+					document.getElementById("formatted_date").value = dateValue;
+					document.getElementById("formatted_time").value = timeValue;
 
-// ✅ Form submit karne ka function
-function submitForm() {
-    let name = document.getElementById("name").value;
-    let email = document.getElementById("email").value;
-    let phone = document.getElementById("phone").value;
-    let meetingTime = document.getElementById("meetingTime").value;
-    let scriptURL = "https://script.google.com/macros/s/AKfycbwv7saRRHy6V92yMi9e6GqAKK_nG39wgK6x16H-XJCQ2dcw-w38IW0HV4ZRcI-fpb6j/exec";
+					// ✅ Hide Form and Show Popup with Animation
+					setTimeout(() => {
+						document.getElementById("meetingForm").style.display = "none";
+						document.getElementById("popup").classList.add("show");
+					}, 1000);
+				});
+			</script>
+			</div>
+		</div>
+		<script>
+		// ✅ Form open karne ka function
+		function openForm() {
+			document.getElementById("popupForm").style.display = "block";
+		}
 
-    // Validate all fields
-    if (!name || !email || !phone || !meetingTime) {
-        alert("Please fill all the fields!");
-        return;
-    }
+		// ✅ Form close karne ka function
+		function closeForm() {
+			document.getElementById("popupForm").style.display = "none";
+		}
 
-    // Show loading spinner and message
-    document.getElementById("loader").style.display = "block";
-    document.getElementById("loadingMessage").style.display = "block";
-    document.getElementById("confirmation").innerText = ""; // Clear previous confirmation message
-
-    // Create JSON data
-    let formData = {
-        name: name,
-        email: email,
-        phone: phone,
-        meetingTime: meetingTime
-    };
-
-    fetch(scriptURL, {
-        method: "POST",
-        mode: 'no-cors', // Add this line
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData) // Send JSON data
-    })
-    .then(response => response.text())
-    .then(data => {
-        // Hide loading spinner and message
-        document.getElementById("loader").style.display = "none";
-        document.getElementById("loadingMessage").style.display = "none";
-
-        // Show success message
-        alert("Success: " + data); // Check response
-        document.getElementById("confirmation").innerText = " Thank you! Your meeting has been scheduled successfully.";
-        setTimeout(closeForm, 2000);
-    })
-    .catch(error => {
-        // Hide loading spinner and message
-        document.getElementById("loader").style.display = "none";
-        document.getElementById("loadingMessage").style.display = "none";
-
-        // Show error message
-        alert("Error: " + error);
-        console.error("Error:", error);
-    });
-}
-</script>
-
+		</script>
             </div>
         </div>
     </div>
