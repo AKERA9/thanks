@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Schedule a Call with Yattin Anand</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #f8f9fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: auto;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      max-width: 1000px;
+      padding: 20px;
+      box-sizing: border-box;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+      border-radius: 12px;
+      background: #fff;
+      transition: all 0.5s ease-in-out;
+    }
+
+    .left-panel, .right-panel {
+      flex: 1;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .left-panel h2 {
+      margin: 0;
+      font-size: 24px;
+      color: #333;
+    }
+
+    .left-panel h3 {
+      margin: 10px 0;
+      color: #0a0a23;
+    }
+
+    .left-panel p {
+      margin-top: 20px;
+      color: #555;
+      font-size: 16px;
+    }
+
+    .right-panel {
+      background-color: #f9fafb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .calendar, .time-buttons, .user-form {
+      margin-top: 20px;
+      transition: all 0.6s ease-in-out;
+    }
+
+    .calendar.hide, .time-buttons.hide {
+      opacity: 0;
+      transform: translateX(-100%);
+      pointer-events: none;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .time-buttons {
+      display: none;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .time-button {
+      padding: 10px 16px;
+      background-color: #e7e9fc;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .time-button.selected {
+      background-color: goldenrod;
+      color: white;
+    }
+
+    .time-button.booked {
+      background-color: #f0f0f0;
+      color: #aaa;
+      cursor: not-allowed;
+      text-decoration: line-through;
+    }
+
+    button#nextBtn, button#submitBtn {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      opacity: 0;
+    }
+
+    #nextBtn.animate-in {
+      animation: slideInTime 0.5s ease forwards;
+      display: inline-block !important;
+    }
+
+    #submitBtn.fade-in {
+      animation: fadeInBtn 0.6s ease forwards;
+    }
+
+    @keyframes fadeInBtn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .timezone {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .flatpickr-day.selected {
+      background: goldenrod !important;
+      color: white !important;
+      border-radius: 50% !important;
+    }
+
+    .flatpickr-day:hover {
+      background: #f0c040 !important;
+      color: white;
+    }
+
+    .flatpickr-day {
+      border-radius: 50% !important;
+      opacity: 0.6;
+    }
+
+    .flatpickr-day.booked {
+      background: #ffebee !important;
+      color: #b71c1c !important;
+      text-decoration: line-through;
+      cursor: not-allowed;
+    }
+
+    .user-form {
+      display: none;
+      flex-direction: column;
+      width: 80%;
+      opacity: 0;
+      transition: all 0.6s ease-in-out;
+    }
+
+    .user-form.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .user-form input {
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .left-panel, .right-panel {
+        width: 100%;
+        padding: 20px;
+      }
+    }
+
+    @keyframes slideInFromRight {
+      0% {
+        opacity: 0;
+        transform: translateX(100px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInTime {
+      0% {
+        opacity: 0;
+        transform: translateX(80px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .time-buttons.animate-in {
+      animation: slideInTime 0.5s ease forwards;
+      display: flex !important;
+    }
+
+    .user-form.animate-in {
+      animation: slideInFromRight 0.6s ease forwards;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <h2>Yattin Anand</h2>
+      <h3>One-on-One Strategy Call</h3>
+      <p><strong>⏰</strong> 20 min<br><strong>☎</strong> Phone call</p>
+      <p>My team will be making a confirmation call before the time slot.</p>
+    </div>
+    <div class="right-panel">
+      <h3>Select a Date & Time</h3>
+      <div class="calendar" id="calendarContainer">
+        <input type="text" id="datePicker" placeholder="Pick a date" readonly>
+      </div>
+
+      <div class="time-buttons" id="timeButtons">
+        <button class="time-button" onclick="selectTime(this)">4:00 PM</button>
+        <button class="time-button" onclick="selectTime(this)">5:00 PM</button>
+        <button class="time-button" onclick="selectTime(this)">7:00 PM</button>
+      </div>
+
+      <button id="nextBtn" onclick="showForm()">Next</button>
+
+      <div class="user-form" id="userForm">
+        <input type="text" id="userName" placeholder="Your Name">
+        <input type="email" id="userEmail" placeholder="Your Email">
+        <input type="tel" id="userPhone" placeholder="Your Phone Number">
+        <button id="submitBtn" class="" onclick="submitMeeting()">Schedule Meeting</button>
+      </div>
+
+      <div class="timezone">🌐 India Standard Time (IST)</div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    const dateInput = document.getElementById("datePicker");
+    const timeButtons = document.getElementById("timeButtons");
+    const nextBtn = document.getElementById("nextBtn");
+    const userForm = document.getElementById("userForm");
+    const calendarContainer = document.getElementById("calendarContainer");
+    const submitBtn = document.getElementById("submitBtn");
+
+    let selectedTime = "";
+    let bookedSlots = {}; // This will store all booked slots {date: [times]}
+    let availableDates = [
+      "2025-04-10", "2025-04-15", "2025-04-16", "2025-04-18",
+      "2025-04-21", "2025-04-22", "2025-04-23", "2025-04-24",
+      "2025-04-25", "2025-04-29", "2025-04-30"
+    ];
+
+    // Initialize the calendar
+    function initCalendar() {
+      flatpickr(dateInput, {
+        enable: availableDates,
+        dateFormat: "Y-m-d",
+        inline: true,
+        defaultDate: null,
+        onChange: function(selectedDates, dateStr) {
+          if (dateStr) {
+            updateTimeSlots(dateStr);
+          }
+        },
+        onDayCreate: function(dObj, dStr, fp, dayElem) {
+          // Mark booked dates with a special class
+          if (bookedSlots[dayElem.dateObj.toISOString().split('T')[0]] && 
+              Object.keys(bookedSlots[dayElem.dateObj.toISOString().split('T')[0]]).length === 3) {
+            dayElem.classList.add("booked");
+          }
+        }
+      });
+    }
+
+    // Fetch booked slots from Google Sheets
+    function fetchBookedSlots() {
+      fetch("https://script.google.com/macros/s/AKfycbxBFmDjZFyId7S61-0WRWQfrVx3q4FITzZryi3yfDEkGEfPMB6-RY5BdMe54SfSrZ27/exec?action=getSlots", {
+        method: "GET",
+        mode: 'no-cors'
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.bookedSlots) {
+          bookedSlots = data.bookedSlots;
+          // Update available dates by removing fully booked dates
+          availableDates = availableDates.filter(date => {
+            return !bookedSlots[date] || Object.keys(bookedSlots[date]).length < 3;
+          });
+          initCalendar();
+        }
+      })
+      .catch(err => {
+        console.error('Error fetching booked slots:', err);
+        initCalendar(); // Initialize calendar even if fetch fails
+      });
+    }
+
+    // Update time slots based on selected date
+    function updateTimeSlots(dateStr) {
+      timeButtons.classList.remove("animate-in");
+      nextBtn.classList.remove("animate-in");
+      void timeButtons.offsetWidth;
+      void nextBtn.offsetWidth;
+      
+      // Reset all time buttons
+      document.querySelectorAll('.time-button').forEach(btn => {
+        btn.classList.remove('selected', 'booked');
+        btn.disabled = false;
+        btn.onclick = function() { selectTime(this); };
+      });
+      
+      // Disable already booked time slots
+      if (bookedSlots[dateStr]) {
+        Object.keys(bookedSlots[dateStr]).forEach(time => {
+          const buttons = document.querySelectorAll('.time-button');
+          buttons.forEach(btn => {
+            if (btn.textContent === time) {
+              btn.classList.add('booked');
+              btn.disabled = true;
+              btn.onclick = null;
+            }
+          });
+        });
+      }
+      
+      timeButtons.classList.add("animate-in");
+      nextBtn.style.display = 'none';
+      selectedTime = "";
+    }
+
+    function selectTime(button) {
+      document.querySelectorAll('.time-button').forEach(btn => btn.classList.remove('selected'));
+      button.classList.add('selected');
+      selectedTime = button.textContent;
+      if (selectedTime && dateInput.value) {
+        nextBtn.classList.add("animate-in");
+      }
+    }
+
+    function showForm() {
+      nextBtn.classList.remove("animate-in");
+      nextBtn.style.display = "none";
+
+      timeButtons.classList.add('hide');
+      calendarContainer.classList.add('hide');
+      userForm.classList.add('show');
+      userForm.classList.add("animate-in");
+      submitBtn.classList.add("fade-in");
+
+      document.querySelector(".right-panel h3").textContent = "Submit your Contact Details";
+    }
+
+    function submitMeeting() {
+      const date = dateInput.value;
+      const name = document.getElementById("userName").value;
+      const email = document.getElementById("userEmail").value;
+      const phone = document.getElementById("userPhone").value;
+
+      if (!date || !selectedTime || !name || !email || !phone) {
+        alert("Please fill all fields!");
+        return;
+      }
+
+      const data = { date, time: selectedTime, name, email, phone };
+      
+      fetch("https://script.google.com/macros/s/AKfycbxBFmDjZFyId7S61-0WRWQfrVx3q4FITzZryi3yfDEkGEfPMB6-RY5BdMe54SfSrZ27/exec", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+        mode: 'no-cors'
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.text();
+      })
+      .then(text => {
+        try {
+          const data = JSON.parse(text);
+          if (data.result === "success") {
+            const message = `<!DOCTYPE html><html><head><title>Meeting Confirmed</title></head><body style='text-align:center;font-family:sans-serif;padding:50px;'><h1 style='color:green;'>🎉 Congratulations!</h1><p>Your meeting is scheduled with <strong>${name}</strong>.</p><p><strong>Date:</strong> ${date}<br><strong>Time:</strong> ${selectedTime}<br><strong>Email:</strong> ${email}<br><strong>Phone:</strong> ${phone}</p><p>We look forward to speaking with you!</p></body></html>`;
+            const newTab = window.open();
+            newTab.document.write(message);
+            newTab.document.close();
+            
+            // Add the newly booked slot to local memory
+            if (!bookedSlots[date]) {
+              bookedSlots[date] = {};
+            }
+            bookedSlots[date][selectedTime] = true;
+            
+            // If all time slots are booked for this date, remove it from available dates
+            if (Object.keys(bookedSlots[date]).length === 3) {
+              availableDates = availableDates.filter(d => d !== date);
+              // Reinitialize calendar to reflect changes
+              initCalendar();
+            }
+          } else {
+            alert("Error: " + data.message);
+          }
+        } catch (e) {
+          // JSON parse failed but data might be saved
+          const message = `<!DOCTYPE html><html><head><title>Meeting Confirmed</title></head><body style='text-align:center;font-family:sans-serif;padding:50px;'><h1 style='color:green;'>🎉 Congratulations!</h1><p>Your meeting is scheduled with <strong>${name}</strong>.</p><p><strong>Date:</strong> ${date}<br><strong>Time:</strong> ${selectedTime}<br><strong>Email:</strong> ${email}<br><strong>Phone:</strong> ${phone}</p><p>We look forward to speaking with you!</p></body></html>`;
+          const newTab = window.open();
+          newTab.document.write(message);
+          newTab.document.close();
+        }
+      })
+      .catch(err => {
+        console.error('Error:', err);
+        const message = `<!DOCTYPE html><html><head><title>Meeting Confirmed</title></head><body style='text-align:center;font-family:sans-serif;padding:50px;'><h1 style='color:green;'>🎉 Congratulations!</h1><p>Your meeting is scheduled with <strong>${name}</strong>.</p><p><strong>Date:</strong> ${date}<br><strong>Time:</strong> ${selectedTime}<br><strong>Email:</strong> ${email}<br><strong>Phone:</strong> ${phone}</p><p>We look forward to speaking with you!</p></body></html>`;
+        const newTab = window.open();
+        newTab.document.write(message);
+        newTab.document.close();
+      });
+
+    }
+
+    // Initialize the app
+    fetchBookedSlots();
+  </script>
+</body>
+</html>
