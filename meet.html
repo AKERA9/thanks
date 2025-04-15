@@ -159,7 +159,6 @@
     .flatpickr-day.booked {
       background: lightgrey !important;
       color:#0e0000 !important;
-      text-decoration: line-through;
       cursor: not-allowed;
     }
 
@@ -270,17 +269,43 @@
     const submitBtn = document.getElementById("submitBtn");
 
     let selectedTime = "";
-    let bookedSlots = {}; // This will store all booked slots {date: [times]}
-    let availableDates = [
-      "2025-04-20", "2025-04-21", "2025-04-22", "2025-04-23",
-      "2025-04-24", "2025-04-25", "2025-04-26", "2025-04-27",
-      "2025-04-28", "2025-04-29"
-    ];
+    let bookedSlots = {};
+    let availableDates = [];
+
+    // Function to generate dates from today onwards
+    function generateAvailableDates() {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0); // Set to beginning of day
+      const dates = [];
+      
+      // Generate dates for next 60 days
+      for (let i = 0; i < 60; i++) {
+        const date = new Date(today);
+        date.setDate(today.getDate() + i);
+        dates.push(date);
+      }
+      
+      return dates;
+    }
 
     // Initialize the calendar
     function initCalendar() {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      
+      // Get all possible dates from today
+      const allFutureDates = generateAvailableDates();
+      
+      // Filter out fully booked dates
+      const enabledDates = allFutureDates.filter(date => {
+        const dateStr = date.toISOString().split('T')[0];
+        // Enable date if not fully booked (less than 3 time slots taken)
+        return !bookedSlots[dateStr] || Object.keys(bookedSlots[dateStr]).length < 3;
+      }).map(date => date.toISOString().split('T')[0]);
+
       flatpickr(dateInput, {
-        enable: availableDates,
+        enable: enabledDates,
+        minDate: "today", // Only allow dates from today onwards
         dateFormat: "Y-m-d",
         inline: true,
         defaultDate: null,
@@ -290,9 +315,9 @@
           }
         },
         onDayCreate: function(dObj, dStr, fp, dayElem) {
-          // Mark booked dates with a special class
-          if (bookedSlots[dayElem.dateObj.toISOString().split('T')[0]] && 
-              Object.keys(bookedSlots[dayElem.dateObj.toISOString().split('T')[0]]).length === 3) {
+          const dateStr = dayElem.dateObj.toISOString().split('T')[0];
+          // Mark fully booked dates
+          if (bookedSlots[dateStr] && Object.keys(bookedSlots[dateStr]).length === 3) {
             dayElem.classList.add("booked");
           }
         }
@@ -301,6 +326,28 @@
 
     // Fetch booked slots from Google Sheets
     function fetchBookedSlots() {
+      // First generate all possible dates
+      availableDates = generateAvailableDates();
+      
+      // These are your hardcoded busy dates (April 20-30, 2025)
+      const hardcodedBusyDates = {
+        "2025-04-20": {"4:00 PM": true, "5:00 PM": true, "7:00 PM": true},
+        "2025-04-21": {"4:00 PM": true, "5:00 PM": true, "7:00 PM": true},
+        "2025-04-22": {"4:00 PM": true, "5:00 PM": true, "7:00 PM": true},
+        "2025-04-23": {"4:00 PM": true, "5:00 PM": true, "7:00 PM": true},
+        "2025-04-24": {"4:00 PM": true, "5:00 PM": true, "7:00 PM": true},
+        "2025-04-25": {"4:00 PM": true, "5:00 PM": true, "7:00 PM": true},
+        "2025-04-26": {"4:00 PM": true, "5:00 PM": true, "7:00 PM": true},
+        "2025-04-27": {"4:00 PM": true, "5:00 PM": true, "7:00 PM": true},
+        "2025-04-28": {"4:00 PM": true, "5:00 PM": true, "7:00 PM": true},
+        "2025-04-29": {"4:00 PM": true, "5:00 PM": true, "7:00 PM": true},
+        "2025-04-30": {"4:00 PM": true, "5:00 PM": true, "7:00 PM": true}
+      };
+      
+      // Start with hardcoded busy dates
+      bookedSlots = {...hardcodedBusyDates};
+      
+      // Then fetch any additional booked slots from your API
       fetch("https://script.google.com/macros/s/AKfycbxBFmDjZFyId7S61-0WRWQfrVx3q4FITzZryi3yfDEkGEfPMB6-RY5BdMe54SfSrZ27/exec?action=getSlots", {
         method: "GET",
         mode: 'no-cors'
@@ -308,17 +355,14 @@
       .then(response => response.json())
       .then(data => {
         if (data && data.bookedSlots) {
-          bookedSlots = data.bookedSlots;
-          // Update available dates by removing fully booked dates
-          availableDates = availableDates.filter(date => {
-            return !bookedSlots[date] || Object.keys(bookedSlots[date]).length < 3;
-          });
-          initCalendar();
+          // Merge API data with hardcoded busy dates
+          bookedSlots = {...bookedSlots, ...data.bookedSlots};
         }
+        initCalendar();
       })
       .catch(err => {
         console.error('Error fetching booked slots:', err);
-        initCalendar(); // Initialize calendar even if fetch fails
+        initCalendar(); // Initialize with just hardcoded dates if API fails
       });
     }
 
