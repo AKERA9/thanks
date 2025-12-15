@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LADLI | Life ka asli maza</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Rozha+One&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ladliRed: '#D90429',
+                        ladliOrange: '#FB8500',
+                        ladliYellow: '#FFB703',
+                        ladliDark: '#121212',
+                        ladliCard: '#1E1E1E'
+                    },
+                    fontFamily: {
+                        heading: ['"Rozha One"', 'serif'],
+                        body: ['"Poppins"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Floating Animation for Food Items */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .float-fast { animation: float 6s ease-in-out infinite; }
+        .float-slow { animation: float 8s ease-in-out infinite; animation-delay: 1s; }
+        .float-reverse { animation: float 7s ease-in-out infinite reverse; }
+
+        /* Pulse Button Effect */
+        .btn-pulse {
+            box-shadow: 0 0 0 0 rgba(251, 133, 0, 0.7);
+            animation: pulse-orange 2s infinite;
+        }
+        @keyframes pulse-orange {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(251, 133, 0, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(251, 133, 0, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(251, 133, 0, 0); }
+        }
+
+        /* Spice Burst Hover Effect */
+        .spice-card:hover .spice-burst {
+            opacity: 1;
+            transform: scale(1.5);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #121212; }
+        ::-webkit-scrollbar-thumb { background: #D90429; border-radius: 4px; }
+    </style>
+</head>
+<body class="font-body selection:bg-ladliOrange selection:text-black">
+
+    <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center backdrop-blur-md bg-ladliDark/80 border-b border-white/10">
+        <div class="text-2xl font-heading text-ladliYellow tracking-wider">LADLI</div>
+        <button class="bg-transparent border border-ladliOrange text-ladliOrange px-5 py-2 rounded-full hover:bg-ladliOrange hover:text-white transition-all duration-300 text-sm font-semibold">
+            Login
+        </button>
+    </nav>
+
+    <section class="relative min-h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden pt-20">
+        <div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+            <div class="absolute top-1/4 left-10 text-6xl float-slow">🌶️</div>
+            <div class="absolute top-1/3 right-20 text-6xl float-fast">🥟</div>
+            <div class="absolute bottom-1/4 left-1/4 text-6xl float-reverse">🍔</div>
+            <div class="absolute bottom-10 right-10 text-6xl float-slow">🥘</div>
+        </div>
+
+        <div class="z-10 max-w-4xl">
+            <h1 class="hero-title text-7xl md:text-9xl font-heading text-transparent bg-clip-text bg-gradient-to-r from-ladliRed via-ladliOrange to-ladliYellow mb-4 opacity-0 transform translate-y-10">
+                LADLI
+            </h1>
+            <p class="hero-tagline text-xl md:text-3xl text-gray-300 font-light mb-10 opacity-0">
+                Life ka asli maza to <span class="text-ladliYellow font-bold italic">chatpate</span> mein hai
+            </p>
+            
+            <button class="hero-btn opacity-0 btn-pulse bg-gradient-to-r from-ladliRed to-ladliOrange text-white text-lg font-bold py-4 px-10 rounded-full hover:scale-105 transition-transform shadow-lg shadow-ladliRed/50">
+                Tell us your craving
+            </button>
+        </div>
+        
+        <div class="absolute bottom-8 animate-bounce">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-ladliCard relative">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-4xl md:text-5xl font-heading text-center mb-16 text-white"><span class="text-ladliRed">Desi</span> Style Process</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                <div class="hidden md:block absolute top-12 left-0 w-full h-1 bg-gray-700 -z-10"></div>
+                <div class="hidden md:block absolute top-12 left-0 h-1 bg-ladliOrange -z-10 progress-line w-0"></div>
+
+                <div class="step-card flex flex-col items-center text-center opacity-0 translate-y-10">
+                    <div class="w-24 h-24 bg-ladliDark border-2 border-ladliYellow rounded-full flex items-center justify-center text-4xl mb-4 shadow-lg shadow-ladliYellow/20 z-10">
+                        📝
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Requirements</h3>
+                    <p class="text-gray-400 text-sm">Tell us what your tastebuds demand today.</p>
+                </div>
+
+                <div class="step-card flex flex-col items-center text-center opacity-0 translate-y-10">
+                    <div class="w-24 h-24 bg-ladliDark border-2 border-ladliOrange rounded-full flex items-center justify-center text-4xl mb-4 shadow-lg shadow-ladliOrange/20 z-10 animate-ring">
+                        📲
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Consultant Call</h3>
+                    <p class="text-gray-400 text-sm">Our foodie expert calls you to finalize the menu.</p>
+                </div>
+
+                <div class="step-card flex flex-col items-center text-center opacity-0 translate-y-10">
+                    <div class="w-24 h-24 bg-ladliDark border-2 border-ladliRed rounded-full flex items-center justify-center text-4xl mb-4 shadow-lg shadow-ladliRed/20 z-10">
+                        🛒
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Selection</h3>
+                    <p class="text-gray-400 text-sm">Curating the best items from top street vendors.</p>
+                </div>
+
+                <div class="step-card flex flex-col items-center text-center opacity-0 translate-y-10">
+                    <div class="w-24 h-24 bg-ladliDark border-2 border-green-500 rounded-full flex items-center justify-center text-4xl mb-4 shadow-lg shadow-green-500/20 z-10">
+                        🚀
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Delivery</h3>
+                    <p class="text-gray-400 text-sm">Hot, fresh, and chatpata at your doorstep.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-ladliDark">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="why-text">
+                <h2 class="text-4xl md:text-5xl font-heading mb-6">Why <span class="text-ladliYellow">Ladli?</span></h2>
+                <ul class="space-y-6">
+                    <li class="flex items-start">
+                        <span class="text-ladliRed mr-4 text-2xl">✓</span>
+                        <div>
+                            <h4 class="text-xl font-bold">Personal Food Consultant</h4>
+                            <p class="text-gray-400">Not a bot. A real human who knows good food.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-ladliRed mr-4 text-2xl">✓</span>
+                        <div>
+                            <h4 class="text-xl font-bold">Only ₹100 Service Fee</h4>
+                            <p class="text-gray-400">Premium service, street prices.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-ladliRed mr-4 text-2xl">✓</span>
+                        <div>
+                            <h4 class="text-xl font-bold">Hygiene Verified</h4>
+                            <p class="text-gray-400">We check the kitchens so you don't have to.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="why-image relative">
+                <div class="absolute inset-0 bg-gradient-to-tr from-ladliRed to-ladliYellow opacity-20 blur-3xl rounded-full"></div>
+                <div class="relative bg-ladliCard p-8 rounded-2xl border border-white/10 transform rotate-2 hover:rotate-0 transition-all duration-500">
+                    <div class="text-6xl text-center mb-4">🤑</div>
+                    <h3 class="text-2xl font-heading text-center">"Pocket friendly,<br>Tummy friendly"</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-ladliCard">
+        <h2 class="text-4xl font-heading text-center mb-12">Popular <span class="text-ladliOrange">Cravings</span></h2>
+        
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="spice-card group relative bg-ladliDark rounded-xl overflow-hidden cursor-pointer border border-white/5 hover:border-ladliRed/50 transition-all duration-300">
+                <div class="h-48 bg-gray-800 flex items-center justify-center text-6xl relative overflow-hidden">
+                    🍔
+                    <div class="spice-burst absolute inset-0 bg-ladliRed opacity-0 transition-all duration-500 blur-xl"></div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-ladliRed transition-colors">Bombay Burger</h3>
+                    <p class="text-gray-400 text-sm">Spicy potato patty with chutneys.</p>
+                </div>
+            </div>
+
+            <div class="spice-card group relative bg-ladliDark rounded-xl overflow-hidden cursor-pointer border border-white/5 hover:border-ladliYellow/50 transition-all duration-300">
+                <div class="h-48 bg-gray-800 flex items-center justify-center text-6xl relative overflow-hidden">
+                    🥟
+                    <div class="spice-burst absolute inset-0 bg-ladliYellow opacity-0 transition-all duration-500 blur-xl"></div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-ladliYellow transition-colors">Tandoori Momos</h3>
+                    <p class="text-gray-400 text-sm">Charcoal smoked dumplings.</p>
+                </div>
+            </div>
+
+            <div class="spice-card group relative bg-ladliDark rounded-xl overflow-hidden cursor-pointer border border-white/5 hover:border-ladliOrange/50 transition-all duration-300">
+                <div class="h-48 bg-gray-800 flex items-center justify-center text-6xl relative overflow-hidden">
+                    🥘
+                    <div class="spice-burst absolute inset-0 bg-ladliOrange opacity-0 transition-all duration-500 blur-xl"></div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-ladliOrange transition-colors">Pav Bhaji</h3>
+                    <p class="text-gray-400 text-sm">Butter loaded, extra onions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black pt-20 pb-10 border-t border-ladliRed relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-ladliRed via-ladliYellow to-ladliOrange"></div>
+        
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <h2 class="text-6xl font-heading text-white mb-6">LADLI</h2>
+            <p class="text-gray-400 mb-8">Made with ❤️ and 🌶️ in India.</p>
+            
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="text-gray-400 hover:text-ladliYellow transition-colors">Instagram</a>
+                <a href="#" class="text-gray-400 hover:text-ladliYellow transition-colors">Twitter</a>
+                <a href="#" class="text-gray-400 hover:text-ladliYellow transition-colors">Facebook</a>
+            </div>
+            
+            <p class="text-gray-600 text-sm">&copy; 2023 Ladli Foods. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Register ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Section Entrance
+        const tl = gsap.timeline();
+        tl.to(".hero-title", {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power4.out"
+        })
+        .to(".hero-tagline", {
+            opacity: 1,
+            duration: 1,
+            ease: "power2.out"
+        }, "-=0.5")
+        .to(".hero-btn", {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "back.out(1.7)"
+        }, "-=0.5");
+
+        // Step Process Animation (Staggered)
+        gsap.to(".progress-line", {
+            width: "100%",
+            duration: 1.5,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".step-card",
+                start: "top 75%",
+                end: "bottom 75%",
+                scrub: 1
+            }
+        });
+
+        gsap.utils.toArray(".step-card").forEach((card, i) => {
+            gsap.to(card, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 80%",
+                },
+                delay: i * 0.2
+            });
+        });
+
+        // Why Ladli Animation
+        gsap.from(".why-text li", {
+            x: -50,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            scrollTrigger: {
+                trigger: ".why-text",
+                start: "top 70%"
+            }
+        });
+
+        // Ringing Phone Animation via GSAP
+        gsap.to(".animate-ring", {
+            x: 2,
+            rotation: 5,
+            duration: 0.1,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            scrollTrigger: {
+                trigger: ".animate-ring",
+                start: "top 80%"
+            }
+        });
+
+    </script>
+</body>
+</html>
