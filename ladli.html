@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LADLI | Your Life Companion</title>
+    <title>LADLI | The Life Companion</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Satisfy&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -18,15 +18,14 @@
             theme: {
                 extend: {
                     colors: {
-                        brandBlue: '#1e3a8a',    /* Deep Royal Blue */
-                        brandLight: '#3b82f6',   /* Bright Blue */
-                        brandCyan: '#22d3ee',    /* Cyan Glow */
-                        brandDark: '#020617',    /* Night Blue/Black */
-                        brandPink: '#f472b6',    /* Soft Pink for Emotions */
+                        royalBlue: '#0f33ff',   /* Vibrant Electric Blue */
+                        deepBlue: '#000a2e',    /* Very Dark Navy */
+                        skyLight: '#eef2ff',    /* Very Light Blue Background */
+                        pureWhite: '#ffffff',   
                     },
                     fontFamily: {
-                        heading: ['"Outfit"', 'sans-serif'],
-                        handwriting: ['"Satisfy"', 'cursive'],
+                        sans: ['"Space Grotesk"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
                     }
                 }
             }
@@ -34,470 +33,355 @@
     </script>
 
     <style>
-        body { background-color: #020617; color: white; overflow-x: hidden; font-family: 'Outfit', sans-serif; }
+        body { background-color: #ffffff; color: #000a2e; overflow-x: hidden; }
 
-        /* Animated Background Gradient */
-        .gradient-bg {
-            background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.15) 0%, rgba(2, 6, 23, 0) 50%);
+        /* Smooth Scroll */
+        html { scroll-behavior: smooth; }
+
+        /* Text Underline Animation */
+        .hover-underline-animation {
+            display: inline-block;
+            position: relative;
+        }
+        .hover-underline-animation::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #0f33ff;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+        .hover-underline-animation:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
         }
 
-        /* Glassmorphism Form */
-        .glass-panel {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        /* 3D Card Effect */
+        .tilt-card {
+            transition: transform 0.1s;
+            transform-style: preserve-3d;
         }
-
-        /* Floating Icons */
-        .float-anim { animation: floating 6s ease-in-out infinite; }
-        .float-delay { animation-delay: 3s; }
         
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+        /* Cursor Blinking for Typing */
+        .typing-cursor {
+            display: inline-block;
+            width: 4px;
+            height: 1em;
+            background-color: #0f33ff;
+            margin-left: 5px;
+            animation: blink 0.8s infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Infinite Scroll Marquee */
+        .marquee-container { overflow: hidden; white-space: nowrap; }
+        .marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Floating Input Labels */
+        .input-group { position: relative; margin-bottom: 1.5rem; }
+        .input-group input, .input-group textarea, .input-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            background: #f8fafc;
+            border-radius: 0.75rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+        .input-group input:focus, .input-group textarea:focus, .input-group select:focus {
+            border-color: #0f33ff;
+            background: white;
+            box-shadow: 0 4px 20px rgba(15, 51, 255, 0.1);
+        }
+        .input-group label {
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            color: #64748b;
+            transition: all 0.3s;
+            pointer-events: none;
+            font-size: 0.9rem;
+        }
+        .input-group input:focus ~ label,
+        .input-group input:not(:placeholder-shown) ~ label,
+        .input-group textarea:focus ~ label,
+        .input-group textarea:not(:placeholder-shown) ~ label {
+            top: -0.6rem;
+            left: 0.8rem;
+            background: white;
+            padding: 0 0.4rem;
+            font-size: 0.75rem;
+            color: #0f33ff;
+            font-weight: 600;
         }
 
-        /* Typing Cursor */
-        .cursor { display: inline-block; width: 3px; background-color: #22d3ee; animation: blink 1s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
     </style>
 </head>
-<body class="selection:bg-brandCyan selection:text-brandDark">
+<body class="antialiased">
 
-    <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center backdrop-blur-md bg-brandDark/80 border-b border-white/5">
-        <div class="flex items-center gap-2">
-            <div class="text-3xl font-bold tracking-tighter text-white">LADLI</div>
-            <div class="hidden sm:block text-xs bg-brandLight/20 text-brandCyan px-2 py-1 rounded-full">Always There For You</div>
-        </div>
-        
-        <div class="flex flex-col sm:flex-row gap-2 sm:gap-6 text-sm font-semibold">
-            <a href="tel:+918700430208" class="flex items-center gap-2 text-gray-300 hover:text-white transition">
-                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> +91 87004 30208
-            </a>
-            <a href="tel:+918368934973" class="hidden sm:flex items-center gap-2 text-gray-300 hover:text-white transition">
-                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> +91 83689 34973
-            </a>
+    <nav class="fixed w-full z-50 px-6 py-4 bg-white/90 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-3xl font-serif font-bold tracking-tight text-royalBlue">LADLI.</a>
+            
+            <div class="hidden md:flex items-center space-x-8 text-sm font-semibold tracking-wide text-gray-600">
+                <a href="#services" class="hover:text-royalBlue transition-colors">SERVICES</a>
+                <a href="#about" class="hover:text-royalBlue transition-colors">ABOUT</a>
+                <div class="flex items-center gap-4 pl-4 border-l border-gray-300">
+                    <a href="tel:+918700430208" class="text-royalBlue hover-underline-animation">+91 87004 30208</a>
+                    <a href="tel:+918368934973" class="text-royalBlue hover-underline-animation">+91 83689 34973</a>
+                </div>
+            </div>
+            
+            <button class="md:hidden text-2xl">☰</button>
         </div>
     </nav>
 
-    <section class="relative min-h-screen pt-24 pb-12 px-6 flex items-center justify-center overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-full gradient-bg pointer-events-none"></div>
-        <div class="absolute top-20 right-10 text-6xl opacity-20 float-anim">❤️</div>
-        <div class="absolute bottom-20 left-10 text-6xl opacity-20 float-anim float-delay">📚</div>
-        <div class="absolute top-1/3 left-1/4 text-4xl opacity-10 float-anim">🛍️</div>
+    <section class="relative pt-32 pb-20 px-6 min-h-screen flex items-center bg-skyLight/30 overflow-hidden">
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-100 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/2 -z-10"></div>
+        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-100 rounded-full blur-3xl opacity-50 translate-y-1/2 -translate-x-1/2 -z-10"></div>
 
-        <div class="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
-            <div class="text-center lg:text-left">
-                <p class="text-brandCyan font-handwriting text-3xl mb-4">You are not alone...</p>
-                
-                <h1 class="text-5xl lg:text-7xl font-bold leading-tight mb-6">
-                    Hum <span id="typing-text" class="text-transparent bg-clip-text bg-gradient-to-r from-brandLight to-brandCyan">Listen.</span><span class="cursor">&nbsp;</span>
+            <div class="hero-text">
+                <div class="inline-block bg-white border border-blue-100 shadow-sm px-4 py-1.5 rounded-full mb-8">
+                    <span class="flex items-center gap-2 text-xs font-bold tracking-widest text-royalBlue uppercase">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-royalBlue"></span>
+                        </span>
+                        We Are Live 24/7
+                    </span>
+                </div>
+
+                <h1 class="text-6xl md:text-8xl font-serif font-medium leading-[1.1] text-deepBlue mb-6">
+                    We solve your <br>
+                    <span class="text-royalBlue italic pr-2" id="typing-text">Problems</span><span class="typing-cursor"></span>
                 </h1>
                 
-                <p class="text-gray-300 text-lg mb-8 leading-relaxed">
-                    Life mein confusion hai? Dil udaas hai? Ya bas ghar ka samaan mangwana hai? <br>
-                    <strong class="text-white">LADLI</strong> sirf ek service nahi, ek saathi hai. Career planning se lekar Emotional support tak, hum sab solve karte hain.
+                <p class="text-xl text-gray-500 mb-10 leading-relaxed max-w-lg">
+                    Whether it's emotional support, exam stress, or just delivering groceries. 
+                    <strong>Ladli</strong> is your personal life companion.
+                    <br><span class="text-royalBlue font-semibold mt-2 block">Baat karne ka ₹0. Service ka sirf ₹100.</span>
                 </p>
 
-                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                    <div class="flex items-center gap-3 bg-brandBlue/20 border border-brandBlue/50 px-5 py-3 rounded-xl">
-                        <span class="text-2xl">🤝</span>
-                        <div class="text-left">
-                            <div class="text-xs text-gray-400">Consultation</div>
-                            <div class="font-bold text-white">100% Free Talk</div>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="tel:+918700430208" class="group relative px-8 py-4 bg-royalBlue text-white rounded-full overflow-hidden shadow-lg shadow-blue-500/30 transition-all hover:scale-105">
+                        <span class="relative z-10 font-bold flex items-center gap-2">
+                            Call Assistant <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </span>
+                    </a>
+                    <div class="flex items-center gap-2 px-6 py-4">
+                        <div class="flex -space-x-3">
+                            <div class="w-10 h-10 rounded-full border-2 border-white bg-gray-200"></div>
+                            <div class="w-10 h-10 rounded-full border-2 border-white bg-gray-300"></div>
+                            <div class="w-10 h-10 rounded-full border-2 border-white bg-gray-400 flex items-center justify-center text-xs font-bold">+2k</div>
                         </div>
-                    </div>
-                    <div class="flex items-center gap-3 bg-brandBlue/20 border border-brandBlue/50 px-5 py-3 rounded-xl">
-                        <span class="text-2xl">⚡</span>
-                        <div class="text-left">
-                            <div class="text-xs text-gray-400">Service Charge</div>
-                            <div class="font-bold text-white">Just ₹100</div>
-                        </div>
+                        <span class="text-sm font-semibold text-gray-600">Happy Users</span>
                     </div>
                 </div>
             </div>
 
-            <div class="relative w-full">
-                <div class="absolute -inset-1 bg-gradient-to-r from-brandCyan via-brandBlue to-brandPink rounded-2xl blur opacity-30 animate-pulse"></div>
-                
-                <div class="glass-panel p-8 rounded-2xl relative">
-                    <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-2xl font-bold text-white">Dil ki Baat / Requirement</h3>
-                        <span class="text-2xl">📝</span>
-                    </div>
-                    
-                    <form class="space-y-5">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="text-xs text-brandCyan uppercase font-bold tracking-wider mb-1 block">Name</label>
-                                <input type="text" class="w-full bg-brandDark/50 border border-gray-700 rounded-lg p-3 text-white focus:border-brandCyan focus:outline-none transition" placeholder="Aapka naam">
-                            </div>
-                            <div>
-                                <label class="text-xs text-brandCyan uppercase font-bold tracking-wider mb-1 block">Phone</label>
-                                <input type="tel" class="w-full bg-brandDark/50 border border-gray-700 rounded-lg p-3 text-white focus:border-brandCyan focus:outline-none transition" placeholder="Mobile No.">
-                            </div>
+            <div class="relative perspective-1000">
+                <div class="absolute -inset-4 bg-gradient-to-r from-blue-200 to-indigo-200 rounded-[2rem] blur-xl opacity-40"></div>
+                <div class="relative bg-white p-8 md:p-10 rounded-[2rem] shadow-2xl border border-gray-100">
+                    <h3 class="text-3xl font-serif text-deepBlue mb-2">Tell us everything.</h3>
+                    <p class="text-gray-400 mb-8">Fill the form, we will call you back.</p>
+
+                    <form onsubmit="event.preventDefault(); alert('Thank you! Ladli Team will call you.');">
+                        <div class="input-group">
+                            <input type="text" id="name" placeholder=" " required>
+                            <label for="name">Your Name</label>
                         </div>
                         
-                        <div>
-                            <label class="text-xs text-brandCyan uppercase font-bold tracking-wider mb-1 block">Category</label>
-                            <select class="w-full bg-brandDark/50 border border-gray-700 rounded-lg p-3 text-white focus:border-brandCyan focus:outline-none transition">
-                                <option>General Advice (Salah)</option>
-                                <option>Emotional Support (Dil ki baat)</option>
-                                <option>Education/Career Help</option>
-                                <option>Shopping/Delivery</option>
-                                <option>Event Planning</option>
-                                <option>Other</option>
+                        <div class="input-group">
+                            <input type="tel" id="phone" placeholder=" " required>
+                            <label for="phone">Phone Number (+91)</label>
+                        </div>
+
+                        <div class="input-group">
+                            <select id="category" required>
+                                <option value="" disabled selected></option>
+                                <option value="emotional">Emotional Support (Dil ki baat)</option>
+                                <option value="education">Education/Career Help</option>
+                                <option value="delivery">Pickup & Drop / Delivery</option>
+                                <option value="planning">Event Planning / Surprise</option>
+                                <option value="other">Other Problem</option>
                             </select>
+                            <label for="category">What do you need?</label>
                         </div>
 
-                        <div>
-                            <label class="text-xs text-brandCyan uppercase font-bold tracking-wider mb-1 block">Message</label>
-                            <textarea class="w-full bg-brandDark/50 border border-gray-700 rounded-lg p-3 text-white focus:border-brandCyan focus:outline-none transition h-28 resize-none" placeholder="Khul ke likhein... Hum sun rahe hain."></textarea>
+                        <div class="input-group">
+                            <textarea id="msg" rows="3" placeholder=" " required></textarea>
+                            <label for="msg">Describe your requirement...</label>
                         </div>
 
-                        <button type="button" onclick="alert('Message Sent! Ladli team will call you shortly.')" class="w-full bg-gradient-to-r from-brandLight to-brandCyan hover:from-brandBlue hover:to-brandLight text-brandDark font-extrabold text-lg py-4 rounded-xl shadow-lg shadow-brandCyan/20 transform hover:scale-[1.02] transition-all">
-                            Send Message 🚀
-                        </button>
-                        <p class="text-center text-xs text-gray-500 mt-2">Hum aapko call karke detail mein baat karenge.</p>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-20 px-6 bg-brandDark relative">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Hum Kya Karte Hain?</h2>
-                <div class="h-1 w-20 bg-brandCyan mx-auto rounded-full"></div>
-                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
-                    Ladli ka motive hai aapki zindagi ko aasaan banana. Choti si shopping ho ya badi pareshani, hum har kadam par aapke saath hain.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                
-                <div class="glass-panel p-6 rounded-2xl hover:bg-brandBlue/10 transition-colors group border-t-4 border-brandPink">
-                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">❤️‍🩹</div>
-                    <h3 class="text-xl font-bold text-white mb-2">Dil Ki Baat</h3>
-                    <p class="text-gray-400 text-sm">Breakup, stress, ya akelapan? Humse share karein. Koi judgement nahi, sirf support.</p>
-                </div>
-
-                <div class="glass-panel p-6 rounded-2xl hover:bg-brandBlue/10 transition-colors group border-t-4 border-yellow-400">
-                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🎓</div>
-                    <h3 class="text-xl font-bold text-white mb-2">Education & Career</h3>
-                    <p class="text-gray-400 text-sm">Admission problems? Career confusion? Humare experts sahi rasta dikhayenge.</p>
-                </div>
-
-                <div class="glass-panel p-6 rounded-2xl hover:bg-brandBlue/10 transition-colors group border-t-4 border-green-400">
-                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🎉</div>
-                    <h3 class="text-xl font-bold text-white mb-2">Events & Plans</h3>
-                    <p class="text-gray-400 text-sm">Birthday surprise plan karna hai ya trip? Bas budget batayein, baaki hum par.</p>
-                </div>
-
-                <div class="glass-panel p-6 rounded-2xl hover:bg-brandBlue/10 transition-colors group border-t-4 border-brandCyan">
-                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🛍️</div>
-                    <h3 class="text-xl font-bold text-white mb-2">Shopping & Delivery</h3>
-                    <p class="text-gray-400 text-sm">Koi bhi cheez, kahin se bhi. Order karein aur ghar baithe paayein.</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section class="py-16 bg-gradient-to-r from-brandBlue to-indigo-900 px-6 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">Sirf ₹100 mein Personal Assistant?</h2>
-        <p class="text-xl text-blue-200 mb-8 max-w-3xl mx-auto">
-            Haan! Baat karne ka, salah lene ka koi paisa nahi. Jab hum aapke liye koi kaam execute karenge (delivery/planning), tab sirf ₹100 service charge lagega.
-        </p>
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="tel:+918700430208" class="bg-white text-brandBlue font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition shadow-lg">Call Now: 87004 30208</a>
-        </div>
-    </section>
-
-    <footer class="bg-black pt-12 pb-6 text-center border-t border-gray-800">
-        <div class="text-4xl font-bold text-white mb-2">LADLI</div>
-        <p class="text-gray-500 text-sm mb-6">Your Secret Keeper & Life Solver</p>
-        
-        <div class="flex justify-center gap-8 mb-8">
-            <a href="#" class="text-gray-400 hover:text-brandCyan transition">Instagram</a>
-            <a href="#" class="text-gray-400 hover:text-brandCyan transition">WhatsApp</a>
-            <a href="#" class="text-gray-400 hover:text-brandCyan transition">Email</a>
-        </div>
-        
-        <p class="text-gray-700 text-xs">© 2023 Ladli Services. All rights reserved.</p>
-    </footer>
-
-    <script>
-        // Typing Effect Logic
-        const words = ["Listen.", "Support.", "Plan.", "Deliver.", "Care."];
-        let i = 0;
-        let timer;
-
-        function typeWriter() {
-            const heading = document.getElementById("typing-text");
-            const word = words[i];
-            let j = 0;
-            let isDeleting = false;
-
-            function loop() {
-                heading.innerHTML = word.substring(0, j);
-                
-                if (!isDeleting && j < word.length) {
-                    j++;
-                    timer = setTimeout(loop, 150);
-                } else if (!isDeleting && j === word.length) {
-                    isDeleting = true;
-                    timer = setTimeout(loop, 2000); // Wait before deleting
-                } else if (isDeleting && j > 0) {
-                    j--;
-                    timer = setTimeout(loop, 100);
-                } else {
-                    isDeleting = false;
-                    i = (i + 1) % words.length;
-                    setTimeout(typeWriter, 500);
-                    return;
-                }
-            }
-            loop();
-        }
-
-        // Initialize Animations
-        document.addEventListener('DOMContentLoaded', () => {
-            typeWriter();
-            
-            gsap.registerPlugin(ScrollTrigger);
-            
-            gsap.from(".glass-panel", {
-                y: 50,
-                opacity: 0,
-                duration: 1,
-                ease: "power3.out",
-                stagger: 0.2,
-                scrollTrigger: {
-                    trigger: ".glass-panel",
-                    start: "top 85%"
-                }
-            });
-        });
-    </script>
-</body>
-</html>
-
-        /* Smooth Floating Icons Background */
-        .floating-icon {
-            position: absolute;
-            opacity: 0.15;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Glassmorphism Form */
-        .glass-form {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Neon Glow Text */
-        .text-glow {
-            text-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #0B1120; }
-        ::-webkit-scrollbar-thumb { background: #2563EB; border-radius: 5px; }
-    </style>
-</head>
-<body class="font-body selection:bg-brandCyan selection:text-black">
-
-    <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center backdrop-blur-md bg-brandDark/80 border-b border-white/5">
-        <div class="text-3xl font-heading text-white tracking-widest text-glow">LADLI</div>
-        <div class="hidden md:flex space-x-6 text-sm font-bold text-brandLight">
-            <a href="tel:+918700430208" class="hover:text-white transition">📞 +91 87004 30208</a>
-            <span>|</span>
-            <a href="tel:+918368934973" class="hover:text-white transition">📞 +91 83689 34973</a>
-        </div>
-    </nav>
-
-    <section class="relative min-h-screen flex items-center pt-20 px-6 overflow-hidden">
-        
-        <div class="floating-icon text-7xl top-20 left-10">🛍️</div>
-        <div class="floating-icon text-7xl top-40 right-20">💊</div>
-        <div class="floating-icon text-7xl bottom-20 left-1/4">📝</div>
-        <div class="floating-icon text-7xl bottom-40 right-10">📦</div>
-
-        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
-            
-            <div class="text-center lg:text-left">
-                <div class="inline-block bg-brandBlue/20 border border-brandBlue/50 text-brandCyan px-4 py-1 rounded-full text-sm font-bold mb-6 animate-pulse">
-                    ✨ Sirf ₹100 Service Charge
-                </div>
-                <h1 class="text-5xl lg:text-7xl font-heading mb-6 leading-tight">
-                    Aapki Problem.<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brandLight to-brandCyan">Humara Solution.</span>
-                </h1>
-                <p class="text-gray-400 text-lg mb-8 leading-relaxed">
-                    Consultation ka koi paisa nahi! Bas form bhariye, hum call karenge aur aapka samaan ya service aapke ghar tak pahunchayenge.
-                </p>
-                
-                <div class="lg:hidden flex flex-col gap-3 mb-8">
-                    <a href="tel:+918700430208" class="bg-brandBlue text-white py-3 rounded-lg font-bold shadow-lg shadow-brandBlue/30">Call: 87004 30208</a>
-                    <a href="tel:+918368934973" class="bg-gray-800 border border-gray-600 text-white py-3 rounded-lg font-bold">Call: 83689 34973</a>
-                </div>
-
-                <div class="hidden lg:flex gap-4">
-                    <div class="flex items-center gap-2 text-gray-300">
-                        <span class="w-2 h-2 bg-green-500 rounded-full"></span> 24/7 Active
-                    </div>
-                    <div class="flex items-center gap-2 text-gray-300">
-                        <span class="w-2 h-2 bg-green-500 rounded-full"></span> Verified Team
-                    </div>
-                </div>
-            </div>
-
-            <div class="relative">
-                <div class="absolute -inset-1 bg-gradient-to-r from-brandBlue to-brandCyan rounded-2xl blur opacity-30"></div>
-                <div class="glass-form p-8 rounded-2xl relative">
-                    <h3 class="text-2xl font-bold mb-2 text-white">Kuch bhi chahiye?</h3>
-                    <p class="text-gray-400 text-sm mb-6">Apni requirement batayein, hum call karenge.</p>
-                    
-                    <form onsubmit="event.preventDefault(); alert('Request Received! Hum aapse jaldi sampark karenge.');" class="space-y-4">
-                        <div>
-                            <label class="block text-sm text-gray-400 mb-1">Aapka Naam</label>
-                            <input type="text" class="w-full bg-brandDark/50 border border-gray-600 rounded-lg p-3 text-white focus:border-brandCyan focus:outline-none transition" placeholder="Enter name">
-                        </div>
-                        <div>
-                            <label class="block text-sm text-gray-400 mb-1">Mobile Number</label>
-                            <input type="tel" class="w-full bg-brandDark/50 border border-gray-600 rounded-lg p-3 text-white focus:border-brandCyan focus:outline-none transition" placeholder="+91 XXXXX XXXXX">
-                        </div>
-                        <div>
-                            <label class="block text-sm text-gray-400 mb-1">Kya chahiye aapko?</label>
-                            <textarea class="w-full bg-brandDark/50 border border-gray-600 rounded-lg p-3 text-white focus:border-brandCyan focus:outline-none transition h-24" placeholder="Example: Ration lana hai, Medicine chahiye, ya Document courier karna hai..."></textarea>
-                        </div>
-                        <button class="w-full bg-gradient-to-r from-brandBlue to-brandCyan text-white font-bold py-4 rounded-lg hover:scale-[1.02] transition-transform shadow-lg shadow-brandBlue/40">
+                        <button class="w-full bg-deepBlue text-white font-bold py-4 rounded-xl hover:bg-royalBlue transition-colors duration-300 flex justify-center items-center gap-2">
                             Submit Request 🚀
                         </button>
                     </form>
                 </div>
             </div>
+
         </div>
     </section>
 
-    <section class="py-20 bg-gray-900/50">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-4xl font-heading text-center mb-16">Kaise Kaam Karta Hai?</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="process-card bg-brandDark p-6 rounded-xl border border-white/5 hover:border-brandBlue transition-colors text-center group">
-                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">📝</div>
-                    <h3 class="text-xl font-bold mb-2 text-white">1. Form Bhariye</h3>
-                    <p class="text-gray-400 text-sm">Bas apni zarurat likh kar bhej dijiye.</p>
-                </div>
+    <div class="bg-royalBlue py-6 transform -rotate-1 origin-left scale-110 shadow-xl border-y-4 border-white z-20 relative">
+        <div class="marquee-container">
+            <div class="marquee-content text-white font-bold text-2xl md:text-4xl tracking-wider uppercase">
+                &nbsp; ★ PERSONAL SUPPORT ★ EDUCATION GUIDANCE ★ HOME DELIVERY ★ EVENT PLANNING ★ EMOTIONAL CARE ★ MEDICINE DROP ★ PERSONAL SUPPORT ★ EDUCATION GUIDANCE
+            </div>
+        </div>
+    </div>
+
+    <section id="services" class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <h2 class="text-5xl font-serif text-deepBlue mb-6">Whatever you need,<br>Consider it done.</h2>
+                <p class="text-gray-500 text-lg">We are not just a delivery app. We are humans helping humans. From heartbreaks to house chores.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
-                <div class="process-card bg-brandDark p-6 rounded-xl border border-white/5 hover:border-brandBlue transition-colors text-center group">
-                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">📞</div>
-                    <h3 class="text-xl font-bold mb-2 text-white">2. Free Call</h3>
-                    <p class="text-gray-400 text-sm">Hum call karke details discuss karenge. (Free)</p>
+                <div class="tilt-card group bg-white p-8 rounded-[2rem] border border-gray-100 shadow-xl hover:shadow-2xl hover:shadow-blue-500/10">
+                    <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 transition-transform duration-300">🧠</div>
+                    <h3 class="text-2xl font-bold text-deepBlue mb-3">Mental Peace</h3>
+                    <p class="text-gray-500 mb-6">Feeling lonely or stressed? Talk to us. We listen without judgement. (Free)</p>
+                    <a href="#" class="text-royalBlue font-bold text-sm tracking-wide group-hover:underline">BOOK SESSION &rarr;</a>
                 </div>
 
-                <div class="process-card bg-brandDark p-6 rounded-xl border border-white/5 hover:border-brandBlue transition-colors text-center group">
-                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🚚</div>
-                    <h3 class="text-xl font-bold mb-2 text-white">3. Delivery/Work</h3>
-                    <p class="text-gray-400 text-sm">Aapka kaam ya delivery turant ki jayegi.</p>
+                <div class="tilt-card group bg-white p-8 rounded-[2rem] border border-gray-100 shadow-xl hover:shadow-2xl hover:shadow-blue-500/10">
+                    <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 transition-transform duration-300">🎓</div>
+                    <h3 class="text-2xl font-bold text-deepBlue mb-3">Education & Career</h3>
+                    <p class="text-gray-500 mb-6">Confused about streams or colleges? Get expert advice and planning.</p>
+                    <a href="#" class="text-royalBlue font-bold text-sm tracking-wide group-hover:underline">GET GUIDANCE &rarr;</a>
                 </div>
 
-                <div class="process-card bg-brandDark p-6 rounded-xl border border-brandCyan/30 shadow-lg shadow-brandCyan/10 text-center group">
-                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">💰</div>
-                    <h3 class="text-xl font-bold mb-2 text-brandCyan">4. Pay ₹100</h3>
-                    <p class="text-gray-400 text-sm">Kaam hone ke baad sirf ₹100 charge.</p>
+                <div class="tilt-card group bg-white p-8 rounded-[2rem] border border-gray-100 shadow-xl hover:shadow-2xl hover:shadow-blue-500/10">
+                    <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 transition-transform duration-300">📦</div>
+                    <h3 class="text-2xl font-bold text-deepBlue mb-3">Anything Delivery</h3>
+                    <p class="text-gray-500 mb-6">Medicines, documents, gifts, or grocery. We pick up and drop anything.</p>
+                    <a href="#" class="text-royalBlue font-bold text-sm tracking-wide group-hover:underline">ORDER NOW &rarr;</a>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <section class="py-10 border-y border-white/10 bg-brandBlue/10 overflow-hidden">
-        <div class="flex space-x-12 animate-marquee whitespace-nowrap text-2xl font-bold text-gray-400">
-            <span>🔌 Electrician Work</span> • 
-            <span>🥦 Grocery Delivery</span> • 
-            <span>💊 Medicines</span> • 
-            <span>📝 Documents</span> • 
-            <span>🎁 Gift Delivery</span> • 
-            <span>🎫 Ticket Booking</span> • 
-            <span>🏠 House Help</span> • 
-            <span>🔌 Electrician Work</span> • 
-            <span>🥦 Grocery Delivery</span>
-        </div>
-    </section>
+    <footer class="bg-deepBlue text-white pt-24 pb-10 px-6 rounded-t-[3rem] mt-10">
+        <div class="max-w-7xl mx-auto flex flex-col items-center text-center">
+            
+            <h2 class="text-[15vw] leading-none font-serif text-white/10 font-bold select-none">LADLI</h2>
+            
+            <div class="bg-royalBlue text-white text-xl md:text-2xl font-bold py-6 px-12 rounded-full -mt-10 mb-12 shadow-2xl hover:scale-105 transition-transform cursor-pointer">
+                <a href="tel:+918700430208">📞 Call Us: +91 87004 30208</a>
+            </div>
 
-    <footer class="bg-black pt-16 pb-8 text-center px-6">
-        <h2 class="text-6xl font-heading text-brandBlue mb-4">LADLI</h2>
-        <p class="text-xl text-white mb-8">"Baat karne ka koi paisa nahi!"</p>
-        
-        <div class="flex flex-col md:flex-row justify-center gap-6 mb-10">
-            <a href="tel:+918700430208" class="text-2xl font-bold text-brandCyan hover:text-white transition">📞 +91 87004 30208</a>
-            <span class="hidden md:block text-gray-600 text-2xl">|</span>
-            <a href="tel:+918368934973" class="text-2xl font-bold text-brandCyan hover:text-white transition">📞 +91 83689 34973</a>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-gray-400 w-full border-t border-white/10 pt-10">
+                <div>
+                    <h4 class="text-white font-bold mb-4">Contact</h4>
+                    <p>+91 87004 30208</p>
+                    <p>+91 83689 34973</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Address</h4>
+                    <p>New Delhi, India</p>
+                    <p>Serving All Over NCR</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Social</h4>
+                    <div class="flex justify-center gap-4">
+                        <a href="#" class="hover:text-white transition">Instagram</a>
+                        <a href="#" class="hover:text-white transition">Facebook</a>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-gray-600 text-sm mt-16">&copy; 2025 LADLI Services. Made with ❤️ for You.</p>
         </div>
-        
-        <p class="text-gray-600 text-sm">© 2023 Ladli Consultation Services. All rights reserved.</p>
     </footer>
 
     <script>
-        // GSAP Animations
-        gsap.registerPlugin(ScrollTrigger);
+        // --- TYPING EFFECT ---
+        const phrases = ["Stress.", "Deliveries.", "Exam Anxiety.", "Shopping.", "Loneliness.", "Planning."];
+        let currentPhrase = 0;
+        let isDeleting = false;
+        let txt = '';
+        const speed = 100;
+        const wait = 2000;
 
-        // Float Animation for background icons
-        gsap.to(".floating-icon", {
-            y: -20,
-            rotation: 10,
-            duration: 3,
-            stagger: 0.5,
-            yoyo: true,
-            repeat: -1,
-            ease: "sine.inOut"
-        });
-
-        // Hero Content Entrance
-        gsap.from("h1, p, .glass-form", {
-            y: 50,
-            opacity: 0,
-            duration: 1.2,
-            stagger: 0.2,
-            ease: "power3.out"
-        });
-
-        // Process Cards Pop-up
-        gsap.from(".process-card", {
-            scrollTrigger: {
-                trigger: ".process-card",
-                start: "top 80%"
-            },
-            y: 50,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.2,
-            ease: "back.out(1.7)"
-        });
-
-        // Custom Marquee Animation via CSS
-        const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes marquee {
-                0% { transform: translateX(0); }
-                100% { transform: translateX(-50%); }
+        function type() {
+            const fullTxt = phrases[currentPhrase];
+            
+            if (isDeleting) {
+                txt = fullTxt.substring(0, txt.length - 1);
+            } else {
+                txt = fullTxt.substring(0, txt.length + 1);
             }
-            .animate-marquee {
-                animation: marquee 20s linear infinite;
+
+            document.getElementById("typing-text").innerHTML = txt;
+
+            let typeSpeed = speed;
+            if (isDeleting) typeSpeed /= 2;
+
+            if (!isDeleting && txt === fullTxt) {
+                typeSpeed = wait;
+                isDeleting = true;
+            } else if (isDeleting && txt === '') {
+                isDeleting = false;
+                currentPhrase++;
+                if (currentPhrase === phrases.length) currentPhrase = 0;
             }
-        `;
-        document.head.appendChild(style);
+
+            setTimeout(type, typeSpeed);
+        }
+
+        // --- 3D TILT EFFECT ---
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -10; // Max rotation 10deg
+                const rotateY = ((x - centerX) / centerX) * 10;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+            });
+        });
+
+        // --- GSAP ENTRANCE ---
+        document.addEventListener("DOMContentLoaded", () => {
+            type(); // Start Typing
+
+            gsap.from(".hero-text > *", {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.1,
+                ease: "power3.out"
+            });
+
+            gsap.from("form", {
+                x: 50,
+                opacity: 0,
+                duration: 1.2,
+                delay: 0.5,
+                ease: "power3.out"
+            });
+        });
     </script>
 </body>
-          </html>
-              
+    </html>
+    
