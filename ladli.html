@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LADLI | Aapka Personal Assistant</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Righteous&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandBlue: '#2563EB',    /* Royal Blue */
+                        brandDark: '#0B1120',    /* Deep Blue/Black */
+                        brandLight: '#60A5FA',   /* Light Blue */
+                        brandCyan: '#06B6D4',    /* Cyan Accent */
+                    },
+                    fontFamily: {
+                        heading: ['"Righteous"', 'cursive'],
+                        body: ['"Poppins"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #0B1120; color: white; overflow-x: hidden; }
+
+        /* Smooth Floating Icons Background */
+        .floating-icon {
+            position: absolute;
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Glassmorphism Form */
+        .glass-form {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Neon Glow Text */
+        .text-glow {
+            text-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0B1120; }
+        ::-webkit-scrollbar-thumb { background: #2563EB; border-radius: 5px; }
+    </style>
+</head>
+<body class="font-body selection:bg-brandCyan selection:text-black">
+
+    <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center backdrop-blur-md bg-brandDark/80 border-b border-white/5">
+        <div class="text-3xl font-heading text-white tracking-widest text-glow">LADLI</div>
+        <div class="hidden md:flex space-x-6 text-sm font-bold text-brandLight">
+            <a href="tel:+918700430208" class="hover:text-white transition">📞 +91 87004 30208</a>
+            <span>|</span>
+            <a href="tel:+918368934973" class="hover:text-white transition">📞 +91 83689 34973</a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-screen flex items-center pt-20 px-6 overflow-hidden">
+        
+        <div class="floating-icon text-7xl top-20 left-10">🛍️</div>
+        <div class="floating-icon text-7xl top-40 right-20">💊</div>
+        <div class="floating-icon text-7xl bottom-20 left-1/4">📝</div>
+        <div class="floating-icon text-7xl bottom-40 right-10">📦</div>
+
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+            
+            <div class="text-center lg:text-left">
+                <div class="inline-block bg-brandBlue/20 border border-brandBlue/50 text-brandCyan px-4 py-1 rounded-full text-sm font-bold mb-6 animate-pulse">
+                    ✨ Sirf ₹100 Service Charge
+                </div>
+                <h1 class="text-5xl lg:text-7xl font-heading mb-6 leading-tight">
+                    Aapki Problem.<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brandLight to-brandCyan">Humara Solution.</span>
+                </h1>
+                <p class="text-gray-400 text-lg mb-8 leading-relaxed">
+                    Consultation ka koi paisa nahi! Bas form bhariye, hum call karenge aur aapka samaan ya service aapke ghar tak pahunchayenge.
+                </p>
+                
+                <div class="lg:hidden flex flex-col gap-3 mb-8">
+                    <a href="tel:+918700430208" class="bg-brandBlue text-white py-3 rounded-lg font-bold shadow-lg shadow-brandBlue/30">Call: 87004 30208</a>
+                    <a href="tel:+918368934973" class="bg-gray-800 border border-gray-600 text-white py-3 rounded-lg font-bold">Call: 83689 34973</a>
+                </div>
+
+                <div class="hidden lg:flex gap-4">
+                    <div class="flex items-center gap-2 text-gray-300">
+                        <span class="w-2 h-2 bg-green-500 rounded-full"></span> 24/7 Active
+                    </div>
+                    <div class="flex items-center gap-2 text-gray-300">
+                        <span class="w-2 h-2 bg-green-500 rounded-full"></span> Verified Team
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div class="absolute -inset-1 bg-gradient-to-r from-brandBlue to-brandCyan rounded-2xl blur opacity-30"></div>
+                <div class="glass-form p-8 rounded-2xl relative">
+                    <h3 class="text-2xl font-bold mb-2 text-white">Kuch bhi chahiye?</h3>
+                    <p class="text-gray-400 text-sm mb-6">Apni requirement batayein, hum call karenge.</p>
+                    
+                    <form onsubmit="event.preventDefault(); alert('Request Received! Hum aapse jaldi sampark karenge.');" class="space-y-4">
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-1">Aapka Naam</label>
+                            <input type="text" class="w-full bg-brandDark/50 border border-gray-600 rounded-lg p-3 text-white focus:border-brandCyan focus:outline-none transition" placeholder="Enter name">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-1">Mobile Number</label>
+                            <input type="tel" class="w-full bg-brandDark/50 border border-gray-600 rounded-lg p-3 text-white focus:border-brandCyan focus:outline-none transition" placeholder="+91 XXXXX XXXXX">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-1">Kya chahiye aapko?</label>
+                            <textarea class="w-full bg-brandDark/50 border border-gray-600 rounded-lg p-3 text-white focus:border-brandCyan focus:outline-none transition h-24" placeholder="Example: Ration lana hai, Medicine chahiye, ya Document courier karna hai..."></textarea>
+                        </div>
+                        <button class="w-full bg-gradient-to-r from-brandBlue to-brandCyan text-white font-bold py-4 rounded-lg hover:scale-[1.02] transition-transform shadow-lg shadow-brandBlue/40">
+                            Submit Request 🚀
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gray-900/50">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-heading text-center mb-16">Kaise Kaam Karta Hai?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="process-card bg-brandDark p-6 rounded-xl border border-white/5 hover:border-brandBlue transition-colors text-center group">
+                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">📝</div>
+                    <h3 class="text-xl font-bold mb-2 text-white">1. Form Bhariye</h3>
+                    <p class="text-gray-400 text-sm">Bas apni zarurat likh kar bhej dijiye.</p>
+                </div>
+                
+                <div class="process-card bg-brandDark p-6 rounded-xl border border-white/5 hover:border-brandBlue transition-colors text-center group">
+                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">📞</div>
+                    <h3 class="text-xl font-bold mb-2 text-white">2. Free Call</h3>
+                    <p class="text-gray-400 text-sm">Hum call karke details discuss karenge. (Free)</p>
+                </div>
+
+                <div class="process-card bg-brandDark p-6 rounded-xl border border-white/5 hover:border-brandBlue transition-colors text-center group">
+                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🚚</div>
+                    <h3 class="text-xl font-bold mb-2 text-white">3. Delivery/Work</h3>
+                    <p class="text-gray-400 text-sm">Aapka kaam ya delivery turant ki jayegi.</p>
+                </div>
+
+                <div class="process-card bg-brandDark p-6 rounded-xl border border-brandCyan/30 shadow-lg shadow-brandCyan/10 text-center group">
+                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">💰</div>
+                    <h3 class="text-xl font-bold mb-2 text-brandCyan">4. Pay ₹100</h3>
+                    <p class="text-gray-400 text-sm">Kaam hone ke baad sirf ₹100 charge.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10 border-y border-white/10 bg-brandBlue/10 overflow-hidden">
+        <div class="flex space-x-12 animate-marquee whitespace-nowrap text-2xl font-bold text-gray-400">
+            <span>🔌 Electrician Work</span> • 
+            <span>🥦 Grocery Delivery</span> • 
+            <span>💊 Medicines</span> • 
+            <span>📝 Documents</span> • 
+            <span>🎁 Gift Delivery</span> • 
+            <span>🎫 Ticket Booking</span> • 
+            <span>🏠 House Help</span> • 
+            <span>🔌 Electrician Work</span> • 
+            <span>🥦 Grocery Delivery</span>
+        </div>
+    </section>
+
+    <footer class="bg-black pt-16 pb-8 text-center px-6">
+        <h2 class="text-6xl font-heading text-brandBlue mb-4">LADLI</h2>
+        <p class="text-xl text-white mb-8">"Baat karne ka koi paisa nahi!"</p>
+        
+        <div class="flex flex-col md:flex-row justify-center gap-6 mb-10">
+            <a href="tel:+918700430208" class="text-2xl font-bold text-brandCyan hover:text-white transition">📞 +91 87004 30208</a>
+            <span class="hidden md:block text-gray-600 text-2xl">|</span>
+            <a href="tel:+918368934973" class="text-2xl font-bold text-brandCyan hover:text-white transition">📞 +91 83689 34973</a>
+        </div>
+        
+        <p class="text-gray-600 text-sm">© 2023 Ladli Consultation Services. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Float Animation for background icons
+        gsap.to(".floating-icon", {
+            y: -20,
+            rotation: 10,
+            duration: 3,
+            stagger: 0.5,
+            yoyo: true,
+            repeat: -1,
+            ease: "sine.inOut"
+        });
+
+        // Hero Content Entrance
+        gsap.from("h1, p, .glass-form", {
+            y: 50,
+            opacity: 0,
+            duration: 1.2,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+
+        // Process Cards Pop-up
+        gsap.from(".process-card", {
+            scrollTrigger: {
+                trigger: ".process-card",
+                start: "top 80%"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "back.out(1.7)"
+        });
+
+        // Custom Marquee Animation via CSS
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes marquee {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+            }
+            .animate-marquee {
+                animation: marquee 20s linear infinite;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+          </html>
+              
