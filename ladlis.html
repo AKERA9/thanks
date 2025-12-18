@@ -16,9 +16,7 @@
             theme: {
                 extend: {
                     colors: {
-                        brandMain: '#dc2626',   /* Deep Red */
-                        brandLight: '#ef4444',  /* Lighter Red */
-                        brandDark: '#0f172a',   /* Dark Text */
+                        brandMain: '#dc2626', brandLight: '#ef4444', brandDark: '#0f172a',
                     },
                     fontFamily: {
                         heading: ['"Outfit"', 'sans-serif'],
@@ -31,8 +29,6 @@
 
     <style>
         body { background-color: #fff; color: #0f172a; overflow-x: hidden; font-family: 'Outfit', sans-serif; }
-        
-        /* Glass & Animations */
         .glass-panel { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); border: 1px solid rgba(255, 200, 200, 0.6); box-shadow: 0 10px 40px -10px rgba(220, 38, 38, 0.15); }
         .float-anim { animation: floating 6s ease-in-out infinite; color: #dc2626; }
         .float-delay { animation-delay: 3s; }
@@ -41,30 +37,16 @@
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         .blink-dot { animation: blinker 1.5s linear infinite; }
         @keyframes blinker { 50% { opacity: 0; } }
-
-        /* Marquee Strip */
         .marquee-container { overflow: hidden; white-space: nowrap; background: linear-gradient(to right, #b91c1c, #ef4444); padding: 12px 0; }
         .marquee-content { display: inline-block; animation: marquee 20s linear infinite; color: white; font-weight: bold; font-size: 14px; letter-spacing: 1px; }
-        
-        /* Review Infinite Scroll Animation */
         .scroll-container { overflow: hidden; white-space: nowrap; padding: 20px 0; position: relative; }
         .scroll-track { display: inline-block; animation: scroll-left 40s linear infinite; }
         .scroll-track-reverse { display: inline-block; animation: scroll-right 45s linear infinite; }
-        
-        .review-card { 
-            display: inline-block; width: 300px; white-space: normal; 
-            background: white; border: 1px solid #fee2e2; border-radius: 16px; 
-            padding: 20px; margin: 0 15px; vertical-align: top;
-            box-shadow: 0 4px 6px -1px rgba(220, 38, 38, 0.05);
-            transition: transform 0.3s;
-        }
+        .review-card { display: inline-block; width: 300px; white-space: normal; background: white; border: 1px solid #fee2e2; border-radius: 16px; padding: 20px; margin: 0 15px; vertical-align: top; box-shadow: 0 4px 6px -1px rgba(220, 38, 38, 0.05); transition: transform 0.3s; }
         .review-card:hover { transform: translateY(-5px); border-color: #dc2626; }
-
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes scroll-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
-
-        /* Heartbeat for Footer */
         .heartbeat { animation: beat 1.5s infinite; }
         @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
     </style>
@@ -75,9 +57,9 @@
         <div class="flex items-center gap-2">
             <div class="text-2xl font-extrabold tracking-tighter text-brandMain">LADLI</div>
         </div>
-        <div class="flex items-center gap-2 bg-green-50 border border-green-200 px-3 py-1 rounded-full shadow-sm">
-            <span class="w-2 h-2 rounded-full bg-green-500 blink-dot"></span>
-            <span class="text-xs font-bold text-green-700">Online</span>
+        <div id="status-badge" class="flex items-center gap-2 bg-green-50 border border-green-200 px-3 py-1 rounded-full shadow-sm transition-colors duration-500">
+            <span id="status-dot" class="w-2 h-2 rounded-full bg-green-500 blink-dot"></span>
+            <span id="status-text" class="text-xs font-bold text-green-700">Online</span>
         </div>
     </nav>
 
@@ -115,8 +97,14 @@
                 <div class="glass-panel p-6 sm:p-8 rounded-2xl relative">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-2xl font-bold text-brandDark">Likh kar bhejo 👇</h3>
-                        <span class="text-xs font-bold bg-green-100 text-green-700 px-2 py-1 rounded">Quick Reply</span>
+                        <span id="form-badge" class="text-xs font-bold bg-green-100 text-green-700 px-2 py-1 rounded transition-all duration-500">Quick Reply</span>
                     </div>
+                    
+                    <div id="night-message-box" class="hidden mb-4 bg-indigo-50 border border-indigo-100 p-3 rounded-lg text-xs text-indigo-800 font-medium">
+                        🌙 <b>Ladli abhi so rahi hai.</b><br>
+                        Aap message chod sakte ho, Ladli subah uthne ke baad sabse pehle apko connect karegi.
+                    </div>
+
                     <form id="ladliForm" onsubmit="event.preventDefault(); sendCustomForm();" class="space-y-4">
                         <input type="text" id="userName" class="w-full bg-white border border-red-100 rounded-lg p-3 outline-none font-medium focus:border-brandMain focus:ring-2" placeholder="Aapka Naam?">
                         <select id="userCategory" class="w-full bg-white border border-red-100 rounded-lg p-3 outline-none font-medium focus:border-brandMain focus:ring-2">
@@ -144,74 +132,13 @@
             <h2 class="text-3xl font-bold text-brandDark">Log kya keh rahe hain? ❤️</h2>
             <p class="text-gray-500 mt-2">Hazaron doston ka bharosa.</p>
         </div>
-
         <div class="scroll-container">
             <div class="scroll-track">
-                <div class="review-card">
-                    <div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div>
-                    <p class="text-sm text-gray-600 italic">"Yaar mujhe breakup ke baad koi baat karne wala chahiye tha. Ladli ne badi behen ki tarah suna."</p>
-                    <div class="font-bold text-gray-800 mt-3 text-sm">- Riya S., Delhi</div>
-                </div>
-                <div class="review-card">
-                    <div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div>
-                    <p class="text-sm text-gray-600 italic">"Ghar par dawai chahiye thi urgent. 30 min mein deliver ho gayi. Amazing service!"</p>
-                    <div class="font-bold text-gray-800 mt-3 text-sm">- Amit K., Noida</div>
-                </div>
-                <div class="review-card">
-                    <div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div>
-                    <p class="text-sm text-gray-600 italic">"Career confusion tha. Expert se baat karke clear ho gaya ki kya karna hai."</p>
-                    <div class="font-bold text-gray-800 mt-3 text-sm">- Sneha M., Gurgaon</div>
-                </div>
-                <div class="review-card">
-                    <div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div>
-                    <p class="text-sm text-gray-600 italic">"Best part ye hai ki koi judge nahi karta. Khul ke baat kar sakte hain."</p>
-                    <div class="font-bold text-gray-800 mt-3 text-sm">- Rahul V., Delhi</div>
-                </div>
-                <div class="review-card">
-                    <div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div>
-                    <p class="text-sm text-gray-600 italic">"Yaar mujhe breakup ke baad koi baat karne wala chahiye tha. Ladli ne badi behen ki tarah suna."</p>
-                    <div class="font-bold text-gray-800 mt-3 text-sm">- Riya S., Delhi</div>
-                </div>
-                <div class="review-card">
-                    <div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div>
-                    <p class="text-sm text-gray-600 italic">"Ghar par dawai chahiye thi urgent. 30 min mein deliver ho gayi. Amazing service!"</p>
-                    <div class="font-bold text-gray-800 mt-3 text-sm">- Amit K., Noida</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="scroll-container mt-4">
-            <div class="scroll-track-reverse">
-                <div class="review-card">
-                    <div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div>
-                    <p class="text-sm text-gray-600 italic">"Gift pack karwana tha girlfriend ke liye. Best suggestions mile mujhe!"</p>
-                    <div class="font-bold text-gray-800 mt-3 text-sm">- Vikram, Faridabad</div>
-                </div>
-                <div class="review-card">
-                    <div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div>
-                    <p class="text-sm text-gray-600 italic">"Sirf 100 rs charge hai, par service premium hai. Trustworthy log hain."</p>
-                    <div class="font-bold text-gray-800 mt-3 text-sm">- Pooja D., Ghaziabad</div>
-                </div>
-                <div class="review-card">
-                    <div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div>
-                    <p class="text-sm text-gray-600 italic">"Akela feel ho raha tha, 1 ghanta baat ki team se. Ab much better hun."</p>
-                    <div class="font-bold text-gray-800 mt-3 text-sm">- Anonymous User</div>
-                </div>
-                <div class="review-card">
-                    <div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div>
-                    <p class="text-sm text-gray-600 italic">"Exam stress tha. Ek counsellor ne bahut ache se guide kiya."</p>
-                    <div class="font-bold text-gray-800 mt-3 text-sm">- Aman T., Student</div>
-                </div>
-                <div class="review-card">
-                    <div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div>
-                    <p class="text-sm text-gray-600 italic">"Gift pack karwana tha girlfriend ke liye. Best suggestions mile mujhe!"</p>
-                    <div class="font-bold text-gray-800 mt-3 text-sm">- Vikram, Faridabad</div>
-                </div>
-                <div class="review-card">
-                    <div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div>
-                    <p class="text-sm text-gray-600 italic">"Sirf 100 rs charge hai, par service premium hai. Trustworthy log hain."</p>
-                    <div class="font-bold text-gray-800 mt-3 text-sm">- Pooja D., Ghaziabad</div>
-                </div>
+                <div class="review-card"><div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div><p class="text-sm text-gray-600 italic">"Yaar mujhe breakup ke baad koi baat karne wala chahiye tha. Ladli ne badi behen ki tarah suna."</p><div class="font-bold text-gray-800 mt-3 text-sm">- Riya S., Delhi</div></div>
+                <div class="review-card"><div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div><p class="text-sm text-gray-600 italic">"Ghar par dawai chahiye thi urgent. 30 min mein deliver ho gayi. Amazing service!"</p><div class="font-bold text-gray-800 mt-3 text-sm">- Amit K., Noida</div></div>
+                <div class="review-card"><div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div><p class="text-sm text-gray-600 italic">"Career confusion tha. Expert se baat karke clear ho gaya ki kya karna hai."</p><div class="font-bold text-gray-800 mt-3 text-sm">- Sneha M., Gurgaon</div></div>
+                <div class="review-card"><div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div><p class="text-sm text-gray-600 italic">"Best part ye hai ki koi judge nahi karta. Khul ke baat kar sakte hain."</p><div class="font-bold text-gray-800 mt-3 text-sm">- Rahul V., Delhi</div></div>
+                <div class="review-card"><div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div><p class="text-sm text-gray-600 italic">"Yaar mujhe breakup ke baad koi baat karne wala chahiye tha. Ladli ne badi behen ki tarah suna."</p><div class="font-bold text-gray-800 mt-3 text-sm">- Riya S., Delhi</div></div>
             </div>
         </div>
     </section>
@@ -220,9 +147,7 @@
         <div class="max-w-2xl mx-auto">
             <div class="text-5xl mb-6 heartbeat">💖</div>
             <h2 class="text-3xl font-bold text-brandDark mb-4">Abhi bhi soch rahe ho?</h2>
-            <p class="text-gray-600 mb-8">
-                Ek baar baat karke dekho. Hum dost ki tarah sunte hain, aur expert ki tarah solve karte hain.
-            </p>
+            <p class="text-gray-600 mb-8">Ek baar baat karke dekho. Hum dost ki tarah sunte hain.</p>
             <a href="https://wa.me/918700430208?text=Hi%20Ladli,%20I%20want%20to%20know%20more" target="_blank" class="inline-block bg-brandMain hover:bg-red-700 text-white font-bold py-4 px-10 rounded-full shadow-xl shadow-red-500/30 transform transition hover:scale-105">
                 Connect on WhatsApp →
             </a>
@@ -232,23 +157,58 @@
     <footer class="bg-brandDark py-10 text-center text-white pb-28 sm:pb-10">
         <div class="text-3xl font-extrabold text-brandLight mb-2">LADLI</div>
         <p class="text-gray-500 text-sm">Your Secret Keeper & Life Solver</p>
-        <div class="mt-8 text-xs text-gray-700">© 2024 Ladli Services. Made with ❤️ in India.</div>
     </footer>
 
     <div class="fixed bottom-0 left-0 w-full bg-white border-t border-red-100 p-3 sm:hidden flex gap-3 z-40 shadow-[0_-5px_15px_rgba(0,0,0,0.1)]">
-        <a href="tel:+918700430208" class="flex-1 bg-brandMain text-white font-bold py-3 rounded-lg text-center flex justify-center items-center gap-2 shadow-lg shadow-red-500/30">
-            📞 Call Now
-        </a>
-        <a href="https://wa.me/918700430208?text=Hi%20Ladli,%20urgent%20baat%20karni%20hai" class="flex-1 bg-green-500 text-white font-bold py-3 rounded-lg text-center flex justify-center items-center gap-2 shadow-lg shadow-green-500/30">
-            💬 WhatsApp
-        </a>
+        <a href="tel:+918700430208" class="flex-1 bg-brandMain text-white font-bold py-3 rounded-lg text-center flex justify-center items-center gap-2 shadow-lg shadow-red-500/30">📞 Call Now</a>
+        <a href="https://wa.me/918700430208?text=Hi%20Ladli,%20urgent%20baat%20karni%20hai" class="flex-1 bg-green-500 text-white font-bold py-3 rounded-lg text-center flex justify-center items-center gap-2 shadow-lg shadow-green-500/30">💬 WhatsApp</a>
     </div>
 
     <script>
         const phoneNumber = "918700430208";
+
+        // TIME CHECK LOGIC (Night Mode)
+        function checkTime() {
+            const now = new Date();
+            const hour = now.getHours(); // 0 to 23
+            
+            const statusBadge = document.getElementById('status-badge');
+            const statusDot = document.getElementById('status-dot');
+            const statusText = document.getElementById('status-text');
+            const formBadge = document.getElementById('form-badge');
+            const nightMsgBox = document.getElementById('night-message-box');
+
+            // Agar raat ke 10 PM (22) se zyada hai YA subah 8 AM (8) se kam hai
+            if (hour >= 22 || hour < 8) {
+                // ACTIVATE SLEEP MODE
+                
+                // 1. Navbar Change
+                statusBadge.classList.replace('bg-green-50', 'bg-slate-100');
+                statusBadge.classList.replace('border-green-200', 'border-slate-300');
+                
+                statusDot.classList.remove('bg-green-500', 'blink-dot'); // Stop blinking
+                statusDot.classList.add('bg-slate-400'); // Grey dot
+                
+                statusText.innerHTML = "Ladli is Sleeping 😴";
+                statusText.classList.replace('text-green-700', 'text-slate-500');
+
+                // 2. Form Badge Change
+                formBadge.innerHTML = "Offline Mode";
+                formBadge.classList.replace('bg-green-100', 'bg-indigo-100');
+                formBadge.classList.replace('text-green-700', 'text-indigo-700');
+
+                // 3. Show Night Message Box
+                nightMsgBox.classList.remove('hidden');
+            } else {
+                // DEFAULT DAY MODE (Do nothing, default HTML is fine)
+                // But ensure hidden box is hidden
+                nightMsgBox.classList.add('hidden');
+            }
+        }
+
+        // Typing Effect
         const words = ["Listen.", "Support.", "Deliver.", "Care.", "Solve."];
         let i = 0, timer;
-
         function typeWriter() {
             const heading = document.getElementById("typing-text");
             const word = words[i];
@@ -279,6 +239,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            checkTime(); // Check time immediately on load
             typeWriter();
             gsap.registerPlugin(ScrollTrigger);
             gsap.from(".glass-panel", { y: 30, opacity: 0, duration: 1, delay: 0.5 });
