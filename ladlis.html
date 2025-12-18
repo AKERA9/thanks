@@ -15,8 +15,12 @@
             theme: {
                 extend: {
                     colors: {
-                        brandBlue: '#1e40af', brandLight: '#3b82f6', brandCyan: '#0ea5e9',
-                        brandDark: '#0f172a', brandBg: '#f8fafc', brandPink: '#f472b6',
+                        /* Red Theme Configuration */
+                        brandMain: '#dc2626',   /* Deep Red (Main Brand Color) */
+                        brandLight: '#ef4444',  /* Lighter Red */
+                        brandAccent: '#fee2e2', /* Very Light Red/Pink for backgrounds */
+                        brandDark: '#0f172a',   /* Dark Slate (Text Color - Keep dark for readability) */
+                        brandBg: '#f8fafc',     /* White Background */
                     },
                     fontFamily: {
                         heading: ['"Outfit"', 'sans-serif'],
@@ -28,25 +32,35 @@
     </script>
 
     <style>
-        body { background-color: #f8fafc; color: #0f172a; overflow-x: hidden; font-family: 'Outfit', sans-serif; }
-        .glass-panel { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 10px 40px -10px rgba(30, 64, 175, 0.15); }
-        .float-anim { animation: floating 6s ease-in-out infinite; color: #1e40af; }
+        body { background-color: #fff; color: #0f172a; overflow-x: hidden; font-family: 'Outfit', sans-serif; }
+        
+        /* Glass Effect with Red Tint Shadow */
+        .glass-panel { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); border: 1px solid rgba(255, 200, 200, 0.6); box-shadow: 0 10px 40px -10px rgba(220, 38, 38, 0.15); }
+        
+        /* Floating Icons Animation (Red Color) */
+        .float-anim { animation: floating 6s ease-in-out infinite; color: #dc2626; }
         .float-delay { animation-delay: 3s; }
         @keyframes floating { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }
-        .cursor { display: inline-block; width: 3px; background-color: #1e40af; animation: blink 1s infinite; }
+
+        /* Typing Cursor (Red) */
+        .cursor { display: inline-block; width: 3px; background-color: #dc2626; animation: blink 1s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Live Badge Blink */
         .blink-dot { animation: blinker 1.5s linear infinite; }
         @keyframes blinker { 50% { opacity: 0; } }
-        .marquee-container { overflow: hidden; white-space: nowrap; background: linear-gradient(to right, #1e40af, #3b82f6); padding: 10px 0; }
+
+        /* Marquee Animation (Red Gradient) */
+        .marquee-container { overflow: hidden; white-space: nowrap; background: linear-gradient(to right, #b91c1c, #ef4444); padding: 10px 0; }
         .marquee-content { display: inline-block; animation: marquee 20s linear infinite; color: white; font-weight: bold; font-size: 14px; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     </style>
 </head>
 <body class="selection:bg-brandLight selection:text-white pb-20 sm:pb-0">
 
-    <nav class="fixed w-full z-50 px-4 py-3 flex justify-between items-center backdrop-blur-md bg-white/90 border-b border-blue-100">
+    <nav class="fixed w-full z-50 px-4 py-3 flex justify-between items-center backdrop-blur-md bg-white/90 border-b border-red-100">
         <div class="flex items-center gap-2">
-            <div class="text-2xl font-extrabold tracking-tighter text-brandBlue">LADLI</div>
+            <div class="text-2xl font-extrabold tracking-tighter text-brandMain">LADLI</div>
         </div>
         <div class="flex items-center gap-2 bg-green-50 border border-green-200 px-3 py-1 rounded-full shadow-sm">
             <span class="w-2 h-2 rounded-full bg-green-500 blink-dot"></span>
@@ -58,13 +72,15 @@
         <div class="absolute top-20 right-10 text-6xl opacity-10 float-anim">❤️</div>
         <div class="absolute bottom-40 left-10 text-6xl opacity-10 float-anim float-delay">🛍️</div>
         
+        <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_70%_30%,rgba(220,38,38,0.08)_0%,rgba(255,255,255,0)_60%)] pointer-events-none"></div>
+
         <div class="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center z-10">
             
             <div class="text-center lg:text-left">
-                <p class="text-brandLight font-handwriting text-3xl mb-2 font-bold">You are not alone...</p>
+                <p class="text-brandMain font-handwriting text-3xl mb-2 font-bold">You are not alone...</p>
                 
                 <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight mb-4 text-brandDark">
-                    Hum <span id="typing-text" class="text-transparent bg-clip-text bg-gradient-to-r from-brandBlue to-brandCyan">Listen.</span><span class="cursor">&nbsp;</span>
+                    Hum <span id="typing-text" class="text-transparent bg-clip-text bg-gradient-to-r from-brandMain to-brandLight">Listen.</span><span class="cursor">&nbsp;</span>
                 </h1>
                 
                 <p class="text-gray-600 text-lg mb-8 font-medium">
@@ -72,13 +88,13 @@
                 </p>
 
                 <div class="grid grid-cols-2 gap-3 mb-8">
-                    <button onclick="quickMood('Sad/Low')" class="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-xl hover:border-brandPink hover:bg-pink-50 transition shadow-sm group text-left hover:-translate-y-1 duration-300">
+                    <button onclick="quickMood('Sad/Low')" class="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-xl hover:border-brandMain hover:bg-red-50 transition shadow-sm group text-left hover:-translate-y-1 duration-300">
                         <span class="text-3xl">😔</span>
-                        <div><div class="text-sm font-bold text-gray-800">Low Feel</div><div class="text-xs text-brandPink">Talk to Ladli</div></div>
+                        <div><div class="text-sm font-bold text-gray-800">Low Feel</div><div class="text-xs text-brandMain">Talk to Ladli</div></div>
                     </button>
-                    <button onclick="quickMood('Shopping')" class="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-xl hover:border-brandBlue hover:bg-blue-50 transition shadow-sm group text-left hover:-translate-y-1 duration-300">
+                    <button onclick="quickMood('Shopping')" class="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-xl hover:border-brandMain hover:bg-red-50 transition shadow-sm group text-left hover:-translate-y-1 duration-300">
                         <span class="text-3xl">🛍️</span>
-                        <div><div class="text-sm font-bold text-gray-800">Shopping</div><div class="text-xs text-brandBlue">Fast Delivery</div></div>
+                        <div><div class="text-sm font-bold text-gray-800">Shopping</div><div class="text-xs text-brandMain">Fast Delivery</div></div>
                     </button>
                     <button onclick="quickMood('Career/Study')" class="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-xl hover:border-yellow-400 hover:bg-yellow-50 transition shadow-sm group text-left hover:-translate-y-1 duration-300">
                         <span class="text-3xl">🎓</span>
@@ -92,7 +108,7 @@
             </div>
 
             <div class="relative w-full">
-                <div class="absolute -inset-1 bg-gradient-to-r from-brandLight via-brandBlue to-brandCyan rounded-2xl blur opacity-20 animate-pulse"></div>
+                <div class="absolute -inset-1 bg-gradient-to-r from-brandLight via-brandMain to-orange-400 rounded-2xl blur opacity-20 animate-pulse"></div>
                 <div class="glass-panel p-6 sm:p-8 rounded-2xl relative">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-2xl font-bold text-brandDark">Likh kar bhejo 👇</h3>
@@ -100,16 +116,16 @@
                     </div>
                     
                     <form id="ladliForm" onsubmit="event.preventDefault(); sendCustomForm();" class="space-y-4">
-                        <input type="text" id="userName" class="w-full bg-white border border-blue-200 rounded-lg p-3 outline-none font-medium" placeholder="Aapka Naam?">
-                        <select id="userCategory" class="w-full bg-white border border-blue-200 rounded-lg p-3 outline-none font-medium">
+                        <input type="text" id="userName" class="w-full bg-white border border-red-100 rounded-lg p-3 outline-none font-medium focus:border-brandMain focus:ring-2 focus:ring-red-100 transition" placeholder="Aapka Naam?">
+                        <select id="userCategory" class="w-full bg-white border border-red-100 rounded-lg p-3 outline-none font-medium focus:border-brandMain focus:ring-2 focus:ring-red-100 transition">
                             <option value="Consultation">General Advice (Salah)</option>
                             <option value="Emotional Support">Dil ki baat (Emotional)</option>
                             <option value="Shopping">Shopping/Delivery</option>
                             <option value="Emergency">Urgent Help</option>
                         </select>
-                        <textarea id="userMessage" class="w-full bg-white border border-blue-200 rounded-lg p-3 outline-none h-24 resize-none font-medium" placeholder="Kya help chahiye? Khul ke likhein..."></textarea>
+                        <textarea id="userMessage" class="w-full bg-white border border-red-100 rounded-lg p-3 outline-none h-24 resize-none font-medium focus:border-brandMain focus:ring-2 focus:ring-red-100 transition" placeholder="Kya help chahiye? Khul ke likhein..."></textarea>
 
-                        <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-extrabold text-lg py-3 rounded-xl shadow-lg transform hover:scale-[1.02] transition-all flex justify-center items-center gap-2">
+                        <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-extrabold text-lg py-3 rounded-xl shadow-lg shadow-green-500/20 transform hover:scale-[1.02] transition-all flex justify-center items-center gap-2">
                             WhatsApp Pe Bhejo 🚀
                         </button>
                     </form>
@@ -118,12 +134,13 @@
         </div>
     </section>
 
-    <div class="marquee-container border-t border-b border-blue-800">
+    <div class="marquee-container border-t border-b border-red-800">
         <div class="marquee-content">
             Always There For You &nbsp; • &nbsp; Emotional Support &nbsp; • &nbsp; Fast Delivery &nbsp; • &nbsp; Career Advice &nbsp; • &nbsp; Event Planning &nbsp; • &nbsp; ₹100 Service Charge &nbsp; • &nbsp; 
             Always There For You &nbsp; • &nbsp; Emotional Support &nbsp; • &nbsp; Fast Delivery &nbsp; • &nbsp; Career Advice &nbsp; • &nbsp; Event Planning &nbsp; • &nbsp; ₹100 Service Charge &nbsp; • &nbsp; 
         </div>
     </div>
+
     <section class="py-12 px-4 bg-white">
             <div class="max-w-5xl mx-auto text-center">
                 <h2 class="text-2xl font-bold text-gray-400 uppercase tracking-widest mb-8">We Handle Everything</h2>
@@ -135,11 +152,12 @@
                 </div>
             </div>
     </section>
-    <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-3 sm:hidden flex gap-3 z-40 shadow-xl">
-        <a href="tel:+918700430208" class="flex-1 bg-brandBlue text-white font-bold py-3 rounded-lg text-center flex justify-center items-center gap-2">
+
+    <div class="fixed bottom-0 left-0 w-full bg-white border-t border-red-100 p-3 sm:hidden flex gap-3 z-40 shadow-xl">
+        <a href="tel:+918700430208" class="flex-1 bg-brandMain text-white font-bold py-3 rounded-lg text-center flex justify-center items-center gap-2 shadow-lg shadow-red-500/30">
             📞 Call Now
         </a>
-        <a href="https://wa.me/918700430208?text=Hi%20Ladli,%20urgent%20baat%20karni%20hai" class="flex-1 bg-green-500 text-white font-bold py-3 rounded-lg text-center flex justify-center items-center gap-2">
+        <a href="https://wa.me/918700430208?text=Hi%20Ladli,%20urgent%20baat%20karni%20hai" class="flex-1 bg-green-500 text-white font-bold py-3 rounded-lg text-center flex justify-center items-center gap-2 shadow-lg shadow-green-500/30">
             💬 WhatsApp
         </a>
     </div>
