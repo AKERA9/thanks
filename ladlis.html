@@ -30,12 +30,27 @@
 
     <style>
         body { background-color: #f8fafc; color: #0f172a; overflow-x: hidden; font-family: 'Outfit', sans-serif; }
-        .gradient-bg { background: radial-gradient(circle at 70% 30%, rgba(59, 130, 246, 0.1) 0%, rgba(248, 250, 252, 0) 60%); }
-        .glass-panel { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 10px 40px -10px rgba(30, 64, 175, 0.1); }
-        .float-anim { animation: floating 6s ease-in-out infinite; }
-        @keyframes floating { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
-        .blink { animation: blinker 1.5s linear infinite; }
+        
+        /* Glass Effect */
+        .glass-panel { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 10px 40px -10px rgba(30, 64, 175, 0.15); }
+        
+        /* Floating Icons Animation */
+        .float-anim { animation: floating 6s ease-in-out infinite; color: #1e40af; }
+        .float-delay { animation-delay: 3s; }
+        @keyframes floating { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }
+
+        /* Typing Cursor */
+        .cursor { display: inline-block; width: 3px; background-color: #1e40af; animation: blink 1s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Live Badge Blink */
+        .blink-dot { animation: blinker 1.5s linear infinite; }
         @keyframes blinker { 50% { opacity: 0; } }
+
+        /* Marquee Animation (Neeche chalti hui patti) */
+        .marquee-container { overflow: hidden; white-space: nowrap; background: linear-gradient(to right, #1e40af, #3b82f6); padding: 10px 0; }
+        .marquee-content { display: inline-block; animation: marquee 20s linear infinite; color: white; font-weight: bold; font-size: 14px; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     </style>
 </head>
 <body class="selection:bg-brandLight selection:text-white pb-20 sm:pb-0">
@@ -44,105 +59,86 @@
         <div class="flex items-center gap-2">
             <div class="text-2xl font-extrabold tracking-tighter text-brandBlue">LADLI</div>
         </div>
-        
         <div class="flex items-center gap-2 bg-green-50 border border-green-200 px-3 py-1 rounded-full shadow-sm">
-            <span class="w-2 h-2 rounded-full bg-green-500 blink"></span>
-            <span class="text-xs font-bold text-green-700">Team Online: Call in ~15 mins</span>
+            <span class="w-2 h-2 rounded-full bg-green-500 blink-dot"></span>
+            <span class="text-xs font-bold text-green-700">Online: Call in ~15 mins</span>
         </div>
     </nav>
 
     <section class="relative min-h-screen pt-24 pb-12 px-4 flex items-center justify-center overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-full gradient-bg pointer-events-none"></div>
+        <div class="absolute top-20 right-10 text-6xl opacity-10 float-anim">❤️</div>
+        <div class="absolute bottom-40 left-10 text-6xl opacity-10 float-anim float-delay">🛍️</div>
+        <div class="absolute top-1/3 left-1/4 text-4xl opacity-10 float-anim">🎓</div>
+        <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_70%_30%,rgba(59,130,246,0.1)_0%,rgba(248,250,252,0)_60%)] pointer-events-none"></div>
 
         <div class="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
             
             <div class="text-center lg:text-left order-2 lg:order-1">
                 <p class="text-brandLight font-handwriting text-3xl mb-2 font-bold">You are not alone...</p>
-                <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight mb-4 text-brandDark">
-                    Koi nahi sun raha? <br>
-                    <span class="text-brandBlue">Hum sunenge.</span>
+                
+                <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight mb-4 text-brandDark min-h-[100px] sm:min-h-[auto]">
+                    Hum <span id="typing-text" class="text-transparent bg-clip-text bg-gradient-to-r from-brandBlue to-brandCyan">Listen.</span><span class="cursor">&nbsp;</span>
                 </h1>
                 
                 <p class="text-gray-600 text-lg mb-8 font-medium">
-                    Typing ka mann nahi hai? Bas apna mood select karo, hum turant connect karenge.
+                    Mood kaisa hai aaj? <br>Tap karo, hum samajh jayenge.
                 </p>
 
                 <div class="grid grid-cols-2 gap-3 mb-8">
-                    <button onclick="quickMood('Sad/Low')" class="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-xl hover:border-brandPink hover:bg-pink-50 transition shadow-sm group text-left">
-                        <span class="text-3xl group-hover:scale-125 transition">😔</span>
-                        <div>
-                            <div class="text-sm font-bold text-gray-800">Low Feel Ho Raha Hai</div>
-                            <div class="text-xs text-brandPink">Talk to Ladli</div>
-                        </div>
+                    <button onclick="quickMood('Sad/Low')" class="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-xl hover:border-brandPink hover:bg-pink-50 transition shadow-sm group text-left hover:-translate-y-1 duration-300">
+                        <span class="text-3xl">😔</span>
+                        <div><div class="text-sm font-bold text-gray-800">Low Feel</div><div class="text-xs text-brandPink">Talk to Ladli</div></div>
                     </button>
-
-                    <button onclick="quickMood('Shopping')" class="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-xl hover:border-brandBlue hover:bg-blue-50 transition shadow-sm group text-left">
-                        <span class="text-3xl group-hover:scale-125 transition">🛍️</span>
-                        <div>
-                            <div class="text-sm font-bold text-gray-800">Shopping Karni Hai</div>
-                            <div class="text-xs text-brandBlue">Get Delivery</div>
-                        </div>
+                    <button onclick="quickMood('Shopping')" class="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-xl hover:border-brandBlue hover:bg-blue-50 transition shadow-sm group text-left hover:-translate-y-1 duration-300">
+                        <span class="text-3xl">🛍️</span>
+                        <div><div class="text-sm font-bold text-gray-800">Shopping</div><div class="text-xs text-brandBlue">Fast Delivery</div></div>
                     </button>
-
-                    <button onclick="quickMood('Career/Study')" class="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-xl hover:border-yellow-400 hover:bg-yellow-50 transition shadow-sm group text-left">
-                        <span class="text-3xl group-hover:scale-125 transition">🎓</span>
-                        <div>
-                            <div class="text-sm font-bold text-gray-800">Career Tension</div>
-                            <div class="text-xs text-yellow-600">Get Advice</div>
-                        </div>
+                    <button onclick="quickMood('Career/Study')" class="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-xl hover:border-yellow-400 hover:bg-yellow-50 transition shadow-sm group text-left hover:-translate-y-1 duration-300">
+                        <span class="text-3xl">🎓</span>
+                        <div><div class="text-sm font-bold text-gray-800">Career Help</div><div class="text-xs text-yellow-600">Get Advice</div></div>
                     </button>
-
-                    <button onclick="quickMood('Just Talk')" class="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-xl hover:border-green-400 hover:bg-green-50 transition shadow-sm group text-left">
-                        <span class="text-3xl group-hover:scale-125 transition">☕</span>
-                        <div>
-                            <div class="text-sm font-bold text-gray-800">Bas Baat Karni Hai</div>
-                            <div class="text-xs text-green-600">Free Chat</div>
-                        </div>
+                    <button onclick="quickMood('Just Talk')" class="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-xl hover:border-green-400 hover:bg-green-50 transition shadow-sm group text-left hover:-translate-y-1 duration-300">
+                        <span class="text-3xl">☕</span>
+                        <div><div class="text-sm font-bold text-gray-800">Gupshup</div><div class="text-xs text-green-600">Free Chat</div></div>
                     </button>
-                </div>
-
-                <div class="inline-flex items-center gap-2 bg-blue-50 text-brandBlue px-4 py-2 rounded-lg text-sm font-bold border border-blue-100">
-                    <span>⚡ Service Charge: Only ₹100 (Baat karna FREE hai)</span>
                 </div>
             </div>
 
             <div class="relative w-full order-1 lg:order-2">
-                <div class="glass-panel p-6 sm:p-8 rounded-2xl relative border-t-4 border-brandBlue">
+                <div class="absolute -inset-1 bg-gradient-to-r from-brandLight via-brandBlue to-brandCyan rounded-2xl blur opacity-20 animate-pulse"></div>
+                <div class="glass-panel p-6 sm:p-8 rounded-2xl relative">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-2xl font-bold text-brandDark">Likh kar bhejo 👇</h3>
                         <span class="text-xs font-bold bg-green-100 text-green-700 px-2 py-1 rounded">Quick Reply</span>
                     </div>
                     
                     <form id="ladliForm" onsubmit="event.preventDefault(); sendCustomForm();" class="space-y-4">
-                        <div>
-                            <input type="text" id="userName" class="w-full bg-white border border-blue-200 rounded-lg p-3 text-brandDark focus:border-brandBlue focus:ring-2 focus:ring-blue-100 outline-none font-medium" placeholder="Aapka Naam?">
-                        </div>
-                        
-                        <div>
-                            <select id="userCategory" class="w-full bg-white border border-blue-200 rounded-lg p-3 text-brandDark focus:border-brandBlue outline-none font-medium">
-                                <option value="Consultation">General Advice (Salah)</option>
-                                <option value="Emotional Support">Dil ki baat (Emotional)</option>
-                                <option value="Shopping">Shopping/Delivery</option>
-                                <option value="Emergency">Urgent Help</option>
-                            </select>
-                        </div>
+                        <input type="text" id="userName" class="w-full bg-white border border-blue-200 rounded-lg p-3 outline-none font-medium" placeholder="Aapka Naam?">
+                        <select id="userCategory" class="w-full bg-white border border-blue-200 rounded-lg p-3 outline-none font-medium">
+                            <option value="Consultation">General Advice (Salah)</option>
+                            <option value="Emotional Support">Dil ki baat (Emotional)</option>
+                            <option value="Shopping">Shopping/Delivery</option>
+                            <option value="Emergency">Urgent Help</option>
+                        </select>
+                        <textarea id="userMessage" class="w-full bg-white border border-blue-200 rounded-lg p-3 outline-none h-24 resize-none font-medium" placeholder="Kya help chahiye? Khul ke likhein..."></textarea>
 
-                        <div>
-                            <textarea id="userMessage" class="w-full bg-white border border-blue-200 rounded-lg p-3 text-brandDark focus:border-brandBlue focus:ring-2 focus:ring-blue-100 outline-none h-24 resize-none font-medium" placeholder="Kya help chahiye? Khul ke likhein..."></textarea>
-                        </div>
-
-                        <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-extrabold text-lg py-3 rounded-xl shadow-lg shadow-green-500/30 transform hover:scale-[1.02] transition-all flex justify-center items-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-                            WhatsApp Pe Bhejo
+                        <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-extrabold text-lg py-3 rounded-xl shadow-lg transform hover:scale-[1.02] transition-all flex justify-center items-center gap-2">
+                            WhatsApp Pe Bhejo 🚀
                         </button>
-                        <p class="text-center text-xs text-gray-500 font-medium">Hum 30 min ke andar reply/call karenge.</p>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-3 sm:hidden flex gap-3 z-40 shadow-[0_-5px_10px_rgba(0,0,0,0.05)]">
+    <div class="marquee-container border-t border-b border-blue-800">
+        <div class="marquee-content">
+            Always There For You &nbsp; • &nbsp; Emotional Support &nbsp; • &nbsp; Fast Delivery &nbsp; • &nbsp; Career Advice &nbsp; • &nbsp; Event Planning &nbsp; • &nbsp; ₹100 Service Charge &nbsp; • &nbsp; 
+            Always There For You &nbsp; • &nbsp; Emotional Support &nbsp; • &nbsp; Fast Delivery &nbsp; • &nbsp; Career Advice &nbsp; • &nbsp; Event Planning &nbsp; • &nbsp; ₹100 Service Charge &nbsp; • &nbsp; 
+        </div>
+    </div>
+
+    <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-3 sm:hidden flex gap-3 z-40 shadow-xl">
         <a href="tel:+918700430208" class="flex-1 bg-brandBlue text-white font-bold py-3 rounded-lg text-center flex justify-center items-center gap-2">
             📞 Call Now
         </a>
@@ -151,64 +147,66 @@
         </a>
     </div>
 
-    <section class="py-16 px-4 bg-white">
-        <div class="max-w-6xl mx-auto text-center mb-10">
-            <h2 class="text-3xl font-bold text-brandDark">Ladli Kaise Kaam Karti Hai?</h2>
-            <div class="h-1 w-16 bg-brandBlue mx-auto mt-2 rounded-full"></div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <div class="p-6 bg-blue-50 rounded-2xl border border-blue-100 text-center">
-                <div class="text-4xl mb-3">🗣️</div>
-                <h3 class="font-bold text-lg">1. Aap Batao</h3>
-                <p class="text-sm text-gray-600">Whatsapp ya Call par apni requirement batayein.</p>
-            </div>
-            <div class="p-6 bg-pink-50 rounded-2xl border border-pink-100 text-center">
-                <div class="text-4xl mb-3">🤝</div>
-                <h3 class="font-bold text-lg">2. Hum Samjhenge</h3>
-                <p class="text-sm text-gray-600">Humari team call karke sahi solution degi.</p>
-            </div>
-            <div class="p-6 bg-green-50 rounded-2xl border border-green-100 text-center">
-                <div class="text-4xl mb-3">🚀</div>
-                <h3 class="font-bold text-lg">3. Kaam Done</h3>
-                <p class="text-sm text-gray-600">Saman delivery ya advice, sab ghar baithe.</p>
+    <section class="py-12 px-4 bg-white">
+        <div class="max-w-5xl mx-auto text-center">
+            <h2 class="text-2xl font-bold text-gray-400 uppercase tracking-widest mb-8">We Handle Everything</h2>
+            <div class="flex flex-wrap justify-center gap-8 opacity-70">
+                <span class="text-4xl animate-bounce">❤️‍🩹</span>
+                <span class="text-4xl animate-bounce" style="animation-delay: 0.2s">🛍️</span>
+                <span class="text-4xl animate-bounce" style="animation-delay: 0.4s">📚</span>
+                <span class="text-4xl animate-bounce" style="animation-delay: 0.6s">🎉</span>
             </div>
         </div>
     </section>
 
-    <footer class="bg-brandDark py-8 text-center text-white pb-24 sm:pb-8">
-        <div class="text-2xl font-extrabold text-brandLight">LADLI</div>
-        <p class="text-gray-400 text-sm mt-2">Your Secret Keeper & Life Solver</p>
-    </footer>
-
     <script>
-        // Number Configuration
         const phoneNumber = "918700430208";
 
-        // Function for Quick Mood Buttons
+        // Typing Effect Logic
+        const words = ["Listen.", "Support.", "Deliver.", "Care.", "Solve."];
+        let i = 0, timer;
+
+        function typeWriter() {
+            const heading = document.getElementById("typing-text");
+            const word = words[i];
+            let j = 0;
+            let isDeleting = false;
+
+            function loop() {
+                heading.innerHTML = word.substring(0, j);
+                if (!isDeleting && j < word.length) {
+                    j++; timer = setTimeout(loop, 150);
+                } else if (!isDeleting && j === word.length) {
+                    isDeleting = true; timer = setTimeout(loop, 2000); // Pause before deleting
+                } else if (isDeleting && j > 0) {
+                    j--; timer = setTimeout(loop, 100);
+                } else {
+                    isDeleting = false; i = (i + 1) % words.length; setTimeout(typeWriter, 500); return;
+                }
+            }
+            loop();
+        }
+
+        // WhatsApp Logic
         function quickMood(mood) {
-            const text = `*Hi Ladli Team!* %0A%0A👋 Mera mood abhi *${mood}* jaisa hai.%0APlease mujhse connect karein.`;
+            const text = `*Hi Ladli!* %0A%0A👋 Mera mood abhi *${mood}* jaisa hai.%0APlease mujhse connect karein.`;
             window.open(`https://wa.me/${phoneNumber}?text=${text}`, '_blank');
         }
 
-        // Function for Custom Form
         function sendCustomForm() {
             const name = document.getElementById('userName').value || "Friend";
             const category = document.getElementById('userCategory').value;
             const message = document.getElementById('userMessage').value;
 
-            if(!message && !category) {
-                alert("Please thoda sa likh dijiye ki kya help chahiye :)");
-                return;
-            }
+            if(!message && !category) { alert("Please thoda sa likh dijiye :)"); return; }
 
-            const text = `*New Request - Ladli Website* %0A%0A👤 *Name:* ${name}%0A📂 *Category:* ${category}%0A💬 *Message:* ${message}%0A%0A*Please call back ASAP!*`;
-            
+            const text = `*Hi Ladli!* (Website Request) %0A%0A👤 *Name:* ${name}%0A📂 *Category:* ${category}%0A💬 *Message:* ${message}%0A%0A*Please call back!*`;
             window.open(`https://wa.me/${phoneNumber}?text=${text}`, '_blank');
         }
 
-        // Animation Init
-        gsap.from(".glass-panel", {
-            y: 30, opacity: 0, duration: 1, delay: 0.5, ease: "power3.out"
+        document.addEventListener('DOMContentLoaded', () => {
+            typeWriter(); // Start typing
+            gsap.from(".glass-panel", { y: 30, opacity: 0, duration: 1, delay: 0.5 });
         });
     </script>
 </body>
