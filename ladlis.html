@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Satisfy&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
@@ -29,24 +30,35 @@
 
     <style>
         body { background-color: #fff; color: #0f172a; overflow-x: hidden; font-family: 'Outfit', sans-serif; }
+        
+        /* Basic Styles */
         .glass-panel { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); border: 1px solid rgba(255, 200, 200, 0.6); box-shadow: 0 10px 40px -10px rgba(220, 38, 38, 0.15); }
         .float-anim { animation: floating 6s ease-in-out infinite; color: #dc2626; }
         .float-delay { animation-delay: 3s; }
         @keyframes floating { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }
+        
+        /* Animations */
         .cursor { display: inline-block; width: 3px; background-color: #dc2626; animation: blink 1s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         .blink-dot { animation: blinker 1.5s linear infinite; }
         @keyframes blinker { 50% { opacity: 0; } }
+        
+        /* Marquee */
         .marquee-container { overflow: hidden; white-space: nowrap; background: linear-gradient(to right, #b91c1c, #ef4444); padding: 12px 0; }
         .marquee-content { display: inline-block; animation: marquee 20s linear infinite; color: white; font-weight: bold; font-size: 14px; letter-spacing: 1px; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Testimonial Scroll */
         .scroll-container { overflow: hidden; white-space: nowrap; padding: 20px 0; position: relative; }
         .scroll-track { display: inline-block; animation: scroll-left 40s linear infinite; }
-        .scroll-track-reverse { display: inline-block; animation: scroll-right 45s linear infinite; }
         .review-card { display: inline-block; width: 300px; white-space: normal; background: white; border: 1px solid #fee2e2; border-radius: 16px; padding: 20px; margin: 0 15px; vertical-align: top; box-shadow: 0 4px 6px -1px rgba(220, 38, 38, 0.05); transition: transform 0.3s; }
         .review-card:hover { transform: translateY(-5px); border-color: #dc2626; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        @keyframes scroll-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+        
+        /* Process Steps */
+        .step-card { transition: all 0.3s ease; }
+        .step-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px -5px rgba(220, 38, 38, 0.2); }
+        
         .heartbeat { animation: beat 1.5s infinite; }
         @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
     </style>
@@ -101,8 +113,7 @@
                     </div>
                     
                     <div id="night-message-box" class="hidden mb-4 bg-indigo-50 border border-indigo-100 p-3 rounded-lg text-xs text-indigo-800 font-medium">
-                        🌙 <b>Ladli abhi so rahi hai.</b><br>
-                        Aap message chod sakte ho, Ladli subah uthne ke baad sabse pehle apko connect karegi.
+                        🌙 <b>Ladli abhi so rahi hai.</b><br> Aap message chod sakte ho, hum subah connect karenge.
                     </div>
 
                     <form id="ladliForm" onsubmit="event.preventDefault(); sendCustomForm();" class="space-y-4">
@@ -127,18 +138,81 @@
         </div>
     </div>
 
-    <section class="py-16 bg-red-50 overflow-hidden">
-        <div class="text-center mb-10 px-4">
-            <h2 class="text-3xl font-bold text-brandDark">Log kya keh rahe hain? ❤️</h2>
-            <p class="text-gray-500 mt-2">Hazaron doston ka bharosa.</p>
+    <section class="py-20 px-4 bg-white relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-brandMain font-bold tracking-wider uppercase text-sm">Services</span>
+                <h2 class="text-4xl font-extrabold text-brandDark mt-2">Hum Kya Karte Hain?</h2>
+                <div class="w-16 h-1 bg-brandMain mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="service-card bg-red-50 p-8 rounded-2xl border border-red-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
+                    <div class="text-5xl mb-6">❤️‍🩹</div>
+                    <h3 class="text-xl font-bold mb-3 text-brandDark">Emotional Support</h3>
+                    <p class="text-gray-600 text-sm">Breakup, stress ya akelapan? Hum bina judge kiye aapki baat sunenge.</p>
+                </div>
+                <div class="service-card bg-red-50 p-8 rounded-2xl border border-red-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
+                    <div class="text-5xl mb-6">🛍️</div>
+                    <h3 class="text-xl font-bold mb-3 text-brandDark">Personal Shopper</h3>
+                    <p class="text-gray-600 text-sm">Grocery, Gifts ya Dawai. Aap list bhejo, hum best quality select karke ghar layenge.</p>
+                </div>
+                <div class="service-card bg-red-50 p-8 rounded-2xl border border-red-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
+                    <div class="text-5xl mb-6">🎓</div>
+                    <h3 class="text-xl font-bold mb-3 text-brandDark">Career & Study</h3>
+                    <p class="text-gray-600 text-sm">Admission kaha lein? Resume kaise banayein? Experts se sahi salah lein.</p>
+                </div>
+                <div class="service-card bg-red-50 p-8 rounded-2xl border border-red-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
+                    <div class="text-5xl mb-6">🎉</div>
+                    <h3 class="text-xl font-bold mb-3 text-brandDark">Events & Plans</h3>
+                    <p class="text-gray-600 text-sm">Birthday surprise ho ya choti trip plan karni ho. Budget batayein, baaki hum par.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 bg-gradient-to-b from-white to-red-50">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-brandMain font-bold tracking-wider uppercase text-sm">Process</span>
+                <h2 class="text-4xl font-extrabold text-brandDark mt-2">Kaise Kaam Hota Hai?</h2>
+                <p class="text-gray-500 mt-2">Sirf 3 simple steps mein aapki problem solve.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-red-100 -z-0 transform -translate-y-1/2"></div>
+
+                <div class="process-step relative z-10 bg-white p-8 rounded-2xl shadow-lg border border-red-100 text-center">
+                    <div class="w-12 h-12 bg-brandMain text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 shadow-lg shadow-red-500/30">1</div>
+                    <h3 class="text-xl font-bold mb-2">Message Karein</h3>
+                    <p class="text-gray-500 text-sm">Website ya WhatsApp par apni requirement likh kar bhejein.</p>
+                </div>
+
+                <div class="process-step relative z-10 bg-white p-8 rounded-2xl shadow-lg border border-red-100 text-center">
+                    <div class="w-12 h-12 bg-brandMain text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 shadow-lg shadow-red-500/30">2</div>
+                    <h3 class="text-xl font-bold mb-2">Team Call Karegi</h3>
+                    <p class="text-gray-500 text-sm">Humari team call karke detail samjhegi aur sahi plan banayegi.</p>
+                </div>
+
+                <div class="process-step relative z-10 bg-white p-8 rounded-2xl shadow-lg border border-red-100 text-center">
+                    <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 shadow-lg shadow-green-500/30">3</div>
+                    <h3 class="text-xl font-bold mb-2">Relax Karein</h3>
+                    <p class="text-gray-500 text-sm">Saman ghar pahuchega ya advice mil jayegi. Aap bas relax karein.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white overflow-hidden border-t border-red-50">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold text-gray-400 uppercase tracking-widest">Real Stories</h2>
         </div>
         <div class="scroll-container">
             <div class="scroll-track">
-                <div class="review-card"><div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div><p class="text-sm text-gray-600 italic">"Yaar mujhe breakup ke baad koi baat karne wala chahiye tha. Ladli ne badi behen ki tarah suna."</p><div class="font-bold text-gray-800 mt-3 text-sm">- Riya S., Delhi</div></div>
-                <div class="review-card"><div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div><p class="text-sm text-gray-600 italic">"Ghar par dawai chahiye thi urgent. 30 min mein deliver ho gayi. Amazing service!"</p><div class="font-bold text-gray-800 mt-3 text-sm">- Amit K., Noida</div></div>
-                <div class="review-card"><div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div><p class="text-sm text-gray-600 italic">"Career confusion tha. Expert se baat karke clear ho gaya ki kya karna hai."</p><div class="font-bold text-gray-800 mt-3 text-sm">- Sneha M., Gurgaon</div></div>
-                <div class="review-card"><div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div><p class="text-sm text-gray-600 italic">"Best part ye hai ki koi judge nahi karta. Khul ke baat kar sakte hain."</p><div class="font-bold text-gray-800 mt-3 text-sm">- Rahul V., Delhi</div></div>
-                <div class="review-card"><div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div><p class="text-sm text-gray-600 italic">"Yaar mujhe breakup ke baad koi baat karne wala chahiye tha. Ladli ne badi behen ki tarah suna."</p><div class="font-bold text-gray-800 mt-3 text-sm">- Riya S., Delhi</div></div>
+                <div class="review-card"><div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div><p class="text-sm text-gray-600 italic">"Ladli ne meri help ki jab koi nahi tha."</p><div class="font-bold text-gray-800 mt-3 text-sm">- Riya S., Delhi</div></div>
+                <div class="review-card"><div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div><p class="text-sm text-gray-600 italic">"Ghar par dawai chahiye thi urgent. Amazing service!"</p><div class="font-bold text-gray-800 mt-3 text-sm">- Amit K., Noida</div></div>
+                <div class="review-card"><div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div><p class="text-sm text-gray-600 italic">"Career confusion clear ho gayi."</p><div class="font-bold text-gray-800 mt-3 text-sm">- Sneha M., Gurgaon</div></div>
+                <div class="review-card"><div class="text-brandMain text-lg mb-2">⭐⭐⭐⭐⭐</div><p class="text-sm text-gray-600 italic">"Ladli ne meri help ki jab koi nahi tha."</p><div class="font-bold text-gray-800 mt-3 text-sm">- Riya S., Delhi</div></div>
             </div>
         </div>
     </section>
@@ -147,7 +221,7 @@
         <div class="max-w-2xl mx-auto">
             <div class="text-5xl mb-6 heartbeat">💖</div>
             <h2 class="text-3xl font-bold text-brandDark mb-4">Abhi bhi soch rahe ho?</h2>
-            <p class="text-gray-600 mb-8">Ek baar baat karke dekho. Hum dost ki tarah sunte hain.</p>
+            <p class="text-gray-600 mb-8">Ek baar baat karke dekho. Sirf 100 Rs service charge hai (baat karna free hai).</p>
             <a href="https://wa.me/918700430208?text=Hi%20Ladli,%20I%20want%20to%20know%20more" target="_blank" class="inline-block bg-brandMain hover:bg-red-700 text-white font-bold py-4 px-10 rounded-full shadow-xl shadow-red-500/30 transform transition hover:scale-105">
                 Connect on WhatsApp →
             </a>
@@ -167,41 +241,28 @@
     <script>
         const phoneNumber = "918700430208";
 
-        // TIME CHECK LOGIC (Night Mode)
+        // TIME CHECK
         function checkTime() {
             const now = new Date();
-            const hour = now.getHours(); // 0 to 23
-            
+            const hour = now.getHours();
             const statusBadge = document.getElementById('status-badge');
             const statusDot = document.getElementById('status-dot');
             const statusText = document.getElementById('status-text');
             const formBadge = document.getElementById('form-badge');
             const nightMsgBox = document.getElementById('night-message-box');
 
-            // Agar raat ke 10 PM (22) se zyada hai YA subah 8 AM (8) se kam hai
             if (hour >= 22 || hour < 8) {
-                // ACTIVATE SLEEP MODE
-                
-                // 1. Navbar Change
                 statusBadge.classList.replace('bg-green-50', 'bg-slate-100');
                 statusBadge.classList.replace('border-green-200', 'border-slate-300');
-                
-                statusDot.classList.remove('bg-green-500', 'blink-dot'); // Stop blinking
-                statusDot.classList.add('bg-slate-400'); // Grey dot
-                
-                statusText.innerHTML = "Ladli is Sleeping 😴";
+                statusDot.classList.remove('bg-green-500', 'blink-dot');
+                statusDot.classList.add('bg-slate-400');
+                statusText.innerHTML = "Sleeping 😴";
                 statusText.classList.replace('text-green-700', 'text-slate-500');
-
-                // 2. Form Badge Change
                 formBadge.innerHTML = "Offline Mode";
                 formBadge.classList.replace('bg-green-100', 'bg-indigo-100');
                 formBadge.classList.replace('text-green-700', 'text-indigo-700');
-
-                // 3. Show Night Message Box
                 nightMsgBox.classList.remove('hidden');
             } else {
-                // DEFAULT DAY MODE (Do nothing, default HTML is fine)
-                // But ensure hidden box is hidden
                 nightMsgBox.classList.add('hidden');
             }
         }
@@ -239,9 +300,39 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            checkTime(); // Check time immediately on load
+            checkTime();
             typeWriter();
+            
+            // GSAP Animations Initialization
             gsap.registerPlugin(ScrollTrigger);
+
+            // Animate Services (Cards pop up one by one)
+            gsap.from(".service-card", {
+                scrollTrigger: {
+                    trigger: ".service-card",
+                    start: "top 80%", // Animation starts when element is 80% down the screen
+                },
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.2, // One after another
+                ease: "power3.out"
+            });
+
+            // Animate Process Steps (Slide Up with Stagger)
+            gsap.from(".process-step", {
+                scrollTrigger: {
+                    trigger: ".process-step",
+                    start: "top 80%",
+                },
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.3,
+                ease: "back.out(1.7)" // Bouncy effect
+            });
+
+            // Hero Glass Panel Animation
             gsap.from(".glass-panel", { y: 30, opacity: 0, duration: 1, delay: 0.5 });
         });
     </script>
