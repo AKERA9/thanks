@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Satisfy&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <script>
         tailwind.config = {
@@ -30,24 +29,14 @@
 
     <style>
         body { background-color: #f8fafc; color: #0f172a; overflow-x: hidden; font-family: 'Outfit', sans-serif; }
-        
-        /* Glass Effect */
         .glass-panel { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 10px 40px -10px rgba(30, 64, 175, 0.15); }
-        
-        /* Floating Icons Animation */
         .float-anim { animation: floating 6s ease-in-out infinite; color: #1e40af; }
         .float-delay { animation-delay: 3s; }
         @keyframes floating { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }
-
-        /* Typing Cursor */
         .cursor { display: inline-block; width: 3px; background-color: #1e40af; animation: blink 1s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-        /* Live Badge Blink */
         .blink-dot { animation: blinker 1.5s linear infinite; }
         @keyframes blinker { 50% { opacity: 0; } }
-
-        /* Marquee Animation (Neeche chalti hui patti) */
         .marquee-container { overflow: hidden; white-space: nowrap; background: linear-gradient(to right, #1e40af, #3b82f6); padding: 10px 0; }
         .marquee-content { display: inline-block; animation: marquee 20s linear infinite; color: white; font-weight: bold; font-size: 14px; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -68,15 +57,13 @@
     <section class="relative min-h-screen pt-24 pb-12 px-4 flex items-center justify-center overflow-hidden">
         <div class="absolute top-20 right-10 text-6xl opacity-10 float-anim">❤️</div>
         <div class="absolute bottom-40 left-10 text-6xl opacity-10 float-anim float-delay">🛍️</div>
-        <div class="absolute top-1/3 left-1/4 text-4xl opacity-10 float-anim">🎓</div>
-        <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_70%_30%,rgba(59,130,246,0.1)_0%,rgba(248,250,252,0)_60%)] pointer-events-none"></div>
-
-        <div class="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
+        
+        <div class="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center z-10">
             
-            <div class="text-center lg:text-left order-2 lg:order-1">
+            <div class="text-center lg:text-left">
                 <p class="text-brandLight font-handwriting text-3xl mb-2 font-bold">You are not alone...</p>
                 
-                <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight mb-4 text-brandDark min-h-[100px] sm:min-h-[auto]">
+                <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight mb-4 text-brandDark">
                     Hum <span id="typing-text" class="text-transparent bg-clip-text bg-gradient-to-r from-brandBlue to-brandCyan">Listen.</span><span class="cursor">&nbsp;</span>
                 </h1>
                 
@@ -104,7 +91,7 @@
                 </div>
             </div>
 
-            <div class="relative w-full order-1 lg:order-2">
+            <div class="relative w-full">
                 <div class="absolute -inset-1 bg-gradient-to-r from-brandLight via-brandBlue to-brandCyan rounded-2xl blur opacity-20 animate-pulse"></div>
                 <div class="glass-panel p-6 sm:p-8 rounded-2xl relative">
                     <div class="flex items-center justify-between mb-4">
@@ -147,22 +134,8 @@
         </a>
     </div>
 
-    <section class="py-12 px-4 bg-white">
-        <div class="max-w-5xl mx-auto text-center">
-            <h2 class="text-2xl font-bold text-gray-400 uppercase tracking-widest mb-8">We Handle Everything</h2>
-            <div class="flex flex-wrap justify-center gap-8 opacity-70">
-                <span class="text-4xl animate-bounce">❤️‍🩹</span>
-                <span class="text-4xl animate-bounce" style="animation-delay: 0.2s">🛍️</span>
-                <span class="text-4xl animate-bounce" style="animation-delay: 0.4s">📚</span>
-                <span class="text-4xl animate-bounce" style="animation-delay: 0.6s">🎉</span>
-            </div>
-        </div>
-    </section>
-
     <script>
         const phoneNumber = "918700430208";
-
-        // Typing Effect Logic
         const words = ["Listen.", "Support.", "Deliver.", "Care.", "Solve."];
         let i = 0, timer;
 
@@ -171,23 +144,16 @@
             const word = words[i];
             let j = 0;
             let isDeleting = false;
-
             function loop() {
                 heading.innerHTML = word.substring(0, j);
-                if (!isDeleting && j < word.length) {
-                    j++; timer = setTimeout(loop, 150);
-                } else if (!isDeleting && j === word.length) {
-                    isDeleting = true; timer = setTimeout(loop, 2000); // Pause before deleting
-                } else if (isDeleting && j > 0) {
-                    j--; timer = setTimeout(loop, 100);
-                } else {
-                    isDeleting = false; i = (i + 1) % words.length; setTimeout(typeWriter, 500); return;
-                }
+                if (!isDeleting && j < word.length) { j++; timer = setTimeout(loop, 150); }
+                else if (!isDeleting && j === word.length) { isDeleting = true; timer = setTimeout(loop, 2000); }
+                else if (isDeleting && j > 0) { j--; timer = setTimeout(loop, 100); }
+                else { isDeleting = false; i = (i + 1) % words.length; setTimeout(typeWriter, 500); return; }
             }
             loop();
         }
 
-        // WhatsApp Logic
         function quickMood(mood) {
             const text = `*Hi Ladli!* %0A%0A👋 Mera mood abhi *${mood}* jaisa hai.%0APlease mujhse connect karein.`;
             window.open(`https://wa.me/${phoneNumber}?text=${text}`, '_blank');
@@ -197,15 +163,13 @@
             const name = document.getElementById('userName').value || "Friend";
             const category = document.getElementById('userCategory').value;
             const message = document.getElementById('userMessage').value;
-
             if(!message && !category) { alert("Please thoda sa likh dijiye :)"); return; }
-
             const text = `*Hi Ladli!* (Website Request) %0A%0A👤 *Name:* ${name}%0A📂 *Category:* ${category}%0A💬 *Message:* ${message}%0A%0A*Please call back!*`;
             window.open(`https://wa.me/${phoneNumber}?text=${text}`, '_blank');
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            typeWriter(); // Start typing
+            typeWriter();
             gsap.from(".glass-panel", { y: 30, opacity: 0, duration: 1, delay: 0.5 });
         });
     </script>
