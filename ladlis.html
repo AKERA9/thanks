@@ -161,25 +161,25 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 
-                <div class="service-card bg-red-50 p-8 rounded-2xl border border-red-200 hover:shadow-xl hover:shadow-red-500/10 transition-all duration-300 transform hover:-translate-y-2 text-center group">
+                <div class="service-card opacity-0 bg-red-50 p-8 rounded-2xl border border-red-200 hover:shadow-xl hover:shadow-red-500/10 transition-all duration-300 transform hover:-translate-y-2 text-center group">
                     <div class="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300">❤️‍🩹</div>
                     <h3 class="text-xl font-extrabold mb-3 text-gray-900">Emotional Support</h3>
                     <p class="text-gray-700 font-medium text-sm leading-relaxed">Breakup, stress ya akelapan? Hum bina judge kiye aapki baat sunenge.</p>
                 </div>
 
-                <div class="service-card bg-red-50 p-8 rounded-2xl border border-red-200 hover:shadow-xl hover:shadow-red-500/10 transition-all duration-300 transform hover:-translate-y-2 text-center group">
+                <div class="service-card opacity-0 bg-red-50 p-8 rounded-2xl border border-red-200 hover:shadow-xl hover:shadow-red-500/10 transition-all duration-300 transform hover:-translate-y-2 text-center group">
                     <div class="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300">🛍️</div>
                     <h3 class="text-xl font-extrabold mb-3 text-gray-900">Personal Shopper</h3>
                     <p class="text-gray-700 font-medium text-sm leading-relaxed">Grocery, Gifts ya Dawai. Aap list bhejo, hum best quality select karke ghar layenge.</p>
                 </div>
 
-                <div class="service-card bg-red-50 p-8 rounded-2xl border border-red-200 hover:shadow-xl hover:shadow-red-500/10 transition-all duration-300 transform hover:-translate-y-2 text-center group">
+                <div class="service-card opacity-0 bg-red-50 p-8 rounded-2xl border border-red-200 hover:shadow-xl hover:shadow-red-500/10 transition-all duration-300 transform hover:-translate-y-2 text-center group">
                     <div class="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300">🎓</div>
                     <h3 class="text-xl font-extrabold mb-3 text-gray-900">Career & Study</h3>
                     <p class="text-gray-700 font-medium text-sm leading-relaxed">Admission kaha lein? Resume kaise banayein? Experts se sahi salah lein.</p>
                 </div>
 
-                <div class="service-card bg-red-50 p-8 rounded-2xl border border-red-200 hover:shadow-xl hover:shadow-red-500/10 transition-all duration-300 transform hover:-translate-y-2 text-center group">
+                <div class="service-card opacity-0 bg-red-50 p-8 rounded-2xl border border-red-200 hover:shadow-xl hover:shadow-red-500/10 transition-all duration-300 transform hover:-translate-y-2 text-center group">
                     <div class="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300">🎉</div>
                     <h3 class="text-xl font-extrabold mb-3 text-gray-900">Events & Plans</h3>
                     <p class="text-gray-700 font-medium text-sm leading-relaxed">Birthday surprise ho ya choti trip plan karni ho. Budget batayein, baaki hum par.</p>
@@ -413,24 +413,45 @@
             window.open(`https://wa.me/${phoneNumber}?text=${text}`, '_blank');
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
             checkTime();
             typeWriter();
             
             gsap.registerPlugin(ScrollTrigger);
 
-            gsap.from(".service-card", {
-                scrollTrigger: { trigger: ".service-card", start: "top 80%" },
-                y: 50, opacity: 0, duration: 0.8, stagger: 0.2, ease: "power3.out"
+            // SIMPLE FADE IN EFFECT (No bouncing back)
+            gsap.to(".service-card", {
+                scrollTrigger: {
+                    trigger: ".service-card",
+                    start: "top 85%", // Jab card screen ke 85% hisse par aaye
+                    toggleActions: "play none none none" // Sirf ek baar play hoga, wapas nahi jayega
+                },
+                y: 0,
+                opacity: 1,
+                duration: 1, // Dheere se aayega (1 second)
+                stagger: 0.2, // Ek ke baad ek
+                ease: "power2.out"
             });
+            
+            // Initial setup for animation (CSS se handle karne ke liye)
+            gsap.set(".service-card", { y: 30, opacity: 0 });
 
+            // Process Steps Animation (Simple Slide Up)
             gsap.from(".process-step", {
-                scrollTrigger: { trigger: ".process-step", start: "top 80%" },
-                y: 50, opacity: 0, duration: 0.8, stagger: 0.3, ease: "back.out(1.7)"
+                scrollTrigger: {
+                    trigger: ".process-step",
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                },
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.3,
+                ease: "power2.out"
             });
 
             gsap.from(".glass-panel", { y: 30, opacity: 0, duration: 1, delay: 0.5 });
-        });
+        });;
     </script>
 </body>
 </html>
